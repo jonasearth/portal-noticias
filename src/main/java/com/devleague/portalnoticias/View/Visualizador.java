@@ -1,7 +1,9 @@
 package com.devleague.portalnoticias.View;
 
 import com.devleague.portalnoticias.Controller.Noticia.CreateNoticiaController;
+import com.devleague.portalnoticias.Controller.Noticia.DeleteNoticiaController;
 import com.devleague.portalnoticias.Controller.Noticia.GetNoticiaController;
+import com.devleague.portalnoticias.Controller.Noticia.UpdateNoticiaController;
 import com.devleague.portalnoticias.DB.DB;
 import com.devleague.portalnoticias.Model.Noticia;
 
@@ -38,6 +40,10 @@ public class Visualizador {
                     break;
                 case 2:
                     buscarPublicacoes();
+                    System.out.println("Escolha a publicação");
+                    Scanner inputPublicacao = new Scanner(System.in);
+                    int index = inputPublicacao.nextInt();
+                    opcoesPublicacao(index);
                     break;
                 default:
                     System.out.println("Programa sera fechado :(");
@@ -72,13 +78,62 @@ public class Visualizador {
     }
     public static void buscarPublicacoes(){
         ArrayList<Noticia> noticias =  GetNoticiaController.getAll(db);
-        for(int i = 0; i < noticias.size() ; i++){
-            System.out.println(i + " "+noticias.get(i).getTitulo());
-            System.out.println(noticias.get(i).getConteudo());
+        for(int i = 0; i < noticias.size() ; i++)
+            System.out.println(i + " - "+noticias.get(i).getTitulo());
+
+
+    }
+    public static void visualizarPublicacao(int index){
+        Noticia noticia =  GetNoticiaController.get(db, index);
+        if (noticia == null){
+            System.out.println("Noticia não encontrada");
+            return;
+        }else{
+            //visualização dos dados
         }
     }
-    public static void editarPublicacao(){
-
+    public static void editarPublicacao(int index){
+        Noticia noticia =  GetNoticiaController.get(db, index);
+        if (noticia == null){
+            System.out.println("Noticia não encontrada");
+            return;
+        }else{
+            UpdateNoticiaController.update(db,index, noticia);
+        }
     }
+    public static void deletarPublicacao(int index){
+        boolean deleted =  DeleteNoticiaController.delete(db, index);
+        if (deleted){
+            System.out.println("Noticia Deletada com sucesso");
+            return;
+        }else{
+            System.out.println("Noticia Não pôde ser deletada");
+            return;
+        }
+    }
+    public static void opcoesPublicacao(int index){
+        Scanner input = new Scanner(System.in);
+        espaco();
+        System.out.println("O que fazer com a publicação!");
+        System.out.println("1- Visualizar Publicacao");
+        System.out.println("2- Editar Publicacao");
+        System.out.println("3- Deletar Publicacao");
+        System.out.println("0- se quiser sair do programa");
+        espaco();
 
+        int escolha = input.nextInt();
+        switch (escolha) {
+            case 1:
+                visualizarPublicacao(escolha);
+                break;
+            case 2:
+                editarPublicacao(escolha);
+                break;
+            case 3:
+                deletarPublicacao(escolha);
+                break;
+            default:
+                break;
+        }
+    }
 }
