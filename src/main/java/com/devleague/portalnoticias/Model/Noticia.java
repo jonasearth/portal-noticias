@@ -11,7 +11,7 @@ public class Noticia {
 
 
     public Noticia(String titulo, String conteudo, String categoria, String author){
-        this.author = author;
+        this.titulo = titulo;
         this.conteudo = conteudo;
         this.categoria = categoria;
         this.author = author;
