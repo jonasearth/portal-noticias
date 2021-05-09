@@ -1,8 +1,13 @@
 package com.devleague.portalnoticias.Model;
 
+import com.devleague.portalnoticias.DB.DB;
+
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Noticia {
+
+
     private String titulo;
     private String conteudo;
     private String categoria;
@@ -57,6 +62,27 @@ public class Noticia {
 
     public void setData(Date data) {
         this.data = data;
+    }
+
+
+    /**
+     * DB Actions
+     */
+
+    public static Noticia get(DB db, int index){
+        return db.noticias.get(index);
+    }
+    public static ArrayList<Noticia> getAll(DB db){
+        return db.noticias;
+    }
+    public static boolean create(DB db, Noticia noticia){
+        return  db.noticias.add(noticia);
+    }
+    public static Noticia update(DB db, int index, Noticia noticia){
+        return  db.noticias.set(index, noticia);
+    }
+    public static Noticia delete(DB db, int index){
+        return db.noticias.remove(index);
     }
 
 
