@@ -1,0 +1,117 @@
+Index: src/main/java/com/devleague/portalnoticias/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.devleague.portalnoticias;\n\n\nimport com.devleague.portalnoticias.Controller.Noticia.GetNoticiaController;\nimport com.devleague.portalnoticias.DB.DB;\n\npublic class Main {\n\n    public static DB db = new DB();\n    public static void main(String[] args) {\n\n\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/devleague/portalnoticias/Main.java b/src/main/java/com/devleague/portalnoticias/Main.java
+--- a/src/main/java/com/devleague/portalnoticias/Main.java	(revision 64056aebe7728d573e9d81b4aa856a9a4e5c026a)
++++ b/src/main/java/com/devleague/portalnoticias/Main.java	(date 1620530716059)
+@@ -3,12 +3,12 @@
+ 
+ import com.devleague.portalnoticias.Controller.Noticia.GetNoticiaController;
+ import com.devleague.portalnoticias.DB.DB;
++import com.devleague.portalnoticias.View.Visualizador;
+ 
+ public class Main {
+ 
+     public static DB db = new DB();
+     public static void main(String[] args) {
+-
+-
++        Visualizador.exibir();
+     }
+ }
+Index: src/main/java/com/devleague/portalnoticias/View/Visualizador.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.devleague.portalnoticias.View;\n\npublic class Visualizador {\n\n    public static void exibir(String str){\n        System.out.println(str);\n    }\n    public static void espaco(String str){\n        System.out.println(\"===================================================\");\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/devleague/portalnoticias/View/Visualizador.java b/src/main/java/com/devleague/portalnoticias/View/Visualizador.java
+--- a/src/main/java/com/devleague/portalnoticias/View/Visualizador.java	(revision 64056aebe7728d573e9d81b4aa856a9a4e5c026a)
++++ b/src/main/java/com/devleague/portalnoticias/View/Visualizador.java	(date 1620530928603)
+@@ -1,11 +1,59 @@
+ package com.devleague.portalnoticias.View;
+ 
++import com.devleague.portalnoticias.Controller.Noticia.CreateNoticiaController;
++
++import java.util.Scanner;
++
+ public class Visualizador {
+ 
+-    public static void exibir(String str){
+-        System.out.println(str);
+-    }
+-    public static void espaco(String str){
++    public static void espaco(){
+         System.out.println("===================================================");
+     }
++    public static void  exibir(){
++
++        while (true) {
++            Scanner input = new Scanner(System.in);
++            espaco();
++            System.out.println("Bem vindo ao portal de noticias!");
++            System.out.println("1- Criar Publicação");
++            System.out.println("2- Buscar Publicações");
++            System.out.println("0- se quiser sair do programa");
++            espaco();
++
++            int escolha = input.nextInt();
++
++            switch (escolha) {
++                case 1:
++                    criarPublicacao();
++                    break;
++                default:
++                    System.out.println("Programa sera fechado :(");
++                    System.exit(0);
++                    break;
++            }
++
++        }
++    }
++
++    public static void criarPublicacao(){
++        Scanner input = new Scanner(System.in);
++
++        System.out.print("Autor: ");
++        String autor = input.nextLine();
++
++        System.out.print("Título: ");
++        String titulo = input.nextLine();
++
++        System.out.print("Categoria: ");
++        String categoria = input.nextLine();
++
++        System.out.println("Insira conteudo: ");
++        String conteudo = input.nextLine();
++
++//        CreateNoticiaController.add();
++
++        System.out.println( autor +"\n" + titulo +"\n"+ categoria+"\n"+ conteudo);
++
++    }
++
+ }
+Index: .idea/encodings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"Encoding\">\n    <file url=\"file://$PROJECT_DIR$\" charset=\"UTF-8\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/encodings.xml b/.idea/encodings.xml
+--- a/.idea/encodings.xml	(revision 64056aebe7728d573e9d81b4aa856a9a4e5c026a)
++++ b/.idea/encodings.xml	(date 1620524368929)
+@@ -2,5 +2,6 @@
+ <project version="4">
+   <component name="Encoding">
+     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
++    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+   </component>
+ </project>
+\ No newline at end of file

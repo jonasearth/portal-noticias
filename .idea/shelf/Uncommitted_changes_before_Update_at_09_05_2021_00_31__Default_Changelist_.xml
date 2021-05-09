@@ -1,0 +1,24 @@
+<changelist name="Uncommitted_changes_before_Update_at_09_05_2021_00_31_[Default_Changelist]" date="1620531067150" recycled="false" toDelete="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_05_2021_00_31_[Default_Changelist]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 09/05/2021 00:31 [Default Changelist]" />
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/devleague/portalnoticias/Main.class" />
+    <option name="AFTER_PATH" value="target/classes/com/devleague/portalnoticias/Main.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_05_2021_00_31_[Default_Changelist]/Main.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/devleague/portalnoticias/Controller/GetNoticiaController.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/devleague/portalnoticias/View/Visualizador.class" />
+    <option name="AFTER_PATH" value="target/classes/com/devleague/portalnoticias/View/Visualizador.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_05_2021_00_31_[Default_Changelist]/Visualizador.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/devleague/portalnoticias/Model/Noticia.class" />
+    <option name="AFTER_PATH" value="target/classes/com/devleague/portalnoticias/Model/Noticia.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_05_2021_00_31_[Default_Changelist]/Noticia.class" />
+  </binary>
+</changelist>
