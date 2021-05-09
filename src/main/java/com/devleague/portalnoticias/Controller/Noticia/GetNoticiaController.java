@@ -21,4 +21,11 @@ public class GetNoticiaController {
             return null;
         }
     }
+    public static ArrayList<Noticia> getByCategory(DB db, String categoria) {
+        try {
+            return Noticia.getByCategory(db, categoria);
+        }catch (Exception e){
+            return null;
+        }
+    }
 }

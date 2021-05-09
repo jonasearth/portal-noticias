@@ -75,6 +75,15 @@ public class Noticia {
     public static ArrayList<Noticia> getAll(DB db){
         return db.noticias;
     }
+    public static ArrayList<Noticia> getByCategory(DB db, String categoria){
+        ArrayList<Noticia> noticias = new ArrayList<>();
+
+         for (int i = 0; i < db.noticias.size() ; i++){
+             if (db.noticias.get(i).getCategoria().equals(categoria))
+                 noticias.add(db.noticias.get(i));
+         }
+         return  noticias;
+    }
     public static boolean create(DB db, Noticia noticia){
         return  db.noticias.add(noticia);
     }
