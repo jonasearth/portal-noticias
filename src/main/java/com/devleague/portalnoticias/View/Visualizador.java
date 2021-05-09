@@ -1,8 +1,11 @@
 package com.devleague.portalnoticias.View;
 
 import com.devleague.portalnoticias.Controller.Noticia.CreateNoticiaController;
+import com.devleague.portalnoticias.Controller.Noticia.GetNoticiaController;
 import com.devleague.portalnoticias.DB.DB;
+import com.devleague.portalnoticias.Model.Noticia;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -33,6 +36,9 @@ public class Visualizador {
                 case 1:
                     criarPublicacao();
                     break;
+                case 2:
+                    buscarPublicacoes();
+                    break;
                 default:
                     System.out.println("Programa sera fechado :(");
                     System.exit(0);
@@ -44,27 +50,35 @@ public class Visualizador {
 
     public static void criarPublicacao(){
         Scanner input = new Scanner(System.in);
-        Map<String, String> publicacao = new HashMap<String, String>();
+//        Map<String, String> publicacao = new HashMap<String, String>();
 
         System.out.println("Autor: ");
         String autor = input.nextLine();
-        publicacao.put("autor", autor);
+//        publicacao.put("autor", autor);
 
         System.out.println("Titulo: ");
         String titulo = input.nextLine();
-        publicacao.put("titulo", titulo);
+//        publicacao.put("titulo", titulo);
 
         System.out.println("Categoria: ");
         String categoria = input.nextLine();
-        publicacao.put("categoria", categoria);
+//        publicacao.put("categoria", categoria);
 
         System.out.println("Conteudo: ");
         String conteudo = input.nextLine();
-        publicacao.put("conteudo", conteudo);
+//        publicacao.put("conteudo", conteudo);
         CreateNoticiaController.add(db,titulo, conteudo, categoria, autor);
 
-        System.out.println(publicacao.get("autor"));
-
+    }
+    public static void buscarPublicacoes(){
+        ArrayList<Noticia> noticias =  GetNoticiaController.getAll(db);
+        for(int i = 0; i < noticias.size() ; i++){
+            System.out.println(i + " "+noticias.get(i).getTitulo());
+            System.out.println(noticias.get(i).getConteudo());
+        }
+    }
+    public static void editarPublicacao(){
 
     }
+
 }
