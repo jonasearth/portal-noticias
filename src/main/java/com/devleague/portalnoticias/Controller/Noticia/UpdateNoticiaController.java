@@ -5,7 +5,12 @@ import com.devleague.portalnoticias.Model.Noticia;
 
 public class UpdateNoticiaController {
 
-    public static void update(DB db, int index, Noticia noticia) {
-
+    public static Noticia update(DB db, int index, String titulo, String conteudo, String categoria, String author) {
+        Noticia noticia = new Noticia(titulo, conteudo, categoria, author);
+        try {
+            return Noticia.update(db, index ,noticia);
+        }catch (Exception e){
+            return null;
+        }
     }
 }
