@@ -11,7 +11,8 @@ public class CreateNoticiaController {
             Noticia.create(db, noticia);
             return true;
         }catch (Exception e){
-            return false;
+            return false ;
+            return false ;
         }
     }
 }
