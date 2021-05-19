@@ -10,12 +10,12 @@ public class Noticia {
 
     private String titulo;
     private String conteudo;
-    private String categoria;
+    private Categoria categoria;
     private String author;
     private Date data;
 
 
-    public Noticia(String titulo, String conteudo, String categoria, String author){
+    public Noticia(String titulo, String conteudo, Categoria categoria, String author){
         this.titulo = titulo;
         this.conteudo = conteudo;
         this.categoria = categoria;
@@ -40,11 +40,11 @@ public class Noticia {
         this.conteudo = conteudo;
     }
 
-    public String getCategoria() {
+    public Categoria getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(String categoria) {
+    public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
 
@@ -75,7 +75,7 @@ public class Noticia {
     public static ArrayList<Noticia> getAll(DB db){
         return db.noticias;
     }
-    public static ArrayList<Noticia> getByCategory(DB db, String categoria){
+    public static ArrayList<Noticia> getByCategory(DB db, Categoria categoria){
         ArrayList<Noticia> noticias = new ArrayList<>();
 
          for (int i = 0; i < db.noticias.size() ; i++){
