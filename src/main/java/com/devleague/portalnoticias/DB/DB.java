@@ -1,5 +1,6 @@
 package com.devleague.portalnoticias.DB;
 
+import com.devleague.portalnoticias.Model.Categoria;
 import com.devleague.portalnoticias.Model.Noticia;
 
 import java.util.ArrayList;
