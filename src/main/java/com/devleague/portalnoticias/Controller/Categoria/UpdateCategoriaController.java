@@ -4,11 +4,11 @@ import com.devleague.portalnoticias.DB.DB;
 import com.devleague.portalnoticias.Model.Categoria;
 
 public class UpdateCategoriaController {
-    public static Categoria update(DB db, int index, Categoria categoria) {
+    public static boolean update(DB db, int index, Categoria categoria) {
         try {
-            return Categoria.update(db, index ,categoria);
+            return categoria.update(db, index ,categoria);
         }catch (Exception e){
-            return null;
+            return false;
         }
     }
 }

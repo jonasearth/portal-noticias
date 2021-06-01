@@ -7,7 +7,7 @@ import com.devleague.portalnoticias.Model.Noticia;
 import java.util.ArrayList;
 
 public class GetNoticiaController {
-
+/*
     public static Noticia get(DB db, int index) {
         try {
             return Noticia.get(db, index);
@@ -28,5 +28,5 @@ public class GetNoticiaController {
         }catch (Exception e){
             return null;
         }
-    }
+    }*/
 }

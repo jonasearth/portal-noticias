@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Visualizador {
-
+/*
     public static DB db = new DB();
 
     public static void espaco() {
@@ -181,5 +181,5 @@ public class Visualizador {
             default:
                 break;
         }
-    }
+    }*/
 }

@@ -5,8 +5,9 @@ import com.devleague.portalnoticias.Model.Categoria;
 
 public class DeleteCategoriaController {
     public static boolean delete(DB db, int index) {
+        Categoria categoria = new Categoria();
         try {
-            Categoria.delete(db, index);
+            categoria.delete(db, index);
             return true;
         }catch (Exception e){
             return false;

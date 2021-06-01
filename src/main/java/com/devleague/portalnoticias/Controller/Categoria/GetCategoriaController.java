@@ -7,15 +7,17 @@ import java.util.ArrayList;
 
 public class GetCategoriaController {
     public static Categoria get(DB db, int index) {
+        Categoria categoria = new Categoria();
         try {
-            return Categoria.get(db, index);
+            return (Categoria) categoria.get(db, index);
         }catch (Exception e){
             return null;
         }
     }
     public static ArrayList<Categoria> getAll(DB db) {
+        Categoria categoria = new Categoria();
         try {
-            return Categoria.getAll(db);
+            return categoria.getAll(db);
         }catch (Exception e){
             return null;
         }

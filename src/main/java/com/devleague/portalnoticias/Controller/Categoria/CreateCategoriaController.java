@@ -5,9 +5,10 @@ import com.devleague.portalnoticias.Model.Categoria;
 
 public class CreateCategoriaController {
     public static boolean add(DB db, String nome) {
-        Categoria categoria = new Categoria(nome);
+        Categoria categoria = new Categoria();
+        categoria.setNome(nome);
         try {
-            Categoria.create(db, categoria);
+            categoria.create(db, categoria);
             return true;
         }catch (Exception e){
             return false;
