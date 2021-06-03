@@ -10,7 +10,6 @@ public class MainView {
     private JTextField autor;
     private JTextArea conteudo;
     private JTextField textField1;
-    private JPasswordField passwordField1;
 
     public MainView() {
         btn_msg.addActionListener(new ActionListener() {
