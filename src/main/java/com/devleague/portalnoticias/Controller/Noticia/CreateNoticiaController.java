@@ -5,18 +5,13 @@ import com.devleague.portalnoticias.Model.Categoria;
 import com.devleague.portalnoticias.Model.Noticia;
 
 import java.util.Date;
+import java.util.UUID;
 
 public class CreateNoticiaController {
 
-    public static boolean add(DB db, String titulo, String conteudo, Categoria categoria, String author) {
-        Noticia noticia = new Noticia();
-        noticia.setTitulo(titulo);
-        noticia.setConteudo(conteudo);
-        noticia.setCategoria(categoria);
-        noticia.setAuthor(author);
-        noticia.setData(new Date());
+    public static boolean add(DB db, Noticia noticia) {
         try {
-            noticia.create(db, noticia);
+            noticia.create(db);
             return true;
         }catch (Exception e){
             return false;

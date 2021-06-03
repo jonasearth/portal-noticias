@@ -2,11 +2,14 @@ package com.devleague.portalnoticias.Controller.Categoria;
 
 import com.devleague.portalnoticias.DB.DB;
 import com.devleague.portalnoticias.Model.Categoria;
+import com.devleague.portalnoticias.Model.Noticia;
 
 public class UpdateCategoriaController {
-    public static boolean update(DB db, int index, Categoria categoria) {
+
+    public static boolean update(DB db, Categoria categoria) {
         try {
-            return categoria.update(db, index ,categoria);
+            categoria.update(db);
+            return true;
         }catch (Exception e){
             return false;
         }

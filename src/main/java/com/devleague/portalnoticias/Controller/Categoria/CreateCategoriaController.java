@@ -4,11 +4,9 @@ import com.devleague.portalnoticias.DB.DB;
 import com.devleague.portalnoticias.Model.Categoria;
 
 public class CreateCategoriaController {
-    public static boolean add(DB db, String nome) {
-        Categoria categoria = new Categoria();
-        categoria.setNome(nome);
+    public static boolean add(DB db, Categoria categoria) {
         try {
-            categoria.create(db, categoria);
+            categoria.create(db);
             return true;
         }catch (Exception e){
             return false;

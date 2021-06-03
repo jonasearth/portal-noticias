@@ -11,14 +11,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Visualizador {
-/*
-    public static DB db = new DB();
+
 
     public static void espaco() {
         System.out.println("===================================================");
     }
 
-    public static void exibir() {
+    public static void exibir(DB db) {
 
         while (true) {
             Scanner input = new Scanner(System.in);
@@ -33,25 +32,26 @@ public class Visualizador {
 
             switch (escolha) {
                 case 1:
-                    criarNoticia();
+                    //criarNoticia(db);
                     break;
                 case 2:
-                    buscarNoticias();
+                    buscarNoticias(db);
                     System.out.println("Escolha a publicação");
                     Scanner inputNoticia = new Scanner(System.in);
                     int index = inputNoticia.nextInt();
-                    opcoesNoticia(index);
+                    //opcoesNoticia(index);
                     break;
                 default:
                     System.out.println("Programa sera fechado :(");
+                    db.backup();
                     System.exit(0);
                     break;
             }
 
         }
     }
-
-    public static void criarNoticia() {
+/*
+    public static void criarNoticia(DB db) {
         Scanner input = new Scanner(System.in);
 
         System.out.println("Autor: ");
@@ -69,15 +69,15 @@ public class Visualizador {
         CreateNoticiaController.add(db, titulo, conteudo, categoria, autor);
 
     }
-
-    public static void buscarNoticias() {
+*/
+    public static void buscarNoticias(DB db) {
         ArrayList<Noticia> noticias = GetNoticiaController.getAll(db);
         for (int i = 0; i < noticias.size(); i++)
             System.out.println(i + " - " + noticias.get(i).getTitulo());
 
 
     }
-
+/*
     public static void visualizarNoticia(int index) {
         Noticia noticia = GetNoticiaController.get(db, index);
         if (noticia == null) {

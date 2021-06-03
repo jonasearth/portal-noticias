@@ -5,10 +5,9 @@ import com.devleague.portalnoticias.Model.Noticia;
 
 public class DeleteNoticiaController {
 
-    public static boolean delete(DB db, int index) {
-        Noticia noticia = new Noticia();
+    public static boolean delete(DB db, Noticia noticia) {
         try {
-            noticia.delete(db, index);
+            noticia.delete(db);
             return true;
         }catch (Exception e){
             return false;
