@@ -11,7 +11,7 @@ public class Main {
     public static DB db = new DB();
     public static void main(String[] args) {
         db.restore();
-        new Acesso().setVisible(true);
+        new Acesso(db).setVisible(true);
         System.out.println("Aaaaaaa");
        db.backup();
     }
