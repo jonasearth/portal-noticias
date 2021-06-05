@@ -23,6 +23,12 @@ public class Noticia  {
     private boolean digital;
     private int valor;
 
+    public Noticia(){
+        super();
+        this.id = UUID.randomUUID();
+        this.data = new Date();
+    }
+
     public UUID getAtribuidoA() {
         return atribuidoA;
     }
@@ -95,11 +101,7 @@ public class Noticia  {
         this.editada = editada;
     }
 
-    public Noticia(){
-        super();
-        this.id = UUID.randomUUID();
-        this.data = new Date();
-    }
+
 
     public UUID getId() {
         return id;
@@ -168,7 +170,6 @@ public class Noticia  {
     }
 
     public boolean update(DB db){
-
         try{
             db.noticia.set(db.noticia.indexOf(this.get(db,this.id)), this);
             return  true;

@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public class GetRevisorController {
     public static Revisor get(DB db, UUID id) {
-        Revisor categoria = new Revisor();
+        Revisor revisor = new Revisor();
         try {
             return revisor.get(db, id);
         }catch (Exception e){
