@@ -13,7 +13,87 @@ public class Noticia  {
     private UUID categoria;
     private String author;
     private Date data;
+    private UUID atribuidoA;
+    private boolean editada;
+    private UUID editadoPor;
+    private boolean revisada;
+    private UUID revisadoPor;
+    private boolean aprovada;
+    private UUID aprovadoPor;
+    private boolean digital;
+    private int valor;
 
+    public UUID getAtribuidoA() {
+        return atribuidoA;
+    }
+
+    public int getValor() {
+        return valor;
+    }
+
+    public void setValor(int valor) {
+        this.valor = valor;
+    }
+
+    public boolean isDigital() {
+        return digital;
+    }
+
+    public void setDigital(boolean digital) {
+        this.digital = digital;
+    }
+
+    public UUID getAprovadoPor() {
+        return aprovadoPor;
+    }
+
+    public void setAprovadoPor(UUID aprovadoPor) {
+        this.aprovadoPor = aprovadoPor;
+    }
+
+    public boolean isAprovada() {
+        return aprovada;
+    }
+
+    public void setAprovada(boolean aprovada) {
+        this.aprovada = aprovada;
+    }
+
+    public UUID getRevisadoPor() {
+        return revisadoPor;
+    }
+
+    public void setRevisadoPor(UUID revisadoPor) {
+        this.revisadoPor = revisadoPor;
+    }
+
+    public boolean isRevisada() {
+        return revisada;
+    }
+
+    public void setRevisada(boolean revisada) {
+        this.revisada = revisada;
+    }
+
+    public void setAtribuidoA(UUID atribuidoA) {
+        this.atribuidoA = atribuidoA;
+    }
+
+    public boolean isEditada() {
+        return editada;
+    }
+
+    public UUID getEditadoPor() {
+        return editadoPor;
+    }
+
+    public void setEditadoPor(UUID editadoPor) {
+        this.editadoPor = editadoPor;
+    }
+
+    public void setEditada(boolean editada) {
+        this.editada = editada;
+    }
 
     public Noticia(){
         super();
