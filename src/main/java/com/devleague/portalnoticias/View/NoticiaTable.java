@@ -99,10 +99,8 @@ public class NoticiaTable extends AbstractTableModel {
         //respectivo do objeto de mesmo indice na lista
         switch (columnIndex) {
             case COLUNA_ID:
-                
                 break;
             case COLUNA_TITULO:
-                noticia.setTitulo((String) aValue);
                 break;
             case COLUNA_STATUS:
                 break;

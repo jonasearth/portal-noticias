@@ -93,6 +93,9 @@ public class Acesso extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel2MouseClicked(evt);
             }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel2MousePressed(evt);
+            }
         });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
@@ -305,6 +308,10 @@ public class Acesso extends javax.swing.JFrame {
         new Jornalista(this.db).setVisible(true);
         
     }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void jLabel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MousePressed
+            // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel2MousePressed
 
     /**
      * @param args the command line arguments
