@@ -10,13 +10,13 @@ public class GetChefeController {
     public static Chefe get(DB db, UUID id) {
         Chefe chefe = new Chefe();
         try {
-            return categoria.get(db, id);
+            return chefe.get(db, id);
         }catch (Exception e){
             return null;
         }
     }
     public static ArrayList<Chefe> getAll(DB db) {
-        Chefe categoria = new Chefe();
+        Chefe chefe = new Chefe();
         try {
             return chefe.getAll(db);
         }catch (Exception e){
