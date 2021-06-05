@@ -20,8 +20,7 @@ public class DB {
     public ArrayList<Editor> editor = new ArrayList<>();
     public ArrayList<Jornalista> jornalista = new ArrayList<>();
 
-    private static final String PATH  = "./src\\main\\java\\com\\devleague\\portalnoticias\\DB\\tables\\";
-//    private static final String PATH  = "./src/main/java/com/devleague/portalnoticias/DB/tables/";
+    private static final String PATH  = "./src/main/java/com/devleague/portalnoticias/DB/tables/";
     public void backup (){
 
         Gson gson = new Gson();
