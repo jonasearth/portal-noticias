@@ -5,18 +5,19 @@
  */
 package com.devleague.portalnoticias.View.ViewJornalista;
 
+import com.devleague.portalnoticias.Controller.Jornalista.CreateJornalistaController;
+import com.devleague.portalnoticias.Controller.Jornalista.DeleteJornalistaController;
 import com.devleague.portalnoticias.Controller.Jornalista.GetJornalistaController;
-import com.devleague.portalnoticias.Controller.Noticia.GetNoticiaController;
+
 import com.devleague.portalnoticias.DB.DB;
-import com.devleague.portalnoticias.Model.Noticia;
 import com.devleague.portalnoticias.View.Components.DialogoMsg;
 
 import com.devleague.portalnoticias.Model.Jornalista;
-import com.devleague.portalnoticias.View.NoticiaTable;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.UUID;
 import java.util.regex.Pattern;
 
 /**
@@ -55,8 +56,8 @@ public class ListaJornalistas extends javax.swing.JFrame {
         nomeJornalista = new javax.swing.JTextField();
         salarioJornalista = new javax.swing.JTextField();
         butaoCriarJornalista = new javax.swing.JButton();
-
-
+        excluirJornalista = new javax.swing.JButton();
+        logarJornalista = new javax.swing.JButton();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -115,6 +116,19 @@ public class ListaJornalistas extends javax.swing.JFrame {
             }
         });
 
+        excluirJornalista.setText("Excluir Jornalista");
+        excluirJornalista.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                excluirJornalistaMouseClicked(evt);
+            }
+        });
+
+        logarJornalista.setText("Logar Jornalista");
+        logarJornalista.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logarJornalistaMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -130,11 +144,16 @@ public class ListaJornalistas extends javax.swing.JFrame {
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nomeJornalista, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                            .addComponent(nomeJornalista, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
                             .addComponent(salarioJornalista)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(butaoCriarJornalista)))
+                        .addComponent(butaoCriarJornalista))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(excluirJornalista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(logarJornalista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -152,7 +171,11 @@ public class ListaJornalistas extends javax.swing.JFrame {
                     .addComponent(salarioJornalista, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(butaoCriarJornalista, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(logarJornalista, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(excluirJornalista, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -164,7 +187,7 @@ public class ListaJornalistas extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -186,8 +209,8 @@ public class ListaJornalistas extends javax.swing.JFrame {
 
     private void butaoCriarJornalistaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_butaoCriarJornalistaMouseClicked
 
-        if(nomeJornalista.getText().length() < 6){
-            new DialogoMsg("Nome do Jornalista precisa ter ao menos 6 caracteres");
+        if(nomeJornalista.getText().length() < 3){
+            new DialogoMsg("Nome do Jornalista precisa ter ao menos 3 caracteres");
             return;
         }
         Pattern pattern = Pattern.compile("\\d+.\\d+");
@@ -200,8 +223,12 @@ public class ListaJornalistas extends javax.swing.JFrame {
             Jornalista jornalista = new Jornalista();
             jornalista.setNome(nomeJornalista.getText());
             jornalista.setSalario(Float.parseFloat(salarioJornalista.getText()));
-            jornalista.create(db);
-            table();
+            if(CreateJornalistaController.add(db, jornalista)){
+                table();
+            }else{
+                new DialogoMsg("Não foi possivel Criar o jornalista");
+                return;
+            }
         }catch (Exception e){
             new DialogoMsg("Salario do jornalista invalido");
             return;
@@ -212,6 +239,37 @@ public class ListaJornalistas extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_butaoCriarJornalistaMouseClicked
+
+    private void excluirJornalistaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_excluirJornalistaMouseClicked
+        try {
+            Jornalista jornalista = GetJornalistaController.get(db, (UUID) listaJornalistas.getValueAt(listaJornalistas.getSelectedRow(), 0));
+            if (jornalista != null) {
+                if (DeleteJornalistaController.delete(db, jornalista)) {
+                    table();
+                } else {
+                    new DialogoMsg("Não foi possivel excluir o jornalista!");
+                }
+            } else {
+                new DialogoMsg("Jornalista não encontrado!");
+            }
+        }catch (Exception e){
+            new DialogoMsg("Nenhum Jornalista selecionado!");
+        }
+    }//GEN-LAST:event_excluirJornalistaMouseClicked
+
+    private void logarJornalistaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logarJornalistaMouseClicked
+        try {
+            Jornalista jornalista = GetJornalistaController.get(db, (UUID) listaJornalistas.getValueAt(listaJornalistas.getSelectedRow(), 0));
+            if (jornalista != null) {
+                //chamar tela de jornalista
+
+            } else {
+                new DialogoMsg("Jornalista não encontrado!");
+            }
+        }catch (Exception e){
+            new DialogoMsg("Nenhum Jornalista selecionado!");
+        }
+    }//GEN-LAST:event_logarJornalistaMouseClicked
 
 
 
@@ -224,6 +282,7 @@ public class ListaJornalistas extends javax.swing.JFrame {
 
 
         listaJornalistas = new JTable(tm);
+        listaJornalistas.getColumnModel().getColumn(0).setPreferredWidth(200);
         jScrollPane1.setViewportView(listaJornalistas);
 
 
@@ -231,6 +290,7 @@ public class ListaJornalistas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton butaoCriarJornalista;
+    private javax.swing.JButton excluirJornalista;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialog2;
     private javax.swing.JLabel jLabel1;
@@ -240,8 +300,8 @@ public class ListaJornalistas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable listaJornalistas;
+    private javax.swing.JButton logarJornalista;
     private javax.swing.JTextField nomeJornalista;
     private javax.swing.JTextField salarioJornalista;
-
     // End of variables declaration//GEN-END:variables
 }

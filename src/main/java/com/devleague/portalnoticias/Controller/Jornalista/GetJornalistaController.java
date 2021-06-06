@@ -6,7 +6,7 @@ import com.devleague.portalnoticias.Model.Jornalista;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class GetJornalistaController {
+public class GetJornalistaController  {
     public static Jornalista get(DB db, UUID id) {
         Jornalista jornalista = new Jornalista();
         try {

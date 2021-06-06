@@ -1,13 +1,12 @@
 package com.devleague.portalnoticias.Controller.Noticia;
 
 import com.devleague.portalnoticias.DB.DB;
-import com.devleague.portalnoticias.Model.Categoria;
 import com.devleague.portalnoticias.Model.Noticia;
 
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class GetNoticiaController {
+public class GetNoticiaController  {
 
     public static Noticia get(DB db, UUID id) {
         Noticia noticia = new Noticia();

@@ -146,9 +146,9 @@ public class Noticia  {
 
     public Noticia get(DB db, UUID id){
         try {
-            List<Noticia> list  = db.noticia
+            List<Noticia> list = db.noticia
                 .stream()
-                .filter(noticia-> noticia.getId().equals(id))
+                .filter(noticia -> noticia.getId().equals(id))
                 .collect(Collectors.toList());
             return list.get(0);
         }catch (Exception e){

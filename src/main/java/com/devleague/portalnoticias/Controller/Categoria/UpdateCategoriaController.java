@@ -2,7 +2,6 @@ package com.devleague.portalnoticias.Controller.Categoria;
 
 import com.devleague.portalnoticias.DB.DB;
 import com.devleague.portalnoticias.Model.Categoria;
-import com.devleague.portalnoticias.Model.Noticia;
 
 public class UpdateCategoriaController {
 
