@@ -5,20 +5,33 @@
  */
 package com.devleague.portalnoticias.View.ViewJornalista;
 
+import com.devleague.portalnoticias.Controller.Jornalista.GetJornalistaController;
+import com.devleague.portalnoticias.Controller.Noticia.GetNoticiaController;
+import com.devleague.portalnoticias.DB.DB;
+import com.devleague.portalnoticias.Model.Noticia;
+import com.devleague.portalnoticias.View.Components.DialogoMsg;
+
+import com.devleague.portalnoticias.Model.Jornalista;
+import com.devleague.portalnoticias.View.NoticiaTable;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 /**
  *
  * @author Fnatic
  */
 public class ListaJornalistas extends javax.swing.JFrame {
-
+    public DB db;
     /**
      * Creates new form ListaJornalistas
      */
-    public ListaJornalistas() {
+    public ListaJornalistas(DB db) {
+        this.db = db;
         initComponents();
+        table();
     }
 
     /**
@@ -43,7 +56,7 @@ public class ListaJornalistas extends javax.swing.JFrame {
         salarioJornalista = new javax.swing.JTextField();
         butaoCriarJornalista = new javax.swing.JButton();
 
-        dialogoError = new javax.swing.JDialog();
+
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -173,22 +186,48 @@ public class ListaJornalistas extends javax.swing.JFrame {
 
     private void butaoCriarJornalistaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_butaoCriarJornalistaMouseClicked
 
-        this.dialogoFun("asdasd");
+        if(nomeJornalista.getText().length() < 6){
+            new DialogoMsg("Nome do Jornalista precisa ter ao menos 6 caracteres");
+            return;
+        }
+        Pattern pattern = Pattern.compile("\\d+.\\d+");
+
+        if(!pattern.matcher(salarioJornalista.getText()).matches()){
+            new DialogoMsg("Salario do jornalista invalido");
+            return;
+        }
+        try{
+            Jornalista jornalista = new Jornalista();
+            jornalista.setNome(nomeJornalista.getText());
+            jornalista.setSalario(Float.parseFloat(salarioJornalista.getText()));
+            jornalista.create(db);
+            table();
+        }catch (Exception e){
+            new DialogoMsg("Salario do jornalista invalido");
+            return;
+        }
+
+
+
+
+
     }//GEN-LAST:event_butaoCriarJornalistaMouseClicked
 
 
-    private void dialogoFun(String txt){
-        dialogoError.setLocationRelativeTo(null);
-        Dimension d = new Dimension();
-        d.setSize(200, 200);
-        dialogoError.setMinimumSize(d);
-        dialogoError.setVisible(true);
+
+    private void table(){
+
+        ArrayList<Jornalista> jornalistas = GetJornalistaController.getAll(this.db);
+
+
+        ListaJornalistasTable tm = new ListaJornalistasTable(jornalistas);
+
+
+        listaJornalistas = new JTable(tm);
+        jScrollPane1.setViewportView(listaJornalistas);
+
 
     }
-    /**
-     * @param args the command line arguments
-     */
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton butaoCriarJornalista;
@@ -203,6 +242,6 @@ public class ListaJornalistas extends javax.swing.JFrame {
     private javax.swing.JTable listaJornalistas;
     private javax.swing.JTextField nomeJornalista;
     private javax.swing.JTextField salarioJornalista;
-    private javax.swing.JDialog  dialogoError;
+
     // End of variables declaration//GEN-END:variables
 }

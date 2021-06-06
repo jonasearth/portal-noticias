@@ -11,6 +11,15 @@ public class Jornalista {
 
     private UUID id;
     private String nome;
+
+    public float getSalario() {
+        return salario;
+    }
+
+    public void setSalario(float salario) {
+        this.salario = salario;
+    }
+
     private float salario;
 
     public Jornalista() {

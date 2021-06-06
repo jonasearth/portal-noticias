@@ -8,6 +8,7 @@ package com.devleague.portalnoticias.View;
 import com.devleague.portalnoticias.Controller.Noticia.GetNoticiaController;
 import com.devleague.portalnoticias.DB.DB;
 import com.devleague.portalnoticias.Model.Noticia;
+import com.devleague.portalnoticias.View.ViewJornalista.ListaJornalistas;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JTable;
@@ -27,6 +28,7 @@ public class Jornalista extends javax.swing.JFrame {
         initComponents();
         table();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -50,7 +52,7 @@ public class Jornalista extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         selectedId = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        painelteste = new javax.swing.JPanel();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -168,18 +170,18 @@ public class Jornalista extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Publicações", jPanel1);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout paineltesteLayout = new javax.swing.GroupLayout(painelteste);
+        painelteste.setLayout(paineltesteLayout);
+        paineltesteLayout.setHorizontalGroup(
+            paineltesteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 788, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        paineltesteLayout.setVerticalGroup(
+            paineltesteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 519, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Criar Publicação", jPanel2);
+        jTabbedPane1.addTab("Criar Publicação", painelteste);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -237,10 +239,10 @@ public class Jornalista extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JPanel painelteste;
     private javax.swing.JLabel selectedId;
     // End of variables declaration//GEN-END:variables
 }
