@@ -6,6 +6,7 @@ import com.devleague.portalnoticias.DB.ProcessoBackup;
 import com.devleague.portalnoticias.View.Jornalista;
 import com.devleague.portalnoticias.View.Acesso;
 import com.devleague.portalnoticias.View.ViewJornalista.ListaJornalistas;
+import com.devleague.portalnoticias.View.ViewRevisor.PageEnviarErro;
 
 import javax.swing.*;
 
