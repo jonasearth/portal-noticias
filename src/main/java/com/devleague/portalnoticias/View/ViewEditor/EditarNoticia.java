@@ -9,12 +9,12 @@ package com.devleague.portalnoticias.View.ViewEditor;
  *
  * @author david
  */
-public class EdiarNoticia extends javax.swing.JFrame {
+public class EditarNoticia extends javax.swing.JFrame {
 
     /**
      * Creates new form EdiarNoticia
      */
-    public EdiarNoticia() {
+    public EditarNoticia() {
         initComponents();
     }
 
