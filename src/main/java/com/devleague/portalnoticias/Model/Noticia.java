@@ -13,6 +13,7 @@ public class Noticia  {
     private UUID categoria;
     private String author;
     private Date data;
+    private boolean criada;
     private UUID atribuidoA;
     private boolean editada;
     private UUID editadoPor;

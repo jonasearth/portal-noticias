@@ -11,6 +11,9 @@ public class Chefe {
 
     private UUID id;
     private String nome;
+
+
+
     private float salario;
 
     public Chefe(){
@@ -30,6 +33,17 @@ public class Chefe {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    public float getSalario() {
+        return salario;
+    }
+
+    public void setSalario(float salario) {
+        this.salario = salario;
+    }
+
+
+
 
     public Chefe get(DB db, UUID id){
         try {
