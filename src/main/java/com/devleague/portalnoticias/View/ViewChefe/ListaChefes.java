@@ -3,16 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.devleague.portalnoticias.View.ViewJornalista;
+package com.devleague.portalnoticias.View.ViewChefe;
 
-import com.devleague.portalnoticias.Controller.Jornalista.CreateJornalistaController;
-import com.devleague.portalnoticias.Controller.Jornalista.DeleteJornalistaController;
-import com.devleague.portalnoticias.Controller.Jornalista.GetJornalistaController;
+import com.devleague.portalnoticias.Controller.Chefe.CreateChefeController;
+import com.devleague.portalnoticias.Controller.Chefe.DeleteChefeController;
+import com.devleague.portalnoticias.Controller.Chefe.GetChefeController;
+
 
 import com.devleague.portalnoticias.DB.DB;
 import com.devleague.portalnoticias.View.Components.DialogoMsg;
 
-import com.devleague.portalnoticias.Model.Jornalista;
+import com.devleague.portalnoticias.Model.Chefe;
 import com.devleague.portalnoticias.View.Acesso;
 
 import javax.swing.*;
@@ -25,14 +26,14 @@ import java.util.regex.Pattern;
  *
  * @author Fnatic
  */
-public class ListaJornalistas extends javax.swing.JFrame {
+public class ListaChefes extends javax.swing.JFrame {
 
 
     public DB db;
     /**
-     * Creates new form ListaJornalistas
+     * Creates new form ListaChefes
      */
-    public ListaJornalistas(DB db)  {
+    public ListaChefes(DB db)  {
 
         this.db = db;
         initComponents();
@@ -52,7 +53,7 @@ public class ListaJornalistas extends javax.swing.JFrame {
         jDialog2 = new javax.swing.JDialog();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        listaJornalistas = new javax.swing.JTable();
+        listaChefes = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -89,10 +90,10 @@ public class ListaJornalistas extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Selecione o Jornalista para entrar");
+        jLabel1.setText("Selecione o Chefe para entrar");
 
-        listaJornalistas.setAutoCreateColumnsFromModel(false);
-        listaJornalistas.setModel(new javax.swing.table.DefaultTableModel(
+        listaChefes.setAutoCreateColumnsFromModel(false);
+        listaChefes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -103,12 +104,12 @@ public class ListaJornalistas extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(listaJornalistas);
+        jScrollPane1.setViewportView(listaChefes);
 
         jPanel1.setMaximumSize(new java.awt.Dimension(300, 65000));
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Criar Novo Jornalista");
+        jLabel2.setText("Criar Novo Chefe");
 
         jLabel3.setText("Nome: ");
 
@@ -123,14 +124,14 @@ public class ListaJornalistas extends javax.swing.JFrame {
             }
         });
 
-        excluirJornalista.setText("Excluir Jornalista");
+        excluirJornalista.setText("Excluir Chefe");
         excluirJornalista.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 excluirJornalistaMouseClicked(evt);
             }
         });
 
-        logarJornalista.setText("Logar Jornalista");
+        logarJornalista.setText("Logar Chefe");
         logarJornalista.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 logarJornalistaMouseClicked(evt);
@@ -228,27 +229,27 @@ public class ListaJornalistas extends javax.swing.JFrame {
     private void butaoCriarJornalistaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_butaoCriarJornalistaMouseClicked
 
         if(nomeJornalista.getText().length() < 3){
-            new DialogoMsg("Nome do Jornalista precisa ter ao menos 3 caracteres");
+            new DialogoMsg("Nome do Chefe precisa ter ao menos 3 caracteres");
             return;
         }
         Pattern pattern = Pattern.compile("\\d+.\\d+");
 
         if(!pattern.matcher(salarioJornalista.getText()).matches()){
-            new DialogoMsg("Salario do jornalista invalido");
+            new DialogoMsg("Salario do chefe invalido");
             return;
         }
         try{
-            Jornalista jornalista = new Jornalista();
-            jornalista.setNome(nomeJornalista.getText());
-            jornalista.setSalario(Float.parseFloat(salarioJornalista.getText()));
-            if(CreateJornalistaController.add(db, jornalista)){
+            Chefe chefe = new Chefe();
+            chefe.setNome(nomeJornalista.getText());
+            chefe.setSalario(Float.parseFloat(salarioJornalista.getText()));
+            if(CreateChefeController.add(db, chefe)){
                 table();
             }else{
-                new DialogoMsg("Não foi possivel Criar o jornalista");
+                new DialogoMsg("Não foi possivel Criar o chefe");
                 return;
             }
         }catch (Exception e){
-            new DialogoMsg("Salario do jornalista invalido");
+            new DialogoMsg("Salario do chefe invalido");
             return;
         }
 
@@ -260,33 +261,33 @@ public class ListaJornalistas extends javax.swing.JFrame {
 
     private void excluirJornalistaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_excluirJornalistaMouseClicked
         try {
-            Jornalista jornalista = GetJornalistaController.get(db, (UUID) listaJornalistas.getValueAt(listaJornalistas.getSelectedRow(), 0));
-            if (jornalista != null) {
-                if (DeleteJornalistaController.delete(db, jornalista)) {
+            Chefe chefe = GetChefeController.get(db, (UUID) listaChefes.getValueAt(listaChefes.getSelectedRow(), 0));
+            if (chefe != null) {
+                if (DeleteChefeController.delete(db, chefe)) {
                     table();
                 } else {
-                    new DialogoMsg("Não foi possivel excluir o jornalista!");
+                    new DialogoMsg("Não foi possivel excluir o chefe!");
                 }
             } else {
-                new DialogoMsg("Jornalista não encontrado!");
+                new DialogoMsg("Chefe não encontrado!");
             }
         }catch (Exception e){
-            new DialogoMsg("Nenhum Jornalista selecionado!");
+            new DialogoMsg("Nenhum Chefe selecionado!");
         }
     }//GEN-LAST:event_excluirJornalistaMouseClicked
 
     private void logarJornalistaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logarJornalistaMouseClicked
         try {
-            Jornalista jornalista = GetJornalistaController.get(db, (UUID) listaJornalistas.getValueAt(listaJornalistas.getSelectedRow(), 0));
-            if (jornalista != null) {
-                new JornalistaFrame(db, jornalista).setVisible(true);
+            Chefe chefe = GetChefeController.get(db, (UUID) listaChefes.getValueAt(listaChefes.getSelectedRow(), 0));
+            if (chefe != null) {
+                new PageChefeRedacao(db, chefe).setVisible(true);
                 this.setVisible(false);
 
             } else {
-                new DialogoMsg("Jornalista não encontrado!");
+                new DialogoMsg("Chefe não encontrado!");
             }
         }catch (Exception e){
-            new DialogoMsg("Nenhum Jornalista selecionado!");
+            new DialogoMsg("Nenhum Chefe selecionado!");
         }
     }//GEN-LAST:event_logarJornalistaMouseClicked
 
@@ -299,15 +300,15 @@ public class ListaJornalistas extends javax.swing.JFrame {
 
     private void table(){
 
-        ArrayList<Jornalista> jornalistas = GetJornalistaController.getAll(this.db);
+        ArrayList<Chefe> chefes = GetChefeController.getAll(this.db);
 
 
-        ListaJornalistasTable tm = new ListaJornalistasTable(jornalistas);
+        ListaChefesTable tm = new ListaChefesTable(chefes);
 
 
-        listaJornalistas = new JTable(tm);
-        listaJornalistas.getColumnModel().getColumn(0).setPreferredWidth(200);
-        jScrollPane1.setViewportView(listaJornalistas);
+        listaChefes = new JTable(tm);
+        listaChefes.getColumnModel().getColumn(0).setPreferredWidth(200);
+        jScrollPane1.setViewportView(listaChefes);
 
 
     }
@@ -324,7 +325,7 @@ public class ListaJornalistas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable listaJornalistas;
+    private javax.swing.JTable listaChefes;
     private javax.swing.JButton logarJornalista;
     private javax.swing.JTextField nomeJornalista;
     private javax.swing.JTextField salarioJornalista;

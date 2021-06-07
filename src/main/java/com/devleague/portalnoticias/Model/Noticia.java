@@ -15,6 +15,7 @@ public class Noticia  {
     private Date data;
     private boolean criada;
     private UUID atribuidoA;
+    private UUID atribuidoPor;
     private boolean editada;
     private UUID editadoPor;
     private boolean revisada;
@@ -148,10 +149,22 @@ public class Noticia  {
     public Noticia get(DB db, UUID id){
         try {
             List<Noticia> list = db.noticia
-                .stream()
-                .filter(noticia -> noticia.getId().equals(id))
-                .collect(Collectors.toList());
+                    .stream()
+                    .filter(noticia -> noticia.getId().equals(id))
+                    .collect(Collectors.toList());
             return list.get(0);
+        }catch (Exception e){
+            return null;
+        }
+    }
+    
+    public ArrayList<Noticia> getByChefe(DB db, UUID id){
+        try {
+            List<Noticia> list = db.noticia
+                    .stream()
+                    .filter(noticia -> noticia.getId().equals(id))
+                    .collect(Collectors.toList());
+            return new ArrayList<>(list);
         }catch (Exception e){
             return null;
         }

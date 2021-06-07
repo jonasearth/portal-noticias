@@ -24,5 +24,13 @@ public class GetNoticiaController  {
             return null;
         }
     }
+    public static ArrayList<Noticia> getByChefe(DB db, UUID id) {
+        Noticia noticia = new Noticia();
+        try {
+            return noticia.getByChefe(db, id);
+        }catch (Exception e){
+            return null;
+        }
+    }
 
 }

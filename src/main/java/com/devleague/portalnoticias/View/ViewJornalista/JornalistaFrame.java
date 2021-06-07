@@ -44,7 +44,7 @@ public class JornalistaFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titulo.setText(this.jornalista.getNome());
+        titulo.setText("Bem Vindo " + this.jornalista.getNome());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
