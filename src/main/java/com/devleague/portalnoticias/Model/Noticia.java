@@ -31,6 +31,24 @@ public class Noticia  {
         this.data = new Date();
     }
 
+    public boolean isCriada() {
+        return criada;
+    }
+
+    public void setCriada(boolean criada) {
+        this.criada = criada;
+    }
+
+    public UUID getAtribuidoPor() {
+        return atribuidoPor;
+    }
+
+    public void setAtribuidoPor(UUID atribuidoPor) {
+        this.atribuidoPor = atribuidoPor;
+    }
+
+
+
     public UUID getAtribuidoA() {
         return atribuidoA;
     }
@@ -162,7 +180,7 @@ public class Noticia  {
         try {
             List<Noticia> list = db.noticia
                     .stream()
-                    .filter(noticia -> noticia.getId().equals(id))
+                    .filter(noticia -> noticia.getAtribuidoPor().equals(id))
                     .collect(Collectors.toList());
             return new ArrayList<>(list);
         }catch (Exception e){
