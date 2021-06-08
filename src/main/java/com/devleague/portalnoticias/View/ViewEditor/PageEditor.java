@@ -5,6 +5,13 @@
  */
 package com.devleague.portalnoticias.View.ViewEditor;
 
+import com.devleague.portalnoticias.Controller.Noticia.GetNoticiaController;
+import com.devleague.portalnoticias.DB.DB;
+import com.devleague.portalnoticias.Model.Noticia;
+import com.devleague.portalnoticias.View.ViewEditor.ListaNoticiasCriadasTable;
+import java.util.ArrayList;
+import javax.swing.JTable;
+
 /**
  *
  * @author david
@@ -14,10 +21,13 @@ public class PageEditor extends javax.swing.JFrame {
     /**
      * Creates new form PageEditor
      */
-    public PageEditor() {
+    private DB db;
+    public PageEditor(DB db) {
+        this.db = db;
         initComponents();
+        table();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -147,7 +157,15 @@ public class PageEditor extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    @SuppressWarnings("empty-statement")
+    private void table(){
+        ArrayList<Noticia> noticias = GetNoticiaController.getAll(this.db);
+        
+        ListaNoticiasCriadasTable tm = new ListaNoticiasCriadasTable(noticias);
+        
+        jTable2 = new JTable(tm);
+        jScrollPane2.setViewportView(jTable2);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

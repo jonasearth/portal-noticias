@@ -4,6 +4,9 @@ package com.devleague.portalnoticias;
 import com.devleague.portalnoticias.DB.DB;
 import com.devleague.portalnoticias.DB.ProcessoBackup;
 import com.devleague.portalnoticias.View.Acesso;
+import com.devleague.portalnoticias.Controller.Noticia.CreateNoticiaController;
+import com.devleague.portalnoticias.Model.Noticia;
+import com.devleague.portalnoticias.View.ViewEditor.PageEditor;
 import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 
@@ -20,7 +23,8 @@ public class Main {
             System.err.println( "Failed to initialize LaF" );
         }
         db.restore();
-        new Acesso(db).setVisible(true);
+//        new Acesso(db).setVisible(true);
+            new PageEditor(db).setVisible(true);
         try
         {
            new ProcessoBackup(db);
