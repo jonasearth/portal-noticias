@@ -15,9 +15,9 @@ import com.devleague.portalnoticias.View.Components.DialogoMsg;
 
 import com.devleague.portalnoticias.Model.Chefe;
 import com.devleague.portalnoticias.View.Acesso;
+import com.devleague.portalnoticias.View.ViewChefe.Table.ListaChefesTable;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.UUID;
 import java.util.regex.Pattern;

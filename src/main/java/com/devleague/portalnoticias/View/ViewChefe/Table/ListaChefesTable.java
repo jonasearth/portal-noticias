@@ -3,40 +3,38 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.devleague.portalnoticias.View.ViewChefe;
+package com.devleague.portalnoticias.View.ViewChefe.Table;
 
 /**
  *
  * @author Fnatic
  */
+import com.devleague.portalnoticias.View.ViewChefe.*;
+import com.devleague.portalnoticias.View.*;
+import com.devleague.portalnoticias.Model.Chefe;
+import com.devleague.portalnoticias.View.Components.DialogoMsg;
 
-import com.devleague.portalnoticias.Controller.Jornalista.GetJornalistaController;
-import com.devleague.portalnoticias.DB.DB;
-import com.devleague.portalnoticias.Model.Noticia;
-
-import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
-import java.util.UUID;
+import java.util.Date;
+import javax.swing.table.AbstractTableModel;
 
-public class NoticiasAAprovarTable extends AbstractTableModel {
+public class ListaChefesTable extends AbstractTableModel {
 
     private String colunas[] = {"id", "nome","salario" };
-    private ArrayList<Noticia> noticia;
-    private DB db;
+    private ArrayList<Chefe> chefe;
     public final int COLUNA_ID = 0;
-    public final int COLUNA_TITULO = 1;
-    public final int COLUNA_JORNALISTA = 2;
+    public final int COLUNA_NOME = 1;
+    public final int COLUNA_SALARIO = 2;
 
-    public NoticiasAAprovarTable(ArrayList<Noticia> noticia, DB db) {
-        this.noticia = noticia;
-        this.db = db;
+    public ListaChefesTable(ArrayList<Chefe> chefe) {
+        this.chefe = chefe;
     }
 
     
 
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        if(columnIndex == 0||columnIndex == 2){
+        if(columnIndex == 0){
             return false;
         }else{
             return true;
@@ -45,7 +43,7 @@ public class NoticiasAAprovarTable extends AbstractTableModel {
 
     @Override
     public int getRowCount() {
-        return noticia.size();
+        return chefe.size();
     }
     @Override
     public int getColumnCount() {
@@ -60,11 +58,11 @@ public class NoticiasAAprovarTable extends AbstractTableModel {
     public Class<?> getColumnClass(int columnIndex) {
         switch (columnIndex) {
             case COLUNA_ID:
-                return UUID.class;
-            case COLUNA_TITULO:
                 return String.class;
-            case COLUNA_JORNALISTA:
+            case COLUNA_NOME:
                 return String.class;
+            case COLUNA_SALARIO:
+                return Float.class;
             default:
                 return String.class;
         }
@@ -72,34 +70,31 @@ public class NoticiasAAprovarTable extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Noticia noticia = this.noticia.get(rowIndex);
+        Chefe chefe = this.chefe.get(rowIndex);
         switch (columnIndex) {
             case COLUNA_ID:
-                return noticia.getId();
-            case COLUNA_TITULO:
-                return noticia.getTitulo();
-            case COLUNA_JORNALISTA:
-                try {
-                    String nome = GetJornalistaController.get(db, noticia.getAtribuidoA()).getNome();
-                    return nome;
-                }catch (Exception e){
-                    return "Jornalista não encontrado!";
-                }
-
+                return chefe.getId();
+            case COLUNA_NOME:
+                return chefe.getNome();
+            case COLUNA_SALARIO:
+                return chefe.getSalario();
         }
         return null;
     }
 
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-        Noticia noticia = this.noticia.get(rowIndex);
+        Chefe chefe = this.chefe.get(rowIndex);
         switch (columnIndex) {
             case COLUNA_ID:
                 break;
-            case COLUNA_TITULO:
-                noticia.setTitulo(aValue.toString());
+            case COLUNA_NOME:
+                chefe.setNome(aValue.toString());
                 break;
-            case COLUNA_JORNALISTA:
+            case COLUNA_SALARIO:
+                if (aValue instanceof Float) {
+                    chefe.setSalario((Float)aValue);
+                }
                 break;
         }
         fireTableDataChanged();

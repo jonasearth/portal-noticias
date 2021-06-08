@@ -3,31 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.devleague.portalnoticias.View.ViewChefe;
+package com.devleague.portalnoticias.View.ViewChefe.Table;
 
 /**
  *
  * @author Fnatic
  */
-import com.devleague.portalnoticias.View.ViewChefe.*;
-import com.devleague.portalnoticias.View.*;
-import com.devleague.portalnoticias.Model.Chefe;
-import com.devleague.portalnoticias.View.Components.DialogoMsg;
 
-import java.util.ArrayList;
-import java.util.Date;
+import com.devleague.portalnoticias.DB.DB;
+import com.devleague.portalnoticias.Model.Categoria;
+
 import javax.swing.table.AbstractTableModel;
+import java.util.ArrayList;
+import java.util.UUID;
 
-public class ListaChefesTable extends AbstractTableModel {
+public class CategoriasTable extends AbstractTableModel {
 
-    private String colunas[] = {"id", "nome","salario" };
-    private ArrayList<Chefe> chefe;
+    private String colunas[] = {"id", "nome" };
+    private ArrayList<Categoria> categoria;
     public final int COLUNA_ID = 0;
     public final int COLUNA_NOME = 1;
-    public final int COLUNA_SALARIO = 2;
 
-    public ListaChefesTable(ArrayList<Chefe> chefe) {
-        this.chefe = chefe;
+    public CategoriasTable(ArrayList<Categoria> categoria) {
+        this.categoria = categoria;
+
     }
 
     
@@ -43,7 +42,7 @@ public class ListaChefesTable extends AbstractTableModel {
 
     @Override
     public int getRowCount() {
-        return chefe.size();
+        return categoria.size();
     }
     @Override
     public int getColumnCount() {
@@ -58,11 +57,10 @@ public class ListaChefesTable extends AbstractTableModel {
     public Class<?> getColumnClass(int columnIndex) {
         switch (columnIndex) {
             case COLUNA_ID:
-                return String.class;
+                return UUID.class;
             case COLUNA_NOME:
                 return String.class;
-            case COLUNA_SALARIO:
-                return Float.class;
+
             default:
                 return String.class;
         }
@@ -70,32 +68,26 @@ public class ListaChefesTable extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Chefe chefe = this.chefe.get(rowIndex);
+        Categoria categoria = this.categoria.get(rowIndex);
         switch (columnIndex) {
             case COLUNA_ID:
-                return chefe.getId();
+                return categoria.getId();
             case COLUNA_NOME:
-                return chefe.getNome();
-            case COLUNA_SALARIO:
-                return chefe.getSalario();
+                return categoria.getNome();
         }
         return null;
     }
 
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-        Chefe chefe = this.chefe.get(rowIndex);
+        Categoria categoria = this.categoria.get(rowIndex);
         switch (columnIndex) {
             case COLUNA_ID:
                 break;
             case COLUNA_NOME:
-                chefe.setNome(aValue.toString());
+                categoria.setNome(aValue.toString());
                 break;
-            case COLUNA_SALARIO:
-                if (aValue instanceof Float) {
-                    chefe.setSalario((Float)aValue);
-                }
-                break;
+
         }
         fireTableDataChanged();
     }

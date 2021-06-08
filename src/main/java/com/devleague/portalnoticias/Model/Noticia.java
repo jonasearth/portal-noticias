@@ -175,12 +175,23 @@ public class Noticia  {
             return null;
         }
     }
-    
+
     public ArrayList<Noticia> getByChefe(DB db, UUID id){
         try {
             List<Noticia> list = db.noticia
                     .stream()
                     .filter(noticia -> noticia.getAtribuidoPor().equals(id))
+                    .collect(Collectors.toList());
+            return new ArrayList<>(list);
+        }catch (Exception e){
+            return null;
+        }
+    }
+    public ArrayList<Noticia> getByCategory(DB db, UUID id){
+        try {
+            List<Noticia> list = db.noticia
+                    .stream()
+                    .filter(noticia -> noticia.getCategoria().equals(id))
                     .collect(Collectors.toList());
             return new ArrayList<>(list);
         }catch (Exception e){
