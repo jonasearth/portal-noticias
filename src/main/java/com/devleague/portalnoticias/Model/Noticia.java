@@ -2,6 +2,7 @@ package com.devleague.portalnoticias.Model;
 
 import com.devleague.portalnoticias.DB.DB;
 
+import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -24,6 +25,10 @@ public class Noticia  {
     private UUID aprovadoPor;
     private boolean digital;
     private int valor;
+    private ArrayList<UUID> comentarios;
+    private ArrayList<UUID> anuncios;
+    private boolean impresso;
+    private ArrayList<UUID> erros;
 
     public Noticia(){
         super();
@@ -163,6 +168,37 @@ public class Noticia  {
         return data;
     }
 
+    public ArrayList<UUID> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(ArrayList<UUID> comentarios) {
+        this.comentarios = comentarios;
+    }
+
+    public ArrayList<UUID> getAnuncios() {
+        return anuncios;
+    }
+
+    public void setAnuncios(ArrayList<UUID> anuncios) {
+        this.anuncios = anuncios;
+    }
+
+    public boolean isImpresso() {
+        return impresso;
+    }
+
+    public void setImpresso(boolean impresso) {
+        this.impresso = impresso;
+    }
+
+    public ArrayList<UUID> getErros() {
+        return erros;
+    }
+
+    public void setErros(ArrayList<UUID> erros) {
+        this.erros = erros;
+    }
 
     public Noticia get(DB db, UUID id){
         try {
