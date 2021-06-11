@@ -22,9 +22,9 @@ public class Main {
         } catch( Exception ex ) {
             System.err.println( "Failed to initialize LaF" );
         }
-        db.restore();
-//        new Acesso(db).setVisible(true);
-            new PageEditor(db).setVisible(true);
+             db.restore();
+            new Acesso(db).setVisible(true);
+            //new PageEditor(db).setVisible(true);
         try
         {
            new ProcessoBackup(db);

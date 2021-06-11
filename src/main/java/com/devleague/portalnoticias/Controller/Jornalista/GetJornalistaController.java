@@ -23,11 +23,12 @@ public class GetJornalistaController  {
             return null;
         }
     }
-    public static Jornalista getEdited(DB db) {
-        Jornalista jornalista = new Jornalista();
-        try {
-            return jornalista.getEdited(db);
-        }catch (Exception e) {
-            return null;
-        }
+//    public static Jornalista getEdited(DB db) {
+//        Jornalista jornalista = new Jornalista();
+//        try {
+//            return jornalista.getEdited(db);
+//        } catch (Exception e) {
+//            return null;
+//        }
+//    }
 }

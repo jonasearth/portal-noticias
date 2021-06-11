@@ -267,28 +267,28 @@ public class Noticia  {
             return false;
         }
     }
-}
 
-    public Noticia getEdited(DB db){
-        try {
-            List<Noticia> list = db.noticia
-                    .stream()
-                    .filter(noticia -> noticia.isEditada())
-                    .collect(Collectors.toList());
-            return list.get(0);
-        }catch (Exception e){
-            return null;
-        }
-    }
 
-    public Noticia getRevised(DB db){
-        try {
-            List<Noticia> list = db.noticia
-                    .stream()
-                    .filter(noticia -> noticia.isRevisada())
-                    .collect(Collectors.toList());
-            return list.get(0);
-        }catch (Exception e){
-            return null;
-        }
+//    public ArrayList<Noticia> getEdited(DB db){
+//        try {
+//            List<Noticia> list = db.noticia
+//                    .stream()
+//                    .filter(noticia -> noticia.isEditada())
+//                    .collect(Collectors.toList());
+//            return new ArrayList<String>(list);
+//        }catch (Exception e){
+//            return null;
+//        }
+//    }
+//
+//    public Noticia getRevised(DB db){
+//        try {
+//            List<Noticia> list = db.noticia
+//                    .stream()
+//                    .filter(noticia -> noticia.isRevisada())
+//                    .collect(Collectors.toList());
+//            return list.get(0);
+//        }catch (Exception e){
+//            return null;
+//        }
     }
