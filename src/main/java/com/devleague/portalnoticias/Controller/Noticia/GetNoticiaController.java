@@ -1,6 +1,7 @@
 package com.devleague.portalnoticias.Controller.Noticia;
 
 import com.devleague.portalnoticias.DB.DB;
+import com.devleague.portalnoticias.Model.Jornalista;
 import com.devleague.portalnoticias.Model.Noticia;
 
 import java.util.ArrayList;
@@ -44,6 +45,14 @@ public class GetNoticiaController  {
         Noticia noticia = new Noticia();
         try {
             return noticia.getRevised(db);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    public static ArrayList<Noticia> getEdited(DB db) {
+        Noticia noticia = new Noticia();
+        try {
+            return noticia.getEdited(db);
         } catch (Exception e) {
             return null;
         }
