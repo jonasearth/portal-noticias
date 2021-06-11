@@ -40,12 +40,12 @@ public class GetNoticiaController  {
             return null;
         }
     }
-//    public static ArrayList<Noticia> getRevised(DB db) {
-//        Noticia noticia = new Noticia();
-//        try {
-//            return noticia.getRevised(db);
-//        } catch (Exception e) {
-//            return null;
-//        }
-//    }
+    public static ArrayList<Noticia> getRevised(DB db) {
+        Noticia noticia = new Noticia();
+        try {
+            return noticia.getRevised(db);
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }
