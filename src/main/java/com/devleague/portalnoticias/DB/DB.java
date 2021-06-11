@@ -13,6 +13,8 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class DB {
+
+    //simulador de banco de dados
     public ArrayList<Noticia> noticia = new ArrayList<>();
     public ArrayList<Categoria> categoria = new ArrayList<>();
     public ArrayList<Chefe> chefe = new ArrayList<>();
@@ -26,6 +28,7 @@ public class DB {
         Gson gson = new Gson();
         try {
 
+            //obtem um json de cada um dos array lists
             String jsonNoticia = gson.toJson(this.noticia);
             String jsonCategoria = gson.toJson(this.categoria);
             String jsonChefe = gson.toJson(this.chefe);
@@ -33,6 +36,7 @@ public class DB {
             String jsonEditor = gson.toJson(this.editor);
             String jsonJornalista = gson.toJson(this.jornalista);
 
+            //cria arquivos de json para inserir os dados
             FileWriter wNoticias = new FileWriter(PATH+"noticias.json");
             FileWriter wCategorias = new FileWriter(PATH+"categorias.json");
             FileWriter wChefe = new FileWriter(PATH+"chefe.json");
@@ -40,6 +44,7 @@ public class DB {
             FileWriter wEditor = new FileWriter(PATH+"editor.json");
             FileWriter wJornalista = new FileWriter(PATH+"jornalista.json");
 
+            //insere os dados em json dentro dos arquivos
             wNoticias.write(jsonNoticia);
             wCategorias.write(jsonCategoria);
             wChefe.write(jsonChefe);
@@ -47,6 +52,7 @@ public class DB {
             wEditor.write(jsonEditor);
             wJornalista.write(jsonJornalista);
 
+            //fecha a edição do arquivo
             wNoticias.close();
             wCategorias.close();
             wChefe.close();
@@ -62,6 +68,7 @@ public class DB {
     public void restore(){
         Gson gson = new Gson();
 
+        //obtem o tipo especifico do arraylist
         Type typeNoticia = new TypeToken<ArrayList<Noticia>> () {}.getType();
         Type typeCategoria = new TypeToken<ArrayList<Categoria>> () {}.getType();
         Type typeChefe = new TypeToken<ArrayList<Chefe>> () {}.getType();
@@ -71,6 +78,7 @@ public class DB {
 
 
         try {
+            //ler os arquivos em json salvos
             BufferedReader rNoticia = new BufferedReader(new FileReader(PATH+"noticias.json"));
             BufferedReader rCategoria = new BufferedReader(new FileReader(PATH+"categorias.json"));
             BufferedReader rChefe = new BufferedReader(new FileReader(PATH+"chefe.json"));
@@ -78,6 +86,7 @@ public class DB {
             BufferedReader rEditor = new BufferedReader(new FileReader(PATH+"editor.json"));
             BufferedReader rJornalista = new BufferedReader(new FileReader(PATH+"jornalista.json"));
 
+            //insere o conteudo dos arquivos dentro dos arraylists
             this.noticia = gson.fromJson(rNoticia, typeNoticia);
             this.categoria = gson.fromJson(rCategoria, typeCategoria);
             this.chefe = gson.fromJson(rChefe, typeChefe);
