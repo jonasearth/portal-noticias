@@ -13,13 +13,13 @@ import com.devleague.portalnoticias.Model.Jornalista;
  * @author Fnatic
  */
 public class JornalistaFrame extends javax.swing.JFrame {
-    private DB db;
+
     private Jornalista jornalista;
     /**
      * Creates new form JornalistaFrame
      */
-    public JornalistaFrame(DB db, Jornalista jornalista) {
-        this.db = db;
+    public JornalistaFrame( Jornalista jornalista) {
+
         this.jornalista = jornalista;
         initComponents();
     }

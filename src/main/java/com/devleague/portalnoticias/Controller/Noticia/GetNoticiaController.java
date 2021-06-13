@@ -9,50 +9,50 @@ import java.util.UUID;
 
 public class GetNoticiaController  {
 
-    public static Noticia get(DB db, UUID id) {
+    public static Noticia get(UUID id) {
         Noticia noticia = new Noticia();
         try {
-            return noticia.get(db, id);
+            return noticia.get( id);
         }catch (Exception e){
             return null;
         }
     }
-    public static ArrayList<Noticia> getAll(DB db) {
+    public static ArrayList<Noticia> getAll( ) {
         Noticia noticia = new Noticia();
         try {
-            return noticia.getAll(db);
+            return noticia.getAll();
         }catch (Exception e){
             return null;
         }
     }
-    public static ArrayList<Noticia> getByChefe(DB db, UUID id) {
+    public static ArrayList<Noticia> getByChefe( UUID id) {
         Noticia noticia = new Noticia();
         try {
-            return noticia.getByChefe(db, id);
+            return noticia.getByChefe( id);
         }catch (Exception e){
             return null;
         }
     }
-    public static ArrayList<Noticia> getByCategory(DB db, UUID id) {
+    public static ArrayList<Noticia> getByCategory(UUID id) {
         Noticia noticia = new Noticia();
         try {
-            return noticia.getByCategory(db, id);
+            return noticia.getByCategory( id);
         }catch (Exception e){
             return null;
         }
     }
-    public static ArrayList<Noticia> getRevised(DB db) {
+    public static ArrayList<Noticia> getRevised( ) {
         Noticia noticia = new Noticia();
         try {
-            return noticia.getRevised(db);
+            return noticia.getRevised();
         } catch (Exception e) {
             return null;
         }
     }
-    public static ArrayList<Noticia> getEdited(DB db) {
+    public static ArrayList<Noticia> getEdited( ) {
         Noticia noticia = new Noticia();
         try {
-            return noticia.getEdited(db);
+            return noticia.getEdited();
         } catch (Exception e) {
             return null;
         }

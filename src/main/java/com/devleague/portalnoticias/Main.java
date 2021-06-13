@@ -14,7 +14,7 @@ import javax.swing.*;
 
 public class Main {
 
-    public static DB db = new DB();
+
     public static void main(String[] args) throws UnsupportedLookAndFeelException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         FlatLightLaf.setup();
         try {
@@ -22,12 +22,12 @@ public class Main {
         } catch( Exception ex ) {
             System.err.println( "Failed to initialize LaF" );
         }
-             db.restore();
-            new Acesso(db).setVisible(true);
+             DB.restore();
+            new Acesso().setVisible(true);
             //new PageEditor(db).setVisible(true);
         try
         {
-           new ProcessoBackup(db);
+           new ProcessoBackup();
         }catch (InterruptedException e){
 
         }

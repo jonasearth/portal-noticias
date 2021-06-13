@@ -5,11 +5,11 @@ import com.devleague.portalnoticias.Model.Jornalista;
 
 public class CreateJornalistaController {
     //recebe 2 parametros do view , o db e jornalista
-    public static boolean add(DB db, Jornalista jornalista) {
+    public static boolean add( Jornalista jornalista) {
         //previne quebra da aplicação por possiveis erros que possam existir no model
         try {
             //tenta adicionar o jornalista ao banco de dados
-            jornalista.create(db);
+            jornalista.create();
             return true;
         }catch (Exception e){
             //retorna false caso algum erro aconteça

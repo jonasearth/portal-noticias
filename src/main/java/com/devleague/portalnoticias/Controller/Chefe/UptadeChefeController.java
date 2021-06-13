@@ -4,9 +4,9 @@ import com.devleague.portalnoticias.DB.DB;
 import com.devleague.portalnoticias.Model.Chefe;
 
 public class UptadeChefeController {
-    public static boolean update(DB db, Chefe chefe) {
+    public static boolean update( Chefe chefe) {
     try {
-        chefe.update(db);
+        chefe.update();
         return true;
     }catch (Exception e){
         return false;

@@ -15,26 +15,26 @@ import java.util.ArrayList;
 public class DB {
 
     //simulador de banco de dados
-    public ArrayList<Noticia> noticia = new ArrayList<>();
-    public ArrayList<Categoria> categoria = new ArrayList<>();
-    public ArrayList<Chefe> chefe = new ArrayList<>();
-    public ArrayList<Revisor> revisor = new ArrayList<>();
-    public ArrayList<Editor> editor = new ArrayList<>();
-    public ArrayList<Jornalista> jornalista = new ArrayList<>();
+    public static ArrayList<Noticia> noticia = new ArrayList<>();
+    public static ArrayList<Categoria> categoria = new ArrayList<>();
+    public static ArrayList<Chefe> chefe = new ArrayList<>();
+    public static ArrayList<Revisor> revisor = new ArrayList<>();
+    public static ArrayList<Editor> editor = new ArrayList<>();
+    public static ArrayList<Jornalista> jornalista = new ArrayList<>();
 
     private static final String PATH  = "./src/main/java/com/devleague/portalnoticias/DB/tables/";
-    public void backup (){
+    public static void backup (){
 
         Gson gson = new Gson();
         try {
 
             //obtem um json de cada um dos array lists
-            String jsonNoticia = gson.toJson(this.noticia);
-            String jsonCategoria = gson.toJson(this.categoria);
-            String jsonChefe = gson.toJson(this.chefe);
-            String jsonRevisor = gson.toJson(this.revisor);
-            String jsonEditor = gson.toJson(this.editor);
-            String jsonJornalista = gson.toJson(this.jornalista);
+            String jsonNoticia = gson.toJson(DB.noticia);
+            String jsonCategoria = gson.toJson(DB.categoria);
+            String jsonChefe = gson.toJson(DB.chefe);
+            String jsonRevisor = gson.toJson(DB.revisor);
+            String jsonEditor = gson.toJson(DB.editor);
+            String jsonJornalista = gson.toJson(DB.jornalista);
 
             //cria arquivos de json para inserir os dados
             FileWriter wNoticias = new FileWriter(PATH+"noticias.json");
@@ -65,7 +65,7 @@ public class DB {
         }
     }
 
-    public void restore(){
+    public static void restore(){
         Gson gson = new Gson();
 
         //obtem o tipo especifico do arraylist
@@ -87,12 +87,12 @@ public class DB {
             BufferedReader rJornalista = new BufferedReader(new FileReader(PATH+"jornalista.json"));
 
             //insere o conteudo dos arquivos dentro dos arraylists
-            this.noticia = gson.fromJson(rNoticia, typeNoticia);
-            this.categoria = gson.fromJson(rCategoria, typeCategoria);
-            this.chefe = gson.fromJson(rChefe, typeChefe);
-            this.revisor = gson.fromJson(rRevisor, typeRevisor);
-            this.editor = gson.fromJson(rEditor, typeEditor);
-            this.jornalista = gson.fromJson(rJornalista, typeJornalista);
+            DB.noticia = gson.fromJson(rNoticia, typeNoticia);
+            DB.categoria = gson.fromJson(rCategoria, typeCategoria);
+            DB.chefe = gson.fromJson(rChefe, typeChefe);
+            DB.revisor = gson.fromJson(rRevisor, typeRevisor);
+            DB.editor = gson.fromJson(rEditor, typeEditor);
+            DB.jornalista = gson.fromJson(rJornalista, typeJornalista);
 
         } catch (IOException e) {
         }

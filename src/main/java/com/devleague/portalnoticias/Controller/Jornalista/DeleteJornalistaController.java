@@ -4,9 +4,9 @@ import com.devleague.portalnoticias.DB.DB;
 import com.devleague.portalnoticias.Model.Jornalista;
 
 public class DeleteJornalistaController  {
-    public static boolean delete(DB db,  Jornalista jornalista) {
+    public static boolean delete(  Jornalista jornalista) {
         try {
-            jornalista.delete(db);
+            jornalista.delete();
             return true;
         }catch (Exception e){
             return false;

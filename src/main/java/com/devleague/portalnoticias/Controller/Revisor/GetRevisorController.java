@@ -7,18 +7,18 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class GetRevisorController {
-    public static Revisor get(DB db, UUID id) {
+    public static Revisor get( UUID id) {
         Revisor revisor = new Revisor();
         try {
-            return revisor.get(db, id);
+            return revisor.get( id);
         }catch (Exception e){
             return null;
         }
     }
-    public static ArrayList<Revisor> getAll(DB db) {
+    public static ArrayList<Revisor> getAll() {
         Revisor revisor = new Revisor();
         try {
-            return revisor.getAll(db);
+            return revisor.getAll();
         }catch (Exception e){
             return null;
         }

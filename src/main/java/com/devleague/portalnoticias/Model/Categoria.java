@@ -30,9 +30,9 @@ public class Categoria{
         this.nome = nome;
     }
 
-    public Categoria get(DB db, UUID id){
+    public Categoria get( UUID id){
         try {
-            List<Categoria> list  = db.categoria
+            List<Categoria> list  = DB.categoria
                     .stream()
                     .filter(categoria-> categoria.getId().equals(id))
                     .collect(Collectors.toList());
@@ -42,32 +42,32 @@ public class Categoria{
         }
     }
 
-    public ArrayList getAll(DB db){
-        return db.categoria;
+    public ArrayList getAll(){
+        return DB.categoria;
     }
 
-    public boolean create(DB db){
+    public boolean create(){
         try{
-            db.categoria.add(this);
+            DB.categoria.add(this);
             return true;
         }catch (Exception e) {
             return false;
         }
     }
 
-    public boolean update(DB db){
+    public boolean update(){
 
         try{
-            db.categoria.set(db.categoria.indexOf(this.get(db,this.id)), this);
+            DB.categoria.set(DB.categoria.indexOf(this.get(this.id)), this);
             return  true;
         }catch (Exception e){
             return false;
         }
     }
 
-    public boolean delete(DB db){
+    public boolean delete(){
         try{
-            db.categoria.remove(db.categoria.indexOf(this.get(db,this.id)));
+            DB.categoria.remove(DB.categoria.indexOf(this.get(this.id)));
             return true;
         }catch (Exception e){
             return false;

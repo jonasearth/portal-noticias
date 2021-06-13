@@ -4,9 +4,9 @@ import com.devleague.portalnoticias.DB.DB;
 import com.devleague.portalnoticias.Model.Jornalista;
 
 public class UptadeJornalistaController  {
-    public static boolean update(DB db, Jornalista jornalista) {
+    public static boolean update( Jornalista jornalista) {
         try {
-            jornalista.update(db);
+            jornalista.update();
             return true;
         }catch (Exception e){
             return false;

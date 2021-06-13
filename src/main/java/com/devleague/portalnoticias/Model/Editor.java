@@ -31,9 +31,9 @@ public class Editor {
         this.nome = nome;
     }
 
-    public Editor get(DB db, UUID id){
+    public Editor get( UUID id){
         try {
-            List<Editor> list  = db.editor
+            List<Editor> list  = DB.editor
                     .stream()
                     .filter(editor-> editor.getId().equals(id))
                     .collect(Collectors.toList());
@@ -43,32 +43,32 @@ public class Editor {
         }
     }
 
-    public ArrayList getAll(DB db){
-        return db.editor;
+    public ArrayList getAll(){
+        return DB.editor;
     }
 
-    public boolean create(DB db){
+    public boolean create(){
         try{
-            db.editor.add(this);
+            DB.editor.add(this);
             return true;
         }catch (Exception e) {
             return false;
         }
     }
 
-    public boolean update(DB db){
+    public boolean update(){
 
         try{
-            db.editor.set(db.editor.indexOf(this.get(db,this.id)), this);
+            DB.editor.set(DB.editor.indexOf(this.get(this.id)), this);
             return  true;
         }catch (Exception e){
             return false;
         }
     }
 
-    public boolean delete(DB db){
+    public boolean delete(){
         try{
-            db.editor.remove(db.editor.indexOf(this.get(db,this.id)));
+            DB.editor.remove(DB.editor.indexOf(this.get(this.id)));
             return true;
         }catch (Exception e){
             return false;

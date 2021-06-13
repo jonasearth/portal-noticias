@@ -21,9 +21,7 @@ public class PageEditor extends javax.swing.JFrame {
     /**
      * Creates new form PageEditor
      */
-    private DB db;
     public PageEditor(DB db) {
-        this.db = db;
         initComponents();
         table();
     }
@@ -159,7 +157,7 @@ public class PageEditor extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
     @SuppressWarnings("empty-statement")
     private void table(){
-        ArrayList<Noticia> noticias = GetNoticiaController.getAll(this.db);
+        ArrayList<Noticia> noticias = GetNoticiaController.getAll();
         
         ListaNoticiasCriadasTable tm = new ListaNoticiasCriadasTable(noticias);
         

@@ -7,18 +7,18 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class GetJornalistaController  {
-    public static Jornalista get(DB db, UUID id) {
+    public static Jornalista get( UUID id) {
         Jornalista jornalista = new Jornalista();
         try {
-            return jornalista.get(db, id);
+            return jornalista.get( id);
         }catch (Exception e){
             return null;
         }
     }
-    public static ArrayList<Jornalista> getAll(DB db) {
+    public static ArrayList<Jornalista> getAll() {
         Jornalista jornalista = new Jornalista();
         try {
-            return jornalista.getAll(db);
+            return jornalista.getAll();
         }catch (Exception e){
             return null;
         }

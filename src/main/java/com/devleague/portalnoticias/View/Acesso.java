@@ -19,12 +19,12 @@ import java.net.URL;
  * @author Fnatic
  */
 public class Acesso extends javax.swing.JFrame {
-    DB db;
+
     /**
      * Creates new form Acesso
      */
-    public Acesso(DB db) {
-        this.db = db;
+    public Acesso() {
+
         initComponents();
     }
 
@@ -275,7 +275,7 @@ public class Acesso extends javax.swing.JFrame {
 
     private void jornalistaButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jornalistaButtonMouseClicked
         this.setVisible(false);
-        new ListaJornalistas(this.db).setVisible(true);
+        new ListaJornalistas().setVisible(true);
         
     }//GEN-LAST:event_jornalistaButtonMouseClicked
 
@@ -285,7 +285,7 @@ public class Acesso extends javax.swing.JFrame {
 
     private void chefeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chefeButtonMouseClicked
         this.setVisible(false);
-        new ListaChefes(this.db).setVisible(true);
+        new ListaChefes().setVisible(true);
     }//GEN-LAST:event_chefeButtonMouseClicked
 
     /**

@@ -4,9 +4,9 @@ import com.devleague.portalnoticias.DB.DB;
 import com.devleague.portalnoticias.Model.Chefe;
 
 public class CreateChefeController{
-    public static boolean add(DB db, Chefe chefe) {
+    public static boolean add( Chefe chefe) {
         try {
-            chefe.create(db);
+            chefe.create();
             return true;
         }catch (Exception e){
             return false;

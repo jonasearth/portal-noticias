@@ -28,13 +28,11 @@ import java.util.regex.Pattern;
 public class ListaJornalistas extends javax.swing.JFrame {
 
 
-    public DB db;
     /**
      * Creates new form ListaJornalistas
      */
-    public ListaJornalistas(DB db)  {
+    public ListaJornalistas()  {
 
-        this.db = db;
         initComponents();
         table();
     }
@@ -241,7 +239,7 @@ public class ListaJornalistas extends javax.swing.JFrame {
             Jornalista jornalista = new Jornalista();
             jornalista.setNome(nomeJornalista.getText());
             jornalista.setSalario(Float.parseFloat(salarioJornalista.getText()));
-            if(CreateJornalistaController.add(db, jornalista)){
+            if(CreateJornalistaController.add(jornalista)){
                 table();
             }else{
                 new DialogoMsg("Não foi possivel Criar o jornalista");
@@ -260,9 +258,9 @@ public class ListaJornalistas extends javax.swing.JFrame {
 
     private void excluirJornalistaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_excluirJornalistaMouseClicked
         try {
-            Jornalista jornalista = GetJornalistaController.get(db, (UUID) listaJornalistas.getValueAt(listaJornalistas.getSelectedRow(), 0));
+            Jornalista jornalista = GetJornalistaController.get( (UUID) listaJornalistas.getValueAt(listaJornalistas.getSelectedRow(), 0));
             if (jornalista != null) {
-                if (DeleteJornalistaController.delete(db, jornalista)) {
+                if (DeleteJornalistaController.delete(jornalista)) {
                     table();
                 } else {
                     new DialogoMsg("Não foi possivel excluir o jornalista!");
@@ -277,9 +275,9 @@ public class ListaJornalistas extends javax.swing.JFrame {
 
     private void logarJornalistaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logarJornalistaMouseClicked
         try {
-            Jornalista jornalista = GetJornalistaController.get(db, (UUID) listaJornalistas.getValueAt(listaJornalistas.getSelectedRow(), 0));
+            Jornalista jornalista = GetJornalistaController.get((UUID) listaJornalistas.getValueAt(listaJornalistas.getSelectedRow(), 0));
             if (jornalista != null) {
-                new JornalistaFrame(db, jornalista).setVisible(true);
+                new JornalistaFrame(jornalista).setVisible(true);
                 this.setVisible(false);
 
             } else {
@@ -292,14 +290,14 @@ public class ListaJornalistas extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        this.setVisible(false);
-       new Acesso(db).setVisible(true);
+       new Acesso().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
 
     private void table(){
 
-        ArrayList<Jornalista> jornalistas = GetJornalistaController.getAll(this.db);
+        ArrayList<Jornalista> jornalistas = GetJornalistaController.getAll();
 
 
         ListaJornalistasTable tm = new ListaJornalistasTable(jornalistas);

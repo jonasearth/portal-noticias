@@ -5,9 +5,9 @@ import com.devleague.portalnoticias.Model.Noticia;
 
 public class UpdateNoticiaController {
 
-    public static boolean update(DB db, int index, Noticia noticia) {
+    public static boolean update(Noticia noticia) {
         try {
-            noticia.update(db);
+            noticia.update();
             return true;
         }catch (Exception e){
             return false;

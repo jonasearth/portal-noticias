@@ -40,9 +40,9 @@ public class Jornalista {
         this.nome = nome;
     }
 
-    public Jornalista get(DB db, UUID id){
+    public Jornalista get(UUID id){
         try {
-            List<Jornalista> list  = db.jornalista
+            List<Jornalista> list  = DB.jornalista
                     .stream()
                     .filter(jornalista-> jornalista.getId().equals(id))
                     .collect(Collectors.toList());
@@ -52,32 +52,32 @@ public class Jornalista {
         }
     }
 
-    public ArrayList getAll(DB db){
-        return db.jornalista;
+    public ArrayList getAll(){
+        return DB.jornalista;
     }
 
-    public boolean create(DB db){
+    public boolean create(){
         try{
-            db.jornalista.add(this);
+            DB.jornalista.add(this);
             return true;
         }catch (Exception e) {
             return false;
         }
     }
 
-    public boolean update(DB db){
+    public boolean update(){
 
         try{
-            db.jornalista.set(db.jornalista.indexOf(this.get(db,this.id)), this);
+            DB.jornalista.set(DB.jornalista.indexOf(this.get(this.id)), this);
             return  true;
         }catch (Exception e){
             return false;
         }
     }
 
-    public boolean delete(DB db){
+    public boolean delete(){
         try{
-            db.jornalista.remove(db.jornalista.indexOf(this.get(db,this.id)));
+            DB.jornalista.remove(DB.jornalista.indexOf(this.get(this.id)));
             return true;
         }catch (Exception e){
             return false;

@@ -29,13 +29,11 @@ import java.util.regex.Pattern;
 public class ListaChefes extends javax.swing.JFrame {
 
 
-    public DB db;
     /**
      * Creates new form ListaChefes
      */
-    public ListaChefes(DB db)  {
+    public ListaChefes()  {
 
-        this.db = db;
         initComponents();
         table();
     }
@@ -242,7 +240,7 @@ public class ListaChefes extends javax.swing.JFrame {
             Chefe chefe = new Chefe();
             chefe.setNome(nomeJornalista.getText());
             chefe.setSalario(Float.parseFloat(salarioJornalista.getText()));
-            if(CreateChefeController.add(db, chefe)){
+            if(CreateChefeController.add( chefe)){
                 table();
             }else{
                 new DialogoMsg("Não foi possivel Criar o chefe");
@@ -261,9 +259,9 @@ public class ListaChefes extends javax.swing.JFrame {
 
     private void excluirJornalistaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_excluirJornalistaMouseClicked
         try {
-            Chefe chefe = GetChefeController.get(db, (UUID) listaChefes.getValueAt(listaChefes.getSelectedRow(), 0));
+            Chefe chefe = GetChefeController.get((UUID) listaChefes.getValueAt(listaChefes.getSelectedRow(), 0));
             if (chefe != null) {
-                if (DeleteChefeController.delete(db, chefe)) {
+                if (DeleteChefeController.delete( chefe)) {
                     table();
                 } else {
                     new DialogoMsg("Não foi possivel excluir o chefe!");
@@ -278,9 +276,9 @@ public class ListaChefes extends javax.swing.JFrame {
 
     private void logarJornalistaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logarJornalistaMouseClicked
         try {
-            Chefe chefe = GetChefeController.get(db, (UUID) listaChefes.getValueAt(listaChefes.getSelectedRow(), 0));
+            Chefe chefe = GetChefeController.get( (UUID) listaChefes.getValueAt(listaChefes.getSelectedRow(), 0));
             if (chefe != null) {
-                new PageChefeRedacao(db, chefe).setVisible(true);
+                new PageChefeRedacao(chefe).setVisible(true);
                 this.setVisible(false);
 
             } else {
@@ -293,14 +291,14 @@ public class ListaChefes extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        this.setVisible(false);
-       new Acesso(db).setVisible(true);
+       new Acesso().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
 
     private void table(){
 
-        ArrayList<Chefe> chefes = GetChefeController.getAll(this.db);
+        ArrayList<Chefe> chefes = GetChefeController.getAll();
 
 
         ListaChefesTable tm = new ListaChefesTable(chefes);

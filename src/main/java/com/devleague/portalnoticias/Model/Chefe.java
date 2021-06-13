@@ -45,9 +45,9 @@ public class Chefe {
 
 
 
-    public Chefe get(DB db, UUID id){
+    public Chefe get( UUID id){
         try {
-            List<Chefe> list  = db.chefe
+            List<Chefe> list  = DB.chefe
                     .stream()
                     .filter(chefe-> chefe.getId().equals(id))
                     .collect(Collectors.toList());
@@ -57,32 +57,32 @@ public class Chefe {
         }
     }
 
-    public ArrayList getAll(DB db){
-        return db.chefe;
+    public ArrayList getAll(){
+        return DB.chefe;
     }
 
-    public boolean create(DB db){
+    public boolean create(){
         try{
-            db.chefe.add(this);
+            DB.chefe.add(this);
             return true;
         }catch (Exception e) {
             return false;
         }
     }
 
-    public boolean update(DB db){
+    public boolean update(){
 
         try{
-            db.chefe.set(db.chefe.indexOf(this.get(db,this.id)), this);
+            DB.chefe.set(DB.chefe.indexOf(this.get(this.id)), this);
             return  true;
         }catch (Exception e){
             return false;
         }
     }
 
-    public boolean delete(DB db){
+    public boolean delete(){
         try{
-            db.chefe.remove(db.chefe.indexOf(this.get(db,this.id)));
+            DB.chefe.remove(DB.chefe.indexOf(this.get(this.id)));
             return true;
         }catch (Exception e){
             return false;

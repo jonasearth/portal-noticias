@@ -22,14 +22,14 @@ public class NoticiasAAprovarTable extends AbstractTableModel {
 
     private String colunas[] = {"id", "Titulo","Jornalista" };
     private ArrayList<Noticia> noticia;
-    private DB db;
+
     public final int COLUNA_ID = 0;
     public final int COLUNA_TITULO = 1;
     public final int COLUNA_JORNALISTA = 2;
 
-    public NoticiasAAprovarTable(ArrayList<Noticia> noticia, DB db) {
+    public NoticiasAAprovarTable(ArrayList<Noticia> noticia) {
         this.noticia = noticia;
-        this.db = db;
+
     }
 
     
@@ -80,7 +80,7 @@ public class NoticiasAAprovarTable extends AbstractTableModel {
                 return noticia.getTitulo();
             case COLUNA_JORNALISTA:
                 try {
-                    String nome = GetJornalistaController.get(db, noticia.getAtribuidoA()).getNome();
+                    String nome = GetJornalistaController.get(noticia.getAtribuidoA()).getNome();
                     return nome;
                 }catch (Exception e){
                     return "Jornalista não encontrado!";

@@ -8,18 +8,18 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class GetCategoriaController {
-    public static Categoria get(DB db, UUID id) {
+    public static Categoria get( UUID id) {
         Categoria categoria = new Categoria();
         try {
-            return categoria.get(db, id);
+            return categoria.get(id);
         }catch (Exception e){
             return null;
         }
     }
-    public static ArrayList<Categoria> getAll(DB db) {
+    public static ArrayList<Categoria> getAll() {
         Categoria categoria = new Categoria();
         try {
-            return categoria.getAll(db);
+            return categoria.getAll();
         }catch (Exception e){
             return null;
         }

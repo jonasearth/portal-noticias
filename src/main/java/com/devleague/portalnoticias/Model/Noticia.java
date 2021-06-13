@@ -200,9 +200,9 @@ public class Noticia  {
         this.erros = erros;
     }
 
-    public Noticia get(DB db, UUID id){
+    public Noticia get( UUID id){
         try {
-            List<Noticia> list = db.noticia
+            List<Noticia> list = DB.noticia
                     .stream()
                     .filter(noticia -> noticia.getId().equals(id))
                     .collect(Collectors.toList());
@@ -212,9 +212,9 @@ public class Noticia  {
         }
     }
 
-    public ArrayList<Noticia> getByChefe(DB db, UUID id){
+    public ArrayList<Noticia> getByChefe( UUID id){
         try {
-            List<Noticia> list = db.noticia
+            List<Noticia> list = DB.noticia
                     .stream()
                     .filter(noticia -> noticia.getAtribuidoPor().equals(id))
                     .collect(Collectors.toList());
@@ -223,9 +223,9 @@ public class Noticia  {
             return null;
         }
     }
-    public ArrayList<Noticia> getByCategory(DB db, UUID id){
+    public ArrayList<Noticia> getByCategory( UUID id){
         try {
-            List<Noticia> list = db.noticia
+            List<Noticia> list = DB.noticia
                     .stream()
                     .filter(noticia -> noticia.getCategoria().equals(id))
                     .collect(Collectors.toList());
@@ -237,31 +237,31 @@ public class Noticia  {
 
 
 
-    public ArrayList getAll(DB db){
-        return db.noticia;
+    public ArrayList getAll(){
+        return DB.noticia;
     }
 
-    public boolean create(DB db){
+    public boolean create(){
         try{
-            db.noticia.add(this);
+            DB.noticia.add(this);
             return true;
         }catch (Exception e) {
             return false;
         }
     }
 
-    public boolean update(DB db){
+    public boolean update(){
         try{
-            db.noticia.set(db.noticia.indexOf(this.get(db,this.id)), this);
+            DB.noticia.set(DB.noticia.indexOf(this.get(this.id)), this);
             return  true;
         }catch (Exception e){
             return false;
         }
     }
 
-    public boolean delete(DB db){
+    public boolean delete(){
         try{
-            db.noticia.remove(db.noticia.indexOf(this.get(db,this.id)));
+            DB.noticia.remove(DB.noticia.indexOf(this.get(this.id)));
             return true;
         }catch (Exception e){
             return false;
@@ -269,9 +269,9 @@ public class Noticia  {
     }
 
 
-    public ArrayList<Noticia> getEdited(DB db){
+    public ArrayList<Noticia> getEdited(){
         try {
-            List<Noticia> list = db.noticia
+            List<Noticia> list = DB.noticia
                     .stream()
                     .filter(noticia -> noticia.isEditada())
                     .collect(Collectors.toList());
@@ -281,9 +281,9 @@ public class Noticia  {
         }
     }
 
-    public ArrayList<Noticia> getRevised(DB db) {
+    public ArrayList<Noticia> getRevised() {
         try {
-            List<Noticia> list = db.noticia
+            List<Noticia> list = DB.noticia
                     .stream()
                     .filter(noticia -> noticia.isRevisada())
                     .collect(Collectors.toList());

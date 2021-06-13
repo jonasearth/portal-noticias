@@ -31,9 +31,9 @@ public class Revisor {
         this.nome = nome;
     }
 
-    public Revisor get(DB db, UUID id){
+    public Revisor get(UUID id){
         try {
-            List<Revisor> list  = db.revisor
+            List<Revisor> list  = DB.revisor
                     .stream()
                     .filter(revisor-> revisor.getId().equals(id))
                     .collect(Collectors.toList());
@@ -43,32 +43,32 @@ public class Revisor {
         }
     }
 
-    public ArrayList getAll(DB db){
-        return db.revisor;
+    public ArrayList getAll(){
+        return DB.revisor;
     }
 
-    public boolean create(DB db){
+    public boolean create(){
         try{
-            db.revisor.add(this);
+            DB.revisor.add(this);
             return true;
         }catch (Exception e) {
             return false;
         }
     }
 
-    public boolean update(DB db){
+    public boolean update(){
 
         try{
-            db.revisor.set(db.revisor.indexOf(this.get(db,this.id)), this);
+            DB.revisor.set(DB.revisor.indexOf(this.get(this.id)), this);
             return  true;
         }catch (Exception e){
             return false;
         }
     }
 
-    public boolean delete(DB db){
+    public boolean delete(){
         try{
-            db.revisor.remove(db.revisor.indexOf(this.get(db,this.id)));
+            DB.revisor.remove(DB.revisor.indexOf(this.get(this.id)));
             return true;
         }catch (Exception e){
             return false;

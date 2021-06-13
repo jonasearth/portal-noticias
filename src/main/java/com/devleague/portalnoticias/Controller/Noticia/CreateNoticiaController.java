@@ -6,9 +6,9 @@ import com.devleague.portalnoticias.Model.Noticia;
 
 public class CreateNoticiaController {
 
-    public static boolean add(DB db, Noticia noticia) {
+    public static boolean add( Noticia noticia) {
         try {
-            noticia.create(db);
+            noticia.create();
             return true;
         }catch (Exception e){
             return false;

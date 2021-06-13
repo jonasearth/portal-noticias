@@ -7,18 +7,18 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class GetChefeController {
-    public static Chefe get(DB db, UUID id) {
+    public static Chefe get( UUID id) {
         Chefe chefe = new Chefe();
         try {
-            return chefe.get(db, id);
+            return chefe.get( id);
         }catch (Exception e){
             return null;
         }
     }
-    public static ArrayList<Chefe> getAll(DB db) {
+    public static ArrayList<Chefe> getAll() {
         Chefe chefe = new Chefe();
         try {
-            return chefe.getAll(db);
+            return chefe.getAll();
         }catch (Exception e){
             return null;
         }

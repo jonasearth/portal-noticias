@@ -28,15 +28,15 @@ import java.util.UUID;
  * @author david
  */
 public class PageChefeRedacao extends javax.swing.JFrame {
-    DB db;
+
     Chefe chefe;
     ArrayList<Jornalista> jornalistas;
     ArrayList<Categoria> categorias;
     /**
      * Creates new form PageChefeRedacao
      */
-    public PageChefeRedacao(DB db, Chefe chefe) {
-        this.db = db;
+    public PageChefeRedacao(Chefe chefe) {
+
         this.chefe = chefe;
         initComponents();
         init();
@@ -54,8 +54,10 @@ public class PageChefeRedacao extends javax.swing.JFrame {
         tableMaterias();
     }
     private void pageAtribuir(){
-        this.categorias = GetCategoriaController.getAll(this.db);
-        this.jornalistas = GetJornalistaController.getAll(this.db);
+        this.categorias = GetCategoriaController.getAll();
+        this.jornalistas = GetJornalistaController.getAll();
+        selectCategoria.removeAllItems();
+        selectJornalista.removeAllItems();
         this.jornalistas.forEach(jornalista -> selectJornalista.addItem(jornalista.getNome()));
         this.categorias.forEach(categoria -> selectCategoria.addItem(categoria.getNome()));
     }
@@ -64,8 +66,8 @@ public class PageChefeRedacao extends javax.swing.JFrame {
     }
     private void tableMaterias(){
 
-        ArrayList<Noticia> noticia = GetNoticiaController.getAll(this.db);
-        NoticiasAAprovarTable tm = new NoticiasAAprovarTable(noticia, db);
+        ArrayList<Noticia> noticia = GetNoticiaController.getAll();
+        NoticiasAAprovarTable tm = new NoticiasAAprovarTable(noticia);
         materiasAAprovar = new JTable(tm);
         materiasAAprovar.getColumnModel().getColumn(0).setPreferredWidth(0);
         materiasAAprovar.getColumnModel().getColumn(0).setMaxWidth(0);
@@ -75,7 +77,7 @@ public class PageChefeRedacao extends javax.swing.JFrame {
     }
     private void tableCategorias(){
 
-        ArrayList<Categoria> categorias = GetCategoriaController.getAll(this.db);
+        ArrayList<Categoria> categorias = GetCategoriaController.getAll();
         CategoriasTable tm = new CategoriasTable(categorias);
         tableCategorias = new JTable(tm);
         jScrollPane2.setViewportView(tableCategorias);
@@ -192,7 +194,7 @@ public class PageChefeRedacao extends javax.swing.JFrame {
 
         jLabel2.setText("Jornalista:");
 
-        selectJornalista.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        selectJornalista.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
         selectJornalista.setMinimumSize(new java.awt.Dimension(69, 30));
         selectJornalista.setPreferredSize(new java.awt.Dimension(69, 30));
         selectJornalista.addActionListener(new java.awt.event.ActionListener() {
@@ -201,7 +203,7 @@ public class PageChefeRedacao extends javax.swing.JFrame {
             }
         });
 
-        selectCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        selectCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
         selectCategoria.setMinimumSize(new java.awt.Dimension(69, 30));
         selectCategoria.setPreferredSize(new java.awt.Dimension(69, 30));
         selectCategoria.addActionListener(new java.awt.event.ActionListener() {
@@ -418,16 +420,16 @@ public class PageChefeRedacao extends javax.swing.JFrame {
         }
         Categoria categoria = new Categoria();
         categoria.setNome(nomeCategoria.getText());
-        CreateCategoriaController.add(db, categoria);
+        CreateCategoriaController.add( categoria);
         pageCategoria();
         pageAtribuir();
     }//GEN-LAST:event_btnCriarCategoriaMouseClicked
 
     private void btnExcluirCategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExcluirCategoriaMouseClicked
         try {
-            Categoria categoria = GetCategoriaController.get(db, (UUID) tableCategorias.getValueAt(tableCategorias.getSelectedRow(), 0));
+            Categoria categoria = GetCategoriaController.get( (UUID) tableCategorias.getValueAt(tableCategorias.getSelectedRow(), 0));
             if (categoria != null) {
-                if (DeleteCategoriaController.delete(db, categoria)) {
+                if (DeleteCategoriaController.delete( categoria)) {
                     pageCategoria();
                     pageAtribuir();
                 } else {

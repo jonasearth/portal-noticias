@@ -7,18 +7,18 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class GetEditorController {
-    public static Editor get(DB db, UUID id) {
+    public static Editor get( UUID id) {
         Editor editor = new Editor();
         try {
-            return editor.get(db, id);
+            return editor.get( id);
         }catch (Exception e){
             return null;
         }
     }
-    public static ArrayList<Editor> getAll(DB db) {
+    public static ArrayList<Editor> getAll() {
         Editor editor = new Editor();
         try {
-            return editor.getAll(db);
+            return editor.getAll();
         }catch (Exception e){
             return null;
         }
