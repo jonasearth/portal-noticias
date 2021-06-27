@@ -16,18 +16,16 @@ import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class TabelaNoticias extends AbstractTableModel {
+public class ListaNoticiasTable extends AbstractTableModel {
 
-    private final String colunas[] = {"id", "titulo", "categoria"};
+    private final String colunas[] = {"id", "titulo"};
     private final ArrayList<Noticia> noticia;
 
     public final int COLUNA_ID = 0;
     public final int COLUNA_TITULO = 1;
-    public final int COLUNA_CATEGORIA = 2;
 
-    public TabelaNoticias(ArrayList<Noticia> noticia) {
+    public ListaNoticiasTable(ArrayList<Noticia> noticia) {
         this.noticia = noticia;
-
     }
 
     
@@ -57,8 +55,6 @@ public class TabelaNoticias extends AbstractTableModel {
                 return UUID.class;
             case COLUNA_TITULO:
                 return String.class;
-            case COLUNA_CATEGORIA:
-                return String.class;
             default:
                 return String.class;
         }
@@ -72,12 +68,10 @@ public class TabelaNoticias extends AbstractTableModel {
                 return noticiaAtual.getId();
             case COLUNA_TITULO:
                 return noticiaAtual.getTitulo();
-            case COLUNA_CATEGORIA:
-                return noticiaAtual.getCategoria();
             default: 
-                return "";
+                return null;
 
         }
     }
-
+    
 }
