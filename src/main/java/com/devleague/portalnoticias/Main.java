@@ -1,6 +1,7 @@
 package com.devleague.portalnoticias;
 
 
+import com.devleague.portalnoticias.Controller.Noticia.GetNoticiaController;
 import com.devleague.portalnoticias.DB.DB;
 import com.devleague.portalnoticias.DB.ProcessoBackup;
 import com.devleague.portalnoticias.View.Acesso;
@@ -24,7 +25,6 @@ public class Main {
         }
              DB.restore();
             new Acesso().setVisible(true);
-            //new PageEditor(db).setVisible(true);
         try
         {
            new ProcessoBackup();

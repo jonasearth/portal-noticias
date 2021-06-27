@@ -9,6 +9,7 @@ package com.devleague.portalnoticias.View.ViewJornalista;
  *
  * @author Fnatic
  */
+import com.devleague.portalnoticias.Controller.Chefe.GetChefeController;
 import com.devleague.portalnoticias.View.*;
 import com.devleague.portalnoticias.Model.Noticia;
 import java.util.ArrayList;
@@ -19,11 +20,11 @@ public class NoticiaToCreateTable extends AbstractTableModel {
 
     //aqui transformei em coluna cada propriedade de Funcionario
     //que eu quero que seja exibida na tabela  
-    private String colunas[] = {"id", "title", "status", "data"};
+    private String colunas[] = {"id", "titulo", "chefe", "data"};
     private ArrayList<Noticia> noticias;
     private final int COLUNA_ID = 0;
     private final int COLUNA_TITULO = 1;
-    private final int COLUNA_STATUS = 2;
+    private final int COLUNA_CHEFE = 2;
     private final int COLUNA_DATA = 3;
 
     public NoticiaToCreateTable(ArrayList<Noticia> noticias) {
@@ -35,7 +36,7 @@ public class NoticiaToCreateTable extends AbstractTableModel {
     //retorna se a célula é editável ou não
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return true;
+        return false;
     }
     
     //retorna o total de itens(que virarão linhas) da nossa lista
@@ -62,7 +63,7 @@ public class NoticiaToCreateTable extends AbstractTableModel {
                 return String.class;
             case COLUNA_TITULO:
                 return String.class;
-            case COLUNA_STATUS:
+            case COLUNA_CHEFE:
                 return String.class;
             case COLUNA_DATA:
                 return Date.class;
@@ -81,8 +82,8 @@ public class NoticiaToCreateTable extends AbstractTableModel {
                 return noticias.getId();
             case COLUNA_TITULO:
                 return noticias.getTitulo();
-            case COLUNA_STATUS:
-                return "aaa";
+            case COLUNA_CHEFE:
+                return GetChefeController.get(noticias.getAtribuidoPor()).getNome();
             case COLUNA_DATA:
                 return noticias.getData();
                 
@@ -103,7 +104,7 @@ public class NoticiaToCreateTable extends AbstractTableModel {
                 break;
             case COLUNA_TITULO:
                 break;
-            case COLUNA_STATUS:
+            case COLUNA_CHEFE:
                 break;
             case COLUNA_DATA:
         }

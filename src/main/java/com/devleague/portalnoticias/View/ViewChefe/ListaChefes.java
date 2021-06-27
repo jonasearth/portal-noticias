@@ -56,11 +56,11 @@ public class ListaChefes extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        nomeJornalista = new javax.swing.JTextField();
-        salarioJornalista = new javax.swing.JTextField();
-        butaoCriarJornalista = new javax.swing.JButton();
-        excluirJornalista = new javax.swing.JButton();
-        logarJornalista = new javax.swing.JButton();
+        nomeChefe = new javax.swing.JTextField();
+        salarioChefe = new javax.swing.JTextField();
+        butaoCriarChefe = new javax.swing.JButton();
+        excluirChefe = new javax.swing.JButton();
+        logarChefe = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
@@ -102,6 +102,11 @@ public class ListaChefes extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        listaChefes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listaChefesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(listaChefes);
 
         jPanel1.setMaximumSize(new java.awt.Dimension(300, 65000));
@@ -113,26 +118,26 @@ public class ListaChefes extends javax.swing.JFrame {
 
         jLabel4.setText("Salario:");
 
-        salarioJornalista.setToolTipText("");
+        salarioChefe.setToolTipText("");
 
-        butaoCriarJornalista.setText("Registrar");
-        butaoCriarJornalista.addMouseListener(new java.awt.event.MouseAdapter() {
+        butaoCriarChefe.setText("Registrar");
+        butaoCriarChefe.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                butaoCriarJornalistaMouseClicked(evt);
+                butaoCriarChefeMouseClicked(evt);
             }
         });
 
-        excluirJornalista.setText("Excluir Chefe");
-        excluirJornalista.addMouseListener(new java.awt.event.MouseAdapter() {
+        excluirChefe.setText("Excluir Chefe");
+        excluirChefe.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                excluirJornalistaMouseClicked(evt);
+                excluirChefeMouseClicked(evt);
             }
         });
 
-        logarJornalista.setText("Logar Chefe");
-        logarJornalista.addMouseListener(new java.awt.event.MouseAdapter() {
+        logarChefe.setText("Logar Chefe");
+        logarChefe.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                logarJornalistaMouseClicked(evt);
+                logarChefeMouseClicked(evt);
             }
         });
 
@@ -150,15 +155,15 @@ public class ListaChefes extends javax.swing.JFrame {
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nomeJornalista)
-                            .addComponent(salarioJornalista)))
+                            .addComponent(nomeChefe)
+                            .addComponent(salarioChefe)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(butaoCriarJornalista))
+                        .addComponent(butaoCriarChefe))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(excluirJornalista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(logarJornalista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(excluirChefe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(logarChefe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -170,23 +175,22 @@ public class ListaChefes extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nomeJornalista, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nomeChefe, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(salarioJornalista, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
+                    .addComponent(salarioChefe, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(butaoCriarJornalista, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(butaoCriarChefe, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
-                .addComponent(logarJornalista, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(logarChefe, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(excluirJornalista, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(excluirChefe, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         jButton1.setText("<--");
         jButton1.setToolTipText("");
-        jButton1.setBorder(null);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -199,9 +203,9 @@ public class ListaChefes extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 732, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 724, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -224,22 +228,22 @@ public class ListaChefes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void butaoCriarJornalistaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_butaoCriarJornalistaMouseClicked
+    private void butaoCriarChefeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_butaoCriarChefeMouseClicked
 
-        if(nomeJornalista.getText().length() < 3){
+        if(nomeChefe.getText().length() < 3){
             new DialogoMsg("Nome do Chefe precisa ter ao menos 3 caracteres");
             return;
         }
         Pattern pattern = Pattern.compile("\\d+.\\d+");
 
-        if(!pattern.matcher(salarioJornalista.getText()).matches()){
+        if(!pattern.matcher(salarioChefe.getText()).matches()){
             new DialogoMsg("Salario do chefe invalido");
             return;
         }
         try{
             Chefe chefe = new Chefe();
-            chefe.setNome(nomeJornalista.getText());
-            chefe.setSalario(Float.parseFloat(salarioJornalista.getText()));
+            chefe.setNome(nomeChefe.getText());
+            chefe.setSalario(Float.parseFloat(salarioChefe.getText()));
             if(CreateChefeController.add( chefe)){
                 table();
             }else{
@@ -255,9 +259,9 @@ public class ListaChefes extends javax.swing.JFrame {
 
 
 
-    }//GEN-LAST:event_butaoCriarJornalistaMouseClicked
+    }//GEN-LAST:event_butaoCriarChefeMouseClicked
 
-    private void excluirJornalistaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_excluirJornalistaMouseClicked
+    private void excluirChefeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_excluirChefeMouseClicked
         try {
             Chefe chefe = GetChefeController.get((UUID) listaChefes.getValueAt(listaChefes.getSelectedRow(), 0));
             if (chefe != null) {
@@ -272,9 +276,9 @@ public class ListaChefes extends javax.swing.JFrame {
         }catch (Exception e){
             new DialogoMsg("Nenhum Chefe selecionado!");
         }
-    }//GEN-LAST:event_excluirJornalistaMouseClicked
+    }//GEN-LAST:event_excluirChefeMouseClicked
 
-    private void logarJornalistaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logarJornalistaMouseClicked
+    private void logarChefeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logarChefeMouseClicked
         try {
             Chefe chefe = GetChefeController.get( (UUID) listaChefes.getValueAt(listaChefes.getSelectedRow(), 0));
             if (chefe != null) {
@@ -287,12 +291,16 @@ public class ListaChefes extends javax.swing.JFrame {
         }catch (Exception e){
             new DialogoMsg("Nenhum Chefe selecionado!");
         }
-    }//GEN-LAST:event_logarJornalistaMouseClicked
+    }//GEN-LAST:event_logarChefeMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        this.setVisible(false);
        new Acesso().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void listaChefesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaChefesMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_listaChefesMouseClicked
 
 
 
@@ -312,8 +320,8 @@ public class ListaChefes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton butaoCriarJornalista;
-    private javax.swing.JButton excluirJornalista;
+    private javax.swing.JButton butaoCriarChefe;
+    private javax.swing.JButton excluirChefe;
     private javax.swing.JButton jButton1;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialog2;
@@ -324,8 +332,8 @@ public class ListaChefes extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable listaChefes;
-    private javax.swing.JButton logarJornalista;
-    private javax.swing.JTextField nomeJornalista;
-    private javax.swing.JTextField salarioJornalista;
+    private javax.swing.JButton logarChefe;
+    private javax.swing.JTextField nomeChefe;
+    private javax.swing.JTextField salarioChefe;
     // End of variables declaration//GEN-END:variables
 }

@@ -12,7 +12,7 @@ public class Noticia  {
     private String titulo;
     private String conteudo;
     private UUID categoria;
-    private String author;
+    private UUID author;
     private Date data;
     private boolean criada;
     private UUID atribuidoA;
@@ -165,11 +165,11 @@ public class Noticia  {
         this.categoria = categoria;
     }
 
-    public String getAuthor() {
+    public UUID getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
+    public void setAuthor(UUID author) {
         this.author = author;
     }
 
@@ -244,8 +244,33 @@ public class Noticia  {
         }
     }
 
-
-
+    /**
+     *
+     * @param id Jornalista
+     * @return
+     */
+    public ArrayList<Noticia> getToCreate(UUID id){
+        try {
+            List<Noticia> list = DB.noticia
+                    .stream()
+                    .filter(noticia -> noticia.getAtribuidoA().equals(id) && !noticia.isCriada())
+                    .collect(Collectors.toList());
+            return new ArrayList<>(list);
+        }catch (Exception e){
+            return null;
+        }
+    }
+    public ArrayList<Noticia> getCreated(){
+        try {
+            List<Noticia> list = DB.noticia
+                    .stream()
+                    .filter(noticia -> noticia.isCriada() && !noticia.isEditada())
+                    .collect(Collectors.toList());
+            return new ArrayList<>(list);
+        }catch (Exception e){
+            return null;
+        }
+    }
     public ArrayList getAll(){
         return DB.noticia;
     }

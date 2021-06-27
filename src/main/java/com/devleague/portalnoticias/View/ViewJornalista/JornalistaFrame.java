@@ -5,8 +5,21 @@
  */
 package com.devleague.portalnoticias.View.ViewJornalista;
 
+import com.devleague.portalnoticias.Controller.Chefe.GetChefeController;
+import com.devleague.portalnoticias.Controller.Noticia.GetNoticiaController;
 import com.devleague.portalnoticias.DB.DB;
+import com.devleague.portalnoticias.Model.Chefe;
 import com.devleague.portalnoticias.Model.Jornalista;
+import com.devleague.portalnoticias.Model.Noticia;
+import com.devleague.portalnoticias.View.Components.DialogoMsg;
+import com.devleague.portalnoticias.View.ViewChefe.Table.ListaChefesTable;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.UUID;
 
 /**
  *
@@ -18,12 +31,38 @@ public class JornalistaFrame extends javax.swing.JFrame {
     /**
      * Creates new form JornalistaFrame
      */
-    public JornalistaFrame( Jornalista jornalista) {
+    public JornalistaFrame(Jornalista jornalista) {
 
         this.jornalista = jornalista;
         initComponents();
+        criarNoticiaList();
     }
+    public void criarNoticiaList(){
 
+        ArrayList<Noticia> chefes = GetNoticiaController.getToCreate(jornalista.getId());
+        NoticiaToCreateTable tm = new NoticiaToCreateTable(chefes);
+
+
+        tableCriacaoNoticias = new JTable(tm);
+        tableCriacaoNoticias.getColumnModel().getColumn(0).setPreferredWidth(1);
+        jScrollPane1.setViewportView(tableCriacaoNoticias);
+        tableCriacaoNoticias.addMouseListener(
+            new MouseAdapter() {
+                public void mouseClicked (MouseEvent me) {
+                    int row = tableCriacaoNoticias.rowAtPoint(me.getPoint());
+                    if (me.getClickCount() == 2 && tableCriacaoNoticias.getSelectedRow()== row) {
+                        criarNociciaFrame(GetNoticiaController.get((UUID)tableCriacaoNoticias.getValueAt(row, 0)));
+
+                    }
+                }
+            }
+        );
+    }
+    public  void criarNociciaFrame(Noticia noticia){
+        CriarNoticiaFrame criarNoticiaFrame = new CriarNoticiaFrame(this.jornalista, noticia);
+        criarNoticiaFrame.setVisible(true);
+        this.setVisible(false);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -37,16 +76,18 @@ public class JornalistaFrame extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableCriacaoNoticias = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
+        criarNoticiaButton = new javax.swing.JToggleButton();
         jPanel2 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titulo.setText("Bem Vindo " + this.jornalista.getNome());
+        titulo.setText("tt");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableCriacaoNoticias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -57,17 +98,30 @@ public class JornalistaFrame extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tableCriacaoNoticias);
+
+        criarNoticiaButton.setLabel("Criar Noticia");
+        criarNoticiaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                criarNoticiaButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 213, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(criarNoticiaButton)
+                .addContainerGap(134, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(criarNoticiaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -94,7 +148,7 @@ public class JornalistaFrame extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 788, Short.MAX_VALUE)
+            .addGap(0, 811, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,22 +157,29 @@ public class JornalistaFrame extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Noticias Rejeitadas", jPanel2);
 
+        jButton1.setLabel("<--");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTabbedPane1)
-                    .addComponent(titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(titulo, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jTabbedPane1)
                 .addContainerGap())
@@ -127,6 +188,15 @@ public class JornalistaFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void criarNoticiaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarNoticiaButtonActionPerformed
+        if (tableCriacaoNoticias.getSelectedRow() != -1) {
+            criarNociciaFrame(GetNoticiaController.get((UUID) tableCriacaoNoticias.getValueAt(tableCriacaoNoticias.getSelectedRow(), 0)));
+        }else{
+            new DialogoMsg("Nenhuma noticia selecionada");
+        }
+    }//GEN-LAST:event_criarNoticiaButtonActionPerformed
+
+
     /**
      * @param args the command line arguments
      */
@@ -134,12 +204,14 @@ public class JornalistaFrame extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton criarNoticiaButton;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tableCriacaoNoticias;
     private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
 }
