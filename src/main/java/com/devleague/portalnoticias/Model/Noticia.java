@@ -29,6 +29,15 @@ public class Noticia  {
     private ArrayList<UUID> anuncios;
     private boolean impresso;
     private ArrayList<UUID> erros;
+    private boolean privado;
+
+    public boolean isPrivado() {
+        return privado;
+    }
+
+    public void setPrivado(boolean privado) {
+        this.privado = privado;
+    }
 
     public Noticia(){
         super();

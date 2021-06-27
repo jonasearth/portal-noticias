@@ -10,6 +10,7 @@ import com.devleague.portalnoticias.Controller.Categoria.DeleteCategoriaControll
 import com.devleague.portalnoticias.Controller.Categoria.GetCategoriaController;
 import com.devleague.portalnoticias.Controller.Jornalista.DeleteJornalistaController;
 import com.devleague.portalnoticias.Controller.Jornalista.GetJornalistaController;
+import com.devleague.portalnoticias.Controller.Noticia.CreateNoticiaController;
 import com.devleague.portalnoticias.Controller.Noticia.GetNoticiaController;
 import com.devleague.portalnoticias.DB.DB;
 import com.devleague.portalnoticias.Model.Categoria;
@@ -66,7 +67,7 @@ public class PageChefeRedacao extends javax.swing.JFrame {
     }
     private void tableMaterias(){
 
-        ArrayList<Noticia> noticia = GetNoticiaController.getAll();
+        ArrayList<Noticia> noticia = GetNoticiaController.getRevised();
         NoticiasAAprovarTable tm = new NoticiasAAprovarTable(noticia);
         materiasAAprovar = new JTable(tm);
         materiasAAprovar.getColumnModel().getColumn(0).setPreferredWidth(0);
@@ -102,10 +103,10 @@ public class PageChefeRedacao extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        botaoSalvarAtribuirNoticia = new javax.swing.JButton();
+        privadoAtribuirNoticia = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        tituloAtribuirNoticia = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         selectJornalista = new javax.swing.JComboBox<>();
         selectCategoria = new javax.swing.JComboBox<>();
@@ -173,28 +174,28 @@ public class PageChefeRedacao extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Aprovar Materia", jPanel2);
 
-        jButton2.setText("Salvar");
-
-        jCheckBox1.setText("Privado");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        botaoSalvarAtribuirNoticia.setText("Salvar");
+        botaoSalvarAtribuirNoticia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                botaoSalvarAtribuirNoticiaActionPerformed(evt);
+            }
+        });
+
+        privadoAtribuirNoticia.setText("Privado");
+        privadoAtribuirNoticia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                privadoAtribuirNoticiaActionPerformed(evt);
             }
         });
 
         jLabel1.setText("Titulo:");
 
-        jTextField1.setMinimumSize(new java.awt.Dimension(64, 30));
-        jTextField1.setPreferredSize(new java.awt.Dimension(64, 30));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
+        tituloAtribuirNoticia.setMinimumSize(new java.awt.Dimension(64, 30));
+        tituloAtribuirNoticia.setPreferredSize(new java.awt.Dimension(64, 30));
 
         jLabel2.setText("Jornalista:");
 
-        selectJornalista.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
+        selectJornalista.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         selectJornalista.setMinimumSize(new java.awt.Dimension(69, 30));
         selectJornalista.setPreferredSize(new java.awt.Dimension(69, 30));
         selectJornalista.addActionListener(new java.awt.event.ActionListener() {
@@ -203,7 +204,7 @@ public class PageChefeRedacao extends javax.swing.JFrame {
             }
         });
 
-        selectCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
+        selectCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         selectCategoria.setMinimumSize(new java.awt.Dimension(69, 30));
         selectCategoria.setPreferredSize(new java.awt.Dimension(69, 30));
         selectCategoria.addActionListener(new java.awt.event.ActionListener() {
@@ -226,19 +227,19 @@ public class PageChefeRedacao extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(tituloAtribuirNoticia, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2))
+                        .addComponent(botaoSalvarAtribuirNoticia))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(selectCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jCheckBox1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(privadoAtribuirNoticia, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                         .addComponent(selectJornalista, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -248,11 +249,11 @@ public class PageChefeRedacao extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jCheckBox1)
+                .addComponent(privadoAtribuirNoticia)
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tituloAtribuirNoticia, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -263,7 +264,7 @@ public class PageChefeRedacao extends javax.swing.JFrame {
                     .addComponent(selectCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 298, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
+                    .addComponent(botaoSalvarAtribuirNoticia)
                     .addComponent(jButton3))
                 .addContainerGap())
         );
@@ -359,7 +360,7 @@ public class PageChefeRedacao extends javax.swing.JFrame {
         jTabbedPane1.addTab("Lista de Categorias", jPanel3);
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Bem Vindo " + chefe.getNome());
+        jLabel7.setText("Bem Vindo ");
 
         jButton5.setText("<--");
         jButton5.setMaximumSize(new java.awt.Dimension(75, 30));
@@ -378,7 +379,7 @@ public class PageChefeRedacao extends javax.swing.JFrame {
             .addComponent(jTabbedPane1)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -397,13 +398,9 @@ public class PageChefeRedacao extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    private void privadoAtribuirNoticiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_privadoAtribuirNoticiaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_privadoAtribuirNoticiaActionPerformed
 
     private void selectJornalistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectJornalistaActionPerformed
         // TODO add your handling code here:
@@ -447,16 +444,34 @@ public class PageChefeRedacao extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void botaoSalvarAtribuirNoticiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarAtribuirNoticiaActionPerformed
+
+        Noticia noticia = new Noticia();
+        noticia.setAtribuidoA(jornalistas.get(selectJornalista.getSelectedIndex()).getId());
+        noticia.setAtribuidoPor(chefe.getId());
+        noticia.setCategoria(categorias.get(selectCategoria.getSelectedIndex()).getId());
+        noticia.setTitulo(tituloAtribuirNoticia.getText());
+        noticia.setPrivado(privadoAtribuirNoticia.isSelected());
+
+        try {
+            CreateNoticiaController.add(noticia);
+            new DialogoMsg("Noticia atribuida com sucesso!");
+            tituloAtribuirNoticia.setText("");
+            privadoAtribuirNoticia.setSelected(false);
+        } catch (Exception e){
+            new DialogoMsg(e.toString());
+        }
+    }//GEN-LAST:event_botaoSalvarAtribuirNoticiaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botaoSalvarAtribuirNoticia;
     private javax.swing.JButton btnCriarCategoria;
     private javax.swing.JButton btnExcluirCategoria;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -471,11 +486,12 @@ public class PageChefeRedacao extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable materiasAAprovar;
     private javax.swing.JTextField nomeCategoria;
+    private javax.swing.JCheckBox privadoAtribuirNoticia;
     private javax.swing.JComboBox<String> selectCategoria;
     private javax.swing.JComboBox<String> selectJornalista;
     private javax.swing.JTable tableCategorias;
+    private javax.swing.JTextField tituloAtribuirNoticia;
     // End of variables declaration//GEN-END:variables
 }
