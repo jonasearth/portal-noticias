@@ -7,6 +7,7 @@ package com.devleague.portalnoticias.View;
 
 import com.devleague.portalnoticias.DB.DB;
 import com.devleague.portalnoticias.View.ViewChefe.ListaChefes;
+import com.devleague.portalnoticias.View.ViewEditor.ListaEditor;
 import com.devleague.portalnoticias.View.ViewJornalista.ListaJornalistas;
 
 import java.awt.*;
@@ -39,7 +40,7 @@ public class Acesso extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
+        editorButton = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jornalistaButton = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
@@ -66,20 +67,25 @@ public class Acesso extends javax.swing.JFrame {
         jPanel7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel7.setForeground(new java.awt.Color(69, 73, 74));
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("Editor");
-        jLabel9.setToolTipText("");
+        editorButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        editorButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        editorButton.setText("Editor");
+        editorButton.setToolTipText("");
+        editorButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                editorButtonMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+            .addComponent(editorButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+            .addComponent(editorButton, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
         );
 
         jPanel8.setBackground(new java.awt.Color(69, 73, 74));
@@ -288,18 +294,23 @@ public class Acesso extends javax.swing.JFrame {
         new ListaChefes().setVisible(true);
     }//GEN-LAST:event_chefeButtonMouseClicked
 
+    private void editorButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editorButtonMouseClicked
+        this.setVisible(false);
+        new ListaEditor().setVisible(true);
+    }//GEN-LAST:event_editorButtonMouseClicked
+
     /**
      * @param args the command line arguments
      */
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel chefeButton;
+    private javax.swing.JLabel editorButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;

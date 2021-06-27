@@ -41,6 +41,22 @@ public class GetNoticiaController  {
             return null;
         }
     }
+    public static ArrayList<Noticia> getToCreate(UUID id) {
+        Noticia noticia = new Noticia();
+        try {
+            return noticia.getToCreate(id);
+        }catch (Exception e){
+            return null;
+        }
+    }
+    public static ArrayList<Noticia> getCreated() {
+        Noticia noticia = new Noticia();
+        try {
+            return noticia.getCreated();
+        }catch (Exception e){
+            return null;
+        }
+    }
     public static ArrayList<Noticia> getRevised( ) {
         Noticia noticia = new Noticia();
         try {

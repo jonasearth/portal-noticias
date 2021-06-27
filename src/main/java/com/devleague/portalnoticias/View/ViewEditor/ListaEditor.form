@@ -57,9 +57,9 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jButton1" min="-2" pref="58" max="-2" attributes="0"/>
+              <Component id="jButton1" min="-2" pref="50" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel1" pref="724" max="32767" attributes="0"/>
+              <Component id="jLabel1" pref="732" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
@@ -90,7 +90,7 @@
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Selecione o Chefe para entrar"/>
+        <Property name="text" type="java.lang.String" value="Selecione o Editor para entrar"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -100,10 +100,10 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="listaChefes">
+        <Component class="javax.swing.JTable" name="listaEditores">
           <Properties>
             <Property name="autoCreateColumnsFromModel" type="boolean" value="false"/>
-            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.Editores2.TableModelEditor">
               <Table columnCount="4" rowCount="4">
                 <Column editable="true" title="Title 1" type="java.lang.Object"/>
                 <Column editable="true" title="Title 2" type="java.lang.Object"/>
@@ -112,15 +112,12 @@
               </Table>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="listaChefesMouseClicked"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="jPanel1">
       <Properties>
-        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.Editores.DimensionEditor">
           <Dimension value="[300, 65000]"/>
         </Property>
       </Properties>
@@ -139,18 +136,18 @@
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="nomeChefe" max="32767" attributes="0"/>
-                              <Component id="salarioChefe" max="32767" attributes="0"/>
+                              <Component id="nomeEditor" max="32767" attributes="0"/>
+                              <Component id="salarioEditor" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="butaoCriarChefe" min="-2" max="-2" attributes="0"/>
+                          <Component id="butaoCriarEditor" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="excluirChefe" max="32767" attributes="0"/>
-                              <Component id="logarChefe" max="32767" attributes="0"/>
+                              <Component id="excluirEditor" max="32767" attributes="0"/>
+                              <Component id="logarEditor" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
@@ -167,19 +164,19 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel3" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="nomeChefe" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="nomeEditor" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jLabel4" max="32767" attributes="0"/>
-                      <Component id="salarioChefe" pref="30" max="32767" attributes="0"/>
+                      <Component id="salarioEditor" pref="30" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="butaoCriarChefe" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="butaoCriarEditor" min="-2" pref="30" max="-2" attributes="0"/>
                   <EmptySpace pref="118" max="32767" attributes="0"/>
-                  <Component id="logarChefe" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="logarEditor" min="-2" pref="30" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="excluirChefe" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="excluirEditor" min="-2" pref="30" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -189,7 +186,7 @@
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Criar Novo Chefe"/>
+            <Property name="text" type="java.lang.String" value="Criar Novo Editor"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
@@ -202,35 +199,35 @@
             <Property name="text" type="java.lang.String" value="Salario:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="nomeChefe">
+        <Component class="javax.swing.JTextField" name="nomeEditor">
         </Component>
-        <Component class="javax.swing.JTextField" name="salarioChefe">
+        <Component class="javax.swing.JTextField" name="salarioEditor">
           <Properties>
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="butaoCriarChefe">
+        <Component class="javax.swing.JButton" name="butaoCriarEditor">
           <Properties>
             <Property name="text" type="java.lang.String" value="Registrar"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="butaoCriarChefeMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="butaoCriarEditorMouseClicked"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="excluirChefe">
+        <Component class="javax.swing.JButton" name="excluirEditor">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Excluir Chefe"/>
+            <Property name="text" type="java.lang.String" value="Excluir Editor"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="excluirChefeMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="excluirEditorMouseClicked"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="logarChefe">
+        <Component class="javax.swing.JButton" name="logarEditor">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Logar Chefe"/>
+            <Property name="text" type="java.lang.String" value="Logar Editor"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="logarChefeMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="logarEditorMouseClicked"/>
           </Events>
         </Component>
       </SubComponents>
@@ -239,6 +236,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="&lt;--"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.Editores2.BorderEditor">
+          <Border info="null"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>

@@ -19,6 +19,14 @@ public class Editor {
         this.id = UUID.randomUUID();
     }
 
+    public float getSalario() {
+        return salario;
+    }
+
+    public void setSalario(float salario) {
+        this.salario = salario;
+    }
+
     public UUID getId() {
         return id;
     }

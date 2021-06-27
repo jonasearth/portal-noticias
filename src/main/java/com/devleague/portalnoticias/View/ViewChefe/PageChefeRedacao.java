@@ -17,6 +17,7 @@ import com.devleague.portalnoticias.Model.Categoria;
 import com.devleague.portalnoticias.Model.Chefe;
 import com.devleague.portalnoticias.Model.Jornalista;
 import com.devleague.portalnoticias.Model.Noticia;
+import com.devleague.portalnoticias.View.Acesso;
 import com.devleague.portalnoticias.View.Components.DialogoMsg;
 import com.devleague.portalnoticias.View.ViewChefe.Table.*;
 
@@ -441,13 +442,15 @@ public class PageChefeRedacao extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExcluirCategoriaMouseClicked
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        new ListaChefes().setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void botaoSalvarAtribuirNoticiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarAtribuirNoticiaActionPerformed
 
         Noticia noticia = new Noticia();
         noticia.setAtribuidoA(jornalistas.get(selectJornalista.getSelectedIndex()).getId());
+        noticia.setAuthor(jornalistas.get(selectJornalista.getSelectedIndex()).getId());
         noticia.setAtribuidoPor(chefe.getId());
         noticia.setCategoria(categorias.get(selectCategoria.getSelectedIndex()).getId());
         noticia.setTitulo(tituloAtribuirNoticia.getText());

@@ -7,6 +7,7 @@ package com.devleague.portalnoticias.View.ViewEditor;
 
 import com.devleague.portalnoticias.Controller.Noticia.GetNoticiaController;
 import com.devleague.portalnoticias.DB.DB;
+import com.devleague.portalnoticias.Model.Editor;
 import com.devleague.portalnoticias.Model.Noticia;
 import com.devleague.portalnoticias.View.ViewEditor.ListaNoticiasCriadasTable;
 import java.util.ArrayList;
@@ -17,11 +18,12 @@ import javax.swing.JTable;
  * @author david
  */
 public class PageEditor extends javax.swing.JFrame {
-
+    public Editor editor;
     /**
      * Creates new form PageEditor
      */
-    public PageEditor(DB db) {
+    public PageEditor(Editor editor) {
+        this.editor = editor;
         initComponents();
         table();
     }
@@ -157,8 +159,7 @@ public class PageEditor extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
     @SuppressWarnings("empty-statement")
     private void table(){
-        ArrayList<Noticia> noticias = GetNoticiaController.getAll();
-        
+        ArrayList<Noticia> noticias = GetNoticiaController.getCreated();
         ListaNoticiasCriadasTable tm = new ListaNoticiasCriadasTable(noticias);
         
         jTable2 = new JTable(tm);
