@@ -5,6 +5,12 @@
  */
 package com.devleague.portalnoticias.View.ViewCliente;
 
+import com.devleague.portalnoticias.Controller.Noticia.GetNoticiaController;
+import com.devleague.portalnoticias.Model.Noticia;
+import com.devleague.portalnoticias.View.ViewCliente.Tabela.TabelaNoticias;
+import java.util.ArrayList;
+import javax.swing.JTable;
+
 /**
  *
  * @author david
@@ -16,6 +22,7 @@ public class PageCliente extends javax.swing.JFrame {
      */
     public PageCliente() {
         initComponents();
+        table();
     }
 
     /**
@@ -30,25 +37,30 @@ public class PageCliente extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        tabelaNoticias = new javax.swing.JTable();
+        visualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaNoticias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "id", "Noticia"
+                "id", "titulo", "categoria"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabelaNoticias);
 
-        jButton1.setText("Visualizar");
+        visualizar.setText("Visualizar");
+        visualizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                visualizarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -60,7 +72,7 @@ public class PageCliente extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 599, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
+                        .addComponent(visualizar)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -69,7 +81,7 @@ public class PageCliente extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(visualizar)
                 .addContainerGap())
         );
 
@@ -99,12 +111,23 @@ public class PageCliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void visualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_visualizarMouseClicked
+        // TODO add your handling code here:
+        new VisualizarNoticia().setVisible(true);
+    }//GEN-LAST:event_visualizarMouseClicked
+
+    private void table(){
+        ArrayList<Noticia> noticias = GetNoticiaController.getAll();
+        TabelaNoticias tm = new TabelaNoticias(noticias);
+        tabelaNoticias = new JTable(tm);
+    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tabelaNoticias;
+    private javax.swing.JButton visualizar;
     // End of variables declaration//GEN-END:variables
 }
