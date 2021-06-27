@@ -10,7 +10,12 @@ import com.devleague.portalnoticias.DB.DB;
 import com.devleague.portalnoticias.Model.Editor;
 import com.devleague.portalnoticias.Model.Noticia;
 import com.devleague.portalnoticias.View.ViewEditor.ListaNoticiasCriadasTable;
+import com.devleague.portalnoticias.View.ViewJornalista.CriarNoticiaFrame;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.UUID;
 import javax.swing.JTable;
 
 /**
@@ -39,7 +44,7 @@ public class PageEditor extends javax.swing.JFrame {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        editarNoticiaButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
@@ -49,10 +54,10 @@ public class PageEditor extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Editar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        editarNoticiaButton.setText("Editar");
+        editarNoticiaButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                editarNoticiaButtonActionPerformed(evt);
             }
         });
 
@@ -79,7 +84,7 @@ public class PageEditor extends javax.swing.JFrame {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1179, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
+                        .addComponent(editarNoticiaButton)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -88,7 +93,7 @@ public class PageEditor extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(editarNoticiaButton)
                 .addContainerGap())
         );
 
@@ -154,9 +159,9 @@ public class PageEditor extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void editarNoticiaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarNoticiaButtonActionPerformed
+        editarNociciaFrame(GetNoticiaController.get((UUID)jTable2.getValueAt(jTable2.getSelectedRow(), 0)));
+    }//GEN-LAST:event_editarNoticiaButtonActionPerformed
     @SuppressWarnings("empty-statement")
     private void table(){
         ArrayList<Noticia> noticias = GetNoticiaController.getCreated();
@@ -164,10 +169,25 @@ public class PageEditor extends javax.swing.JFrame {
         
         jTable2 = new JTable(tm);
         jScrollPane2.setViewportView(jTable2);
-    }
 
+        jTable2.addMouseListener(
+                new MouseAdapter() {
+                    public void mouseClicked (MouseEvent me) {
+                        int row = jTable2.rowAtPoint(me.getPoint());
+                        if (me.getClickCount() == 2 && jTable2.getSelectedRow()== row) {
+                            editarNociciaFrame(GetNoticiaController.get((UUID)jTable2.getValueAt(row, 0)));
+
+                        }
+                    }
+                }
+        );
+    }
+    public  void editarNociciaFrame(Noticia noticia){
+         new EditarNoticiaFrame(this.editor, noticia).setVisible(true);
+         this.setVisible(false);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton editarNoticiaButton;
     private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
