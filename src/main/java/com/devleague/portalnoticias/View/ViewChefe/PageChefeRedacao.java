@@ -12,6 +12,7 @@ import com.devleague.portalnoticias.Controller.Jornalista.DeleteJornalistaContro
 import com.devleague.portalnoticias.Controller.Jornalista.GetJornalistaController;
 import com.devleague.portalnoticias.Controller.Noticia.CreateNoticiaController;
 import com.devleague.portalnoticias.Controller.Noticia.GetNoticiaController;
+import com.devleague.portalnoticias.Controller.Noticia.UpdateNoticiaController;
 import com.devleague.portalnoticias.DB.DB;
 import com.devleague.portalnoticias.Model.Categoria;
 import com.devleague.portalnoticias.Model.Chefe;
@@ -101,8 +102,7 @@ public class PageChefeRedacao extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         materiasAAprovar = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        visualizarButton = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         botaoSalvarAtribuirNoticia = new javax.swing.JButton();
         privadoAtribuirNoticia = new javax.swing.JCheckBox();
@@ -142,9 +142,12 @@ public class PageChefeRedacao extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(materiasAAprovar);
 
-        jButton1.setText("Aprovar");
-
-        jButton4.setText("Reprovar");
+        visualizarButton.setText("Visualizar");
+        visualizarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                visualizarButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -156,9 +159,7 @@ public class PageChefeRedacao extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1)))
+                        .addComponent(visualizarButton)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -167,9 +168,7 @@ public class PageChefeRedacao extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton4))
+                .addComponent(visualizarButton)
                 .addContainerGap())
         );
 
@@ -466,14 +465,18 @@ public class PageChefeRedacao extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_botaoSalvarAtribuirNoticiaActionPerformed
 
+    private void visualizarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizarButtonActionPerformed
+
+        new AprovarNoticia(GetNoticiaController.get((UUID) materiasAAprovar.getValueAt(materiasAAprovar.getSelectedRow(), 0)), chefe).setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_visualizarButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoSalvarAtribuirNoticia;
     private javax.swing.JButton btnCriarCategoria;
     private javax.swing.JButton btnExcluirCategoria;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -496,5 +499,6 @@ public class PageChefeRedacao extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> selectJornalista;
     private javax.swing.JTable tableCategorias;
     private javax.swing.JTextField tituloAtribuirNoticia;
+    private javax.swing.JButton visualizarButton;
     // End of variables declaration//GEN-END:variables
 }

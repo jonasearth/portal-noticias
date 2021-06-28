@@ -22,6 +22,7 @@ public class Noticia  {
     private boolean revisada;
     private UUID revisadoPor;
     private boolean aprovada;
+    private String motivoReprovada;
     private UUID aprovadoPor;
     private boolean digital;
     private int valor;
@@ -62,6 +63,13 @@ public class Noticia  {
     }
 
 
+    public String getMotivoReprovada() {
+        return motivoReprovada;
+    }
+
+    public void setMotivoReprovada(String motivoReprovada) {
+        this.motivoReprovada = motivoReprovada;
+    }
 
     public UUID getAtribuidoA() {
         return atribuidoA;
