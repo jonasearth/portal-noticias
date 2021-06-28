@@ -5,10 +5,13 @@
  */
 package com.devleague.portalnoticias.View.ViewCliente;
 
+import com.devleague.portalnoticias.Controller.Noticia.CreateNoticiaController;
 import com.devleague.portalnoticias.Controller.Noticia.GetNoticiaController;
 import com.devleague.portalnoticias.Model.Noticia;
-import com.devleague.portalnoticias.View.ViewCliente.Tabela.TabelaNoticias;
+import com.devleague.portalnoticias.View.Components.DialogoMsg;
+import com.devleague.portalnoticias.View.ViewCliente.Tabela.ListaNoticiasTable;
 import java.util.ArrayList;
+import java.util.UUID;
 import javax.swing.JTable;
 
 /**
@@ -44,13 +47,13 @@ public class PageCliente extends javax.swing.JFrame {
 
         tabelaNoticias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "id", "titulo", "categoria"
+                "id", "titulo"
             }
         ));
         jScrollPane1.setViewportView(tabelaNoticias);
@@ -113,13 +116,34 @@ public class PageCliente extends javax.swing.JFrame {
 
     private void visualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_visualizarMouseClicked
         // TODO add your handling code here:
-        new VisualizarNoticia().setVisible(true);
+        try {
+            Noticia noticiaAtual = GetNoticiaController.get( (UUID) tabelaNoticias.getValueAt(tabelaNoticias.getSelectedRow(), 0));
+            new VisualizarNoticia(noticiaAtual).setVisible(true);
+
+        }catch (Exception e){
+            new DialogoMsg("Selecione uma noticia");
+        }
     }//GEN-LAST:event_visualizarMouseClicked
 
     private void table(){
-        ArrayList<Noticia> noticias = GetNoticiaController.getAll();
-        TabelaNoticias tm = new TabelaNoticias(noticias);
+        //Aqui deve ser substituido por um controlador
+//        String conteudo = "TypeScript é melhor que java";
+//        String titulo = "TypeScript";
+//        CreateNoticiaController.add(helperCreateNoticia(titulo, conteudo));
+        
+        ArrayList<Noticia> todasNoticias = GetNoticiaController.getAll();
+        ListaNoticiasTable tm = new ListaNoticiasTable(todasNoticias);
         tabelaNoticias = new JTable(tm);
+        jScrollPane1.setViewportView(tabelaNoticias);
+    }
+    
+    public Noticia helperCreateNoticia(String conteudo, String titulo){
+        Noticia mockNoticia = new Noticia();
+        
+        mockNoticia.setConteudo(conteudo);
+        mockNoticia.setTitulo(titulo);
+        
+        return mockNoticia;
     }
    
 
