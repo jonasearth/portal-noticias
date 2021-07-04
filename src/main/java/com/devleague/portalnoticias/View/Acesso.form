@@ -313,6 +313,9 @@
             <Property name="text" type="java.lang.String" value="Mediador"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="mediadorMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

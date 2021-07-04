@@ -9,6 +9,7 @@ import com.devleague.portalnoticias.DB.DB;
 import com.devleague.portalnoticias.View.ViewChefe.ListaChefes;
 import com.devleague.portalnoticias.View.ViewEditor.ListaEditor;
 import com.devleague.portalnoticias.View.ViewJornalista.ListaJornalistas;
+import com.devleague.portalnoticias.View.ViewMediador.PageMediador;
 import com.devleague.portalnoticias.View.ViewRevisor.PageRevisor;
 
 import java.awt.*;
@@ -65,7 +66,7 @@ public class Acesso extends javax.swing.JFrame {
         jLabel1.setPreferredSize(new java.awt.Dimension(202, 18));
 
         jPanel7.setBackground(new java.awt.Color(69, 73, 74));
-        jPanel7.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jPanel7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel7.setForeground(new java.awt.Color(69, 73, 74));
 
         editor.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -90,7 +91,7 @@ public class Acesso extends javax.swing.JFrame {
         );
 
         jPanel8.setBackground(new java.awt.Color(69, 73, 74));
-        jPanel8.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jPanel8.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel8.setForeground(new java.awt.Color(69, 73, 74));
 
         jornalista.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -118,7 +119,7 @@ public class Acesso extends javax.swing.JFrame {
         );
 
         jPanel9.setBackground(new java.awt.Color(69, 73, 74));
-        jPanel9.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jPanel9.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel9.setForeground(new java.awt.Color(69, 73, 74));
 
         revisor.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -143,7 +144,7 @@ public class Acesso extends javax.swing.JFrame {
         );
 
         jPanel10.setBackground(new java.awt.Color(69, 73, 74));
-        jPanel10.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jPanel10.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel10.setForeground(new java.awt.Color(69, 73, 74));
 
         anunciante.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -163,13 +164,18 @@ public class Acesso extends javax.swing.JFrame {
         );
 
         jPanel11.setBackground(new java.awt.Color(69, 73, 74));
-        jPanel11.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jPanel11.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel11.setForeground(new java.awt.Color(69, 73, 74));
 
         mediador.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         mediador.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         mediador.setText("Mediador");
         mediador.setToolTipText("");
+        mediador.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mediadorMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -183,7 +189,7 @@ public class Acesso extends javax.swing.JFrame {
         );
 
         jPanel12.setBackground(new java.awt.Color(69, 73, 74));
-        jPanel12.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jPanel12.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel12.setForeground(new java.awt.Color(69, 73, 74));
 
         chefe.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -200,7 +206,7 @@ public class Acesso extends javax.swing.JFrame {
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(chefe, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+            .addComponent(chefe, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 156, Short.MAX_VALUE)
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,7 +214,7 @@ public class Acesso extends javax.swing.JFrame {
         );
 
         jPanel13.setBackground(new java.awt.Color(69, 73, 74));
-        jPanel13.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jPanel13.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel13.setForeground(new java.awt.Color(69, 73, 74));
 
         usuario.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -309,6 +315,12 @@ public class Acesso extends javax.swing.JFrame {
        this.setVisible(false);
        new PageRevisor().setVisible(true);
     }//GEN-LAST:event_revisorMouseClicked
+
+    private void mediadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mediadorMouseClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new PageMediador().setVisible(true);
+    }//GEN-LAST:event_mediadorMouseClicked
 
     /**
      * @param args the command line arguments

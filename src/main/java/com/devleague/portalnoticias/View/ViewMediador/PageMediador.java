@@ -111,11 +111,13 @@ public class PageMediador extends javax.swing.JFrame {
     private void aprovarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aprovarMouseClicked
         // TODO add your handling code here:
         new DialogoMsg("Noticia aprovada!");
+        new DialogoMsg((String)tabelaNoticias.getValueAt(tabelaNoticias.getSelectedRow(), 1));
     }//GEN-LAST:event_aprovarMouseClicked
 
     private void reprovarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reprovarMouseClicked
         // TODO add your handling code here:
         new DialogoMsg("Noticia reprovada!");
+        new DialogoMsg((String)tabelaNoticias.getValueAt(tabelaNoticias.getSelectedRow(), 1));
     }//GEN-LAST:event_reprovarMouseClicked
 
     private void table(){
