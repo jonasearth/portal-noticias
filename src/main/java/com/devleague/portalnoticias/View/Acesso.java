@@ -6,6 +6,7 @@
 package com.devleague.portalnoticias.View;
 
 import com.devleague.portalnoticias.DB.DB;
+import com.devleague.portalnoticias.View.ViewAnuciante.PageAnunciante;
 import com.devleague.portalnoticias.View.ViewChefe.ListaChefes;
 import com.devleague.portalnoticias.View.ViewEditor.ListaEditor;
 import com.devleague.portalnoticias.View.ViewJornalista.ListaJornalistas;
@@ -151,6 +152,11 @@ public class Acesso extends javax.swing.JFrame {
         anunciante.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         anunciante.setText("Anunciante");
         anunciante.setToolTipText("");
+        anunciante.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                anuncianteMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -321,6 +327,12 @@ public class Acesso extends javax.swing.JFrame {
         this.setVisible(false);
         new PageMediador().setVisible(true);
     }//GEN-LAST:event_mediadorMouseClicked
+
+    private void anuncianteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_anuncianteMouseClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new PageAnunciante().setVisible(true);
+    }//GEN-LAST:event_anuncianteMouseClicked
 
     /**
      * @param args the command line arguments
