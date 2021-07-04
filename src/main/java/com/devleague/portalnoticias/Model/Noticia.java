@@ -261,7 +261,29 @@ public class Noticia  {
         try {
             List<Noticia> list = DB.noticia
                     .stream()
-                    .filter(noticia -> noticia.getAtribuidoA().equals(id) && !noticia.isCriada())
+                    .filter(noticia -> noticia.getAtribuidoA().equals(id) && !noticia.isCriada() && noticia.motivoReprovada == null)
+                    .collect(Collectors.toList());
+            return new ArrayList<>(list);
+        }catch (Exception e){
+            return null;
+        }
+    }
+    public ArrayList<Noticia> getReproved(UUID id){
+        try {
+            List<Noticia> list = DB.noticia
+                    .stream()
+                    .filter(noticia -> noticia.getAtribuidoA().equals(id) && !noticia.isAprovada() && !noticia.isCriada())
+                    .collect(Collectors.toList());
+            return new ArrayList<>(list);
+        }catch (Exception e){
+            return null;
+        }
+    }
+    public ArrayList<Noticia> getAproved(){
+        try {
+            List<Noticia> list = DB.noticia
+                    .stream()
+                    .filter(noticia -> noticia.isAprovada())
                     .collect(Collectors.toList());
             return new ArrayList<>(list);
         }catch (Exception e){
@@ -327,7 +349,7 @@ public class Noticia  {
         try {
             List<Noticia> list = DB.noticia
                     .stream()
-                    .filter(noticia -> noticia.isRevisada())
+                    .filter(noticia -> noticia.isRevisada() && !noticia.isAprovada())
                     .collect(Collectors.toList());
             return new ArrayList<Noticia>(list);
         } catch (Exception e) {
