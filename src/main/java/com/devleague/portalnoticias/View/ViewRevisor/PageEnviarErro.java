@@ -5,17 +5,29 @@
  */
 package com.devleague.portalnoticias.View.ViewRevisor;
 
+import com.devleague.portalnoticias.Controller.ErrosNoticia.CreateErrosNoticiaController;
+import com.devleague.portalnoticias.Controller.Noticia.UpdateNoticiaController;
+import com.devleague.portalnoticias.Model.ErrosNoticia;
+import com.devleague.portalnoticias.Model.Noticia;
+import com.devleague.portalnoticias.Model.Revisor;
+import com.devleague.portalnoticias.View.Components.DialogoMsg;
+
 /**
  *
  * @author david
  */
 public class PageEnviarErro extends javax.swing.JFrame {
-
+    public Revisor revisor;
+    public Noticia noticia;
     /**
      * Creates new form PageEnviarErro
      */
-    public PageEnviarErro() {
+    public PageEnviarErro(Revisor revisor, Noticia noticia) {
+        this.revisor = revisor;
+        this.noticia = noticia;
         initComponents();
+        conteudoNoticia.setText(noticia.getConteudo());
+        tituloNoticia.setText(noticia.getTitulo());
     }
 
     /**
@@ -27,30 +39,56 @@ public class PageEnviarErro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        conteudoNoticia = new javax.swing.JTextPane();
         jLabel2 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        aprovarButton = new javax.swing.JButton();
+        cancelarButton = new javax.swing.JButton();
+        tituloNoticia = new javax.swing.JLabel();
+        salvarErroButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        conteudoErro = new javax.swing.JTextArea();
+        correcaoButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Erros da Noticia:");
-
-        jScrollPane2.setViewportView(jTextPane1);
+        jScrollPane2.setViewportView(conteudoNoticia);
 
         jLabel2.setText("Noticia:");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane3.setViewportView(jTextArea1);
+        aprovarButton.setText("Aprovar");
+        aprovarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aprovarButtonActionPerformed(evt);
+            }
+        });
 
-        jButton1.setText("Enviar");
+        cancelarButton.setText("Cancelar");
+        cancelarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarButtonActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Cancelar");
+        tituloNoticia.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        salvarErroButton.setText("Salvar Erro");
+        salvarErroButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salvarErroButtonActionPerformed(evt);
+            }
+        });
+
+        conteudoErro.setColumns(20);
+        conteudoErro.setRows(5);
+        jScrollPane1.setViewportView(conteudoErro);
+
+        correcaoButton.setText("Mandar para Correção");
+        correcaoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                correcaoButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -59,54 +97,98 @@ public class PageEnviarErro extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton2)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(469, 469, 469)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(150, 150, 150))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tituloNoticia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cancelarButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(correcaoButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(salvarErroButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(aprovarButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(tituloNoticia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(salvarErroButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(correcaoButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(aprovarButton))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap())
+                .addComponent(cancelarButton)
+                .addGap(21, 21, 21))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarButtonActionPerformed
+        this.setVisible(false);
+        new PageRevisor(this.revisor).setVisible(true);
+    }//GEN-LAST:event_cancelarButtonActionPerformed
+
+    private void aprovarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aprovarButtonActionPerformed
+        noticia.setRevisada(true);
+        noticia.setRevisadoPor(revisor.getId());
+        noticia.setRevisaoCompleta(true);
+        UpdateNoticiaController.update(noticia);
+        new DialogoMsg("Revisada com Sucesso!");
+        this.setVisible(false);
+        new PageRevisor(this.revisor).setVisible(true);
+    }//GEN-LAST:event_aprovarButtonActionPerformed
+
+    private void salvarErroButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarErroButtonActionPerformed
+        ErrosNoticia erro = new ErrosNoticia();
+        erro.setErro(conteudoErro.getText());
+        erro.setRevisor(revisor.getId());
+        try {
+            CreateErrosNoticiaController.add(erro);
+            UpdateNoticiaController.addError(this.noticia, erro.getId());
+            conteudoErro.setText("");
+            new DialogoMsg("Erro informado com sucesso!");
+        }catch (Exception e){
+            new DialogoMsg("Não foi possivel atribuir o erro!");
+        }
+    }//GEN-LAST:event_salvarErroButtonActionPerformed
+
+    private void correcaoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_correcaoButtonActionPerformed
+        noticia.setRevisada(true);
+        noticia.setRevisadoPor(revisor.getId());
+        noticia.setRevisaoCompleta(false);
+        UpdateNoticiaController.update(noticia);
+        new DialogoMsg("Revisada com Sucesso!");
+        this.setVisible(false);
+        new PageRevisor(this.revisor).setVisible(true);
+    }//GEN-LAST:event_correcaoButtonActionPerformed
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton aprovarButton;
+    private javax.swing.JButton cancelarButton;
+    private javax.swing.JTextArea conteudoErro;
+    private javax.swing.JTextPane conteudoNoticia;
+    private javax.swing.JButton correcaoButton;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JButton salvarErroButton;
+    private javax.swing.JLabel tituloNoticia;
     // End of variables declaration//GEN-END:variables
 }

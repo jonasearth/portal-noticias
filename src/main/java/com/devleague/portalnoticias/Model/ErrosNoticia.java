@@ -7,13 +7,13 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-public class Revisor {
+public class ErrosNoticia {
 
     private UUID id;
-    private String nome;
-    private float salario;
+    private String erro;
+    private UUID revisor;
 
-    public Revisor(){
+    public ErrosNoticia(){
         super();
 
         this.id = UUID.randomUUID();
@@ -23,27 +23,27 @@ public class Revisor {
         return id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getErro() {
+        return erro;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setErro(String erro) {
+        this.erro = erro;
     }
 
-    public float getSalario() {
-        return salario;
+    public UUID getRevisor() {
+        return revisor;
     }
 
-    public void setSalario(float salario) {
-        this.salario = salario;
+    public void setRevisor(UUID revisor) {
+        this.revisor = revisor;
     }
 
-    public Revisor get(UUID id){
+    public ErrosNoticia get(UUID id){
         try {
-            List<Revisor> list  = DB.revisor
+            List<ErrosNoticia> list  = DB.errosNoticia
                     .stream()
-                    .filter(revisor-> revisor.getId().equals(id))
+                    .filter(errosNoticia-> errosNoticia.getId().equals(id))
                     .collect(Collectors.toList());
             return list.get(0);
         }catch (Exception e){
@@ -52,12 +52,12 @@ public class Revisor {
     }
 
     public ArrayList getAll(){
-        return DB.revisor;
+        return DB.errosNoticia;
     }
 
     public boolean create(){
         try{
-            DB.revisor.add(this);
+            DB.errosNoticia.add(this);
             return true;
         }catch (Exception e) {
             return false;
@@ -67,7 +67,7 @@ public class Revisor {
     public boolean update(){
 
         try{
-            DB.revisor.set(DB.revisor.indexOf(this.get(this.id)), this);
+            DB.errosNoticia.set(DB.errosNoticia.indexOf(this.get(this.id)), this);
             return  true;
         }catch (Exception e){
             return false;
@@ -76,7 +76,7 @@ public class Revisor {
 
     public boolean delete(){
         try{
-            DB.revisor.remove(DB.revisor.indexOf(this.get(this.id)));
+            DB.errosNoticia.remove(DB.errosNoticia.indexOf(this.get(this.id)));
             return true;
         }catch (Exception e){
             return false;

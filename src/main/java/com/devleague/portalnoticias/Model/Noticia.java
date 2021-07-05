@@ -21,6 +21,7 @@ public class Noticia  {
     private boolean editada;
     private UUID editadoPor;
     private boolean revisada;
+    private boolean revisaoCompleta;
     private UUID revisadoPor;
     private boolean aprovada;
     private String motivoReprovada;
@@ -66,6 +67,13 @@ public class Noticia  {
         this.atribuidoPor = atribuidoPor;
     }
 
+    public boolean isRevisaoCompleta() {
+        return revisaoCompleta;
+    }
+
+    public void setRevisaoCompleta(boolean revisaoCompleta) {
+        this.revisaoCompleta = revisaoCompleta;
+    }
 
     public String getMotivoReprovada() {
         return motivoReprovada;
@@ -341,7 +349,7 @@ public class Noticia  {
         try {
             List<Noticia> list = DB.noticia
                     .stream()
-                    .filter(noticia -> noticia.isEditada())
+                    .filter(noticia -> noticia.isEditada() && !noticia.isRevisaoCompleta() && !noticia.isRevisada())
                     .collect(Collectors.toList());
             return new ArrayList<Noticia>(list);
         }catch (Exception e){
@@ -358,6 +366,16 @@ public class Noticia  {
             return new ArrayList<Noticia>(list);
         } catch (Exception e) {
             return null;
+        }
+    }
+
+    public boolean addError(UUID id){
+        try{
+            this.erros.add(id);
+            DB.noticia.set(DB.noticia.indexOf(this.get(this.id)), this);
+            return true;
+        }catch (Exception e) {
+            return false;
         }
     }
 }

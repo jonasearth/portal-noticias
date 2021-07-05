@@ -5,17 +5,41 @@
  */
 package com.devleague.portalnoticias.View.ViewRevisor;
 
+import com.devleague.portalnoticias.Controller.Noticia.GetNoticiaController;
+import com.devleague.portalnoticias.Model.Noticia;
+import com.devleague.portalnoticias.Model.Revisor;
+import com.devleague.portalnoticias.View.Components.DialogoMsg;
+import com.devleague.portalnoticias.View.ViewJornalista.CriarNoticiaFrame;
+import com.devleague.portalnoticias.View.ViewJornalista.NoticiaToCreateTable;
+
+import javax.swing.*;
+import java.util.ArrayList;
+import java.util.UUID;
+
 /**
  *
  * @author david
  */
 public class PageRevisor extends javax.swing.JFrame {
-
+    public Revisor revisor;
     /**
      * Creates new form PageRevisor
      */
-    public PageRevisor() {
+    public PageRevisor(Revisor revisor) {
+        this.revisor= revisor;
         initComponents();
+        table();
+    }
+    public void table(){
+        ArrayList<Noticia> noticias =GetNoticiaController.getEdited();
+
+        NoticiaToReviewTable tm = new NoticiaToReviewTable(noticias);
+
+
+        tableNoticiasEditadas = new JTable(tm);
+        tableNoticiasEditadas.getColumnModel().getColumn(0).setPreferredWidth(1);
+
+        jScrollPane1.setViewportView(tableNoticiasEditadas);
     }
 
     /**
@@ -31,13 +55,20 @@ public class PageRevisor extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableNoticiasEditadas = new javax.swing.JTable();
+        welcome = new javax.swing.JLabel();
+        back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("Visualizar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableNoticiasEditadas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -48,7 +79,7 @@ public class PageRevisor extends javax.swing.JFrame {
                 "id", "Noticias"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tableNoticiasEditadas);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -60,14 +91,14 @@ public class PageRevisor extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton1))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addContainerGap())
@@ -75,36 +106,62 @@ public class PageRevisor extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Noticias Editadas", jPanel1);
 
+        welcome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        welcome.setText("jLabel1");
+
+        back.setText("<--");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 486, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jTabbedPane1)
-                    .addContainerGap()))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(back)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(welcome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jTabbedPane1)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 374, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jTabbedPane1)
-                    .addContainerGap()))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(back, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(welcome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (tableNoticiasEditadas.getSelectedRow() != -1) {
+            reviewNoticiaFrame(GetNoticiaController.get((UUID) tableNoticiasEditadas.getValueAt(tableNoticiasEditadas.getSelectedRow(), 0)));
+        }else{
+            new DialogoMsg("Nenhuma noticia selecionada");
+        }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    public void reviewNoticiaFrame(Noticia noticia){
+        PageEnviarErro pageEnviarErro = new PageEnviarErro(this.revisor, noticia);
+        pageEnviarErro.setVisible(true);
+        this.setVisible(false);
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton back;
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tableNoticiasEditadas;
+    private javax.swing.JLabel welcome;
     // End of variables declaration//GEN-END:variables
 }

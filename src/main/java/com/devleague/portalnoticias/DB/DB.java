@@ -26,6 +26,7 @@ public class DB {
     public static ArrayList<Anunciante> anunciante = new ArrayList<>();
     public static ArrayList<Anuncio> anuncio = new ArrayList<>();
     public static ArrayList<Mediador> mediador = new ArrayList<>();
+    public static ArrayList<ErrosNoticia> errosNoticia = new ArrayList<>();
 
     private static final String PATH  = "./src/main/java/com/devleague/portalnoticias/DB/tables/";
     public static void backup (){
@@ -45,6 +46,7 @@ public class DB {
             String jsonAnunciante = gson.toJson(DB.anunciante);
             String jsonAnuncio = gson.toJson(DB.anuncio);
             String jsonMediador = gson.toJson(DB.mediador);
+            String jsonErrosNoticia = gson.toJson(DB.errosNoticia);
 
             //cria arquivos de json para inserir os dados
             FileWriter wNoticias = new FileWriter(PATH+"noticias.json");
@@ -58,6 +60,7 @@ public class DB {
             FileWriter wAnunciante = new FileWriter(PATH+"anunciante.json");
             FileWriter wAnuncio= new FileWriter(PATH+"anuncio.json");
             FileWriter wMediador = new FileWriter(PATH+"mediador.json");
+            FileWriter wErrosNoticia = new FileWriter(PATH+"errosNoticia.json");
 
             //insere os dados em json dentro dos arquivos
             wNoticias.write(jsonNoticia);
@@ -71,6 +74,7 @@ public class DB {
             wAnunciante.write(jsonAnunciante);
             wAnuncio.write(jsonAnuncio);
             wMediador.write(jsonMediador);
+            wErrosNoticia.write(jsonErrosNoticia);
 
             //fecha a edição do arquivo
             wNoticias.close();
@@ -84,6 +88,7 @@ public class DB {
             wAnunciante.close();
             wAnuncio.close();
             wMediador.close();
+            wErrosNoticia.close();
 
         } catch (IOException e) {
 
@@ -105,6 +110,7 @@ public class DB {
         Type typeAnunciante = new TypeToken<ArrayList<Anunciante>> () {}.getType();
         Type typeAnuncio = new TypeToken<ArrayList<Anuncio>> () {}.getType();
         Type typeMediador = new TypeToken<ArrayList<Mediador>> () {}.getType();
+        Type typeErrosNoticia = new TypeToken<ArrayList<ErrosNoticia>> () {}.getType();
 
 
         try {
@@ -120,6 +126,7 @@ public class DB {
             BufferedReader rAnunciante = new BufferedReader(new FileReader(PATH+"anunciante.json"));
             BufferedReader rAnuncio = new BufferedReader(new FileReader(PATH+"anuncio.json"));
             BufferedReader rMediador = new BufferedReader(new FileReader(PATH+"mediador.json"));
+            BufferedReader rErrosNoticia = new BufferedReader(new FileReader(PATH+"errosNoticia.json"));
 
             //insere o conteudo dos arquivos dentro dos arraylists
             DB.noticia = gson.fromJson(rNoticia, typeNoticia);
@@ -133,6 +140,7 @@ public class DB {
             DB.anunciante = gson.fromJson(rAnunciante, typeAnunciante);
             DB.anuncio = gson.fromJson(rAnuncio, typeAnuncio);
             DB.mediador = gson.fromJson(rMediador, typeMediador);
+            DB.errosNoticia = gson.fromJson(rErrosNoticia, typeErrosNoticia);
 
         } catch (IOException e) {
         }

@@ -11,6 +11,7 @@ import com.devleague.portalnoticias.View.ViewChefe.ListaChefes;
 import com.devleague.portalnoticias.View.ViewEditor.ListaEditor;
 import com.devleague.portalnoticias.View.ViewJornalista.ListaJornalistas;
 import com.devleague.portalnoticias.View.ViewMediador.PageMediador;
+import com.devleague.portalnoticias.View.ViewRevisor.ListaRevisores;
 import com.devleague.portalnoticias.View.ViewRevisor.PageRevisor;
 
 import java.awt.*;
@@ -319,7 +320,7 @@ public class Acesso extends javax.swing.JFrame {
 
     private void revisorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_revisorMouseClicked
        this.setVisible(false);
-       new PageRevisor().setVisible(true);
+       new ListaRevisores().setVisible(true);
     }//GEN-LAST:event_revisorMouseClicked
 
     private void mediadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mediadorMouseClicked
