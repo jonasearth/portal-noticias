@@ -13,13 +13,23 @@ public class Comentario {
     private UUID usuario;
     private boolean aprovada;
     private UUID reprovadaPor;
+    private String conteudo;
+
 
     public Comentario(){
         super();
-
+        
         this.id = UUID.randomUUID();
     }
+    
+        public String getConteudo() {
+        return conteudo;
+    }
 
+    public void setConteudo(String conteudo) {
+        this.conteudo = conteudo;
+    }
+    
     public UUID getId() {
         return id;
     }

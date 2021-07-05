@@ -10,7 +10,7 @@ package com.devleague.portalnoticias.View.ViewMediador.Table;
  * @author David
  */
 
-import com.devleague.portalnoticias.Model.Noticia;
+import com.devleague.portalnoticias.Model.Comentario;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
@@ -18,15 +18,16 @@ import java.util.UUID;
 
 public class ListaMediadorTable extends AbstractTableModel {
 
-    private final String colunas[] = {"id", "titulo", "comentario"};
-    private final ArrayList<Noticia> noticia;
+    private final String colunas[] = {"id", "usuario", "comentario", "estado"};
+    private final ArrayList<Comentario> comentario;
 
     public final int COLUNA_ID = 0;
-    public final int COLUNA_TITULO = 1;
+    public final int COLUNA_USUARIO = 1;
     public final int COLUNA_COMENTARIO = 2;
+    public final int COLUNA_ESTADO = 3;
 
-    public ListaMediadorTable(ArrayList<Noticia> noticia) {
-        this.noticia = noticia;
+    public ListaMediadorTable(ArrayList<Comentario> comentario) {
+        this.comentario = comentario;
     }
 
     
@@ -38,7 +39,7 @@ public class ListaMediadorTable extends AbstractTableModel {
 
     @Override
     public int getRowCount() {
-        return noticia.size();
+        return comentario.size();
     }
     @Override
     public int getColumnCount() {
@@ -54,9 +55,11 @@ public class ListaMediadorTable extends AbstractTableModel {
         switch (columnIndex) {
             case COLUNA_ID:
                 return UUID.class;
-            case COLUNA_TITULO:
+            case COLUNA_USUARIO:
                 return String.class;
             case COLUNA_COMENTARIO:
+                return String.class;
+            case COLUNA_ESTADO:
                 return String.class;
             default:
                 return String.class;
@@ -65,14 +68,16 @@ public class ListaMediadorTable extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Noticia noticiaAtual = this.noticia.get(rowIndex);
+        Comentario comentarioAtual = this.comentario.get(rowIndex);
         switch (columnIndex) {
             case COLUNA_ID:
-                return noticiaAtual.getId();
-            case COLUNA_TITULO:
-                return noticiaAtual.getTitulo();
+                return comentarioAtual.getId();
+            case COLUNA_USUARIO:
+                return comentarioAtual.getUsuario();
             case COLUNA_COMENTARIO:
-                return "Noticia excelente. Da nota dez para eles, Fernanda";
+                return comentarioAtual.getConteudo();
+            case COLUNA_ESTADO:
+                return comentarioAtual.isAprovada();
             default: 
                 return null;
 

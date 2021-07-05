@@ -5,12 +5,14 @@
  */
 package com.devleague.portalnoticias.View.ViewMediador;
 
-import com.devleague.portalnoticias.Controller.Noticia.CreateNoticiaController;
-import com.devleague.portalnoticias.Controller.Noticia.GetNoticiaController;
-import com.devleague.portalnoticias.Model.Noticia;
+import com.devleague.portalnoticias.Controller.Comentario.CreateComentarioController;
+import com.devleague.portalnoticias.Controller.Comentario.GetComentarioController;
+import com.devleague.portalnoticias.Controller.Comentario.UpdateComentarioController;
+import com.devleague.portalnoticias.Model.Comentario;
 import com.devleague.portalnoticias.View.Components.DialogoMsg;
 import com.devleague.portalnoticias.View.ViewMediador.Table.ListaMediadorTable;
 import java.util.ArrayList;
+import java.util.UUID;
 import javax.swing.JTable;
 
 /**
@@ -38,7 +40,7 @@ public class PageMediador extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabelaNoticias = new javax.swing.JTable();
+        tabelaMediador = new javax.swing.JTable();
         aprovar = new javax.swing.JButton();
         reprovar = new javax.swing.JButton();
 
@@ -46,7 +48,7 @@ public class PageMediador extends javax.swing.JFrame {
 
         jLabel1.setText("Mediador");
 
-        tabelaNoticias.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaMediador.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -54,10 +56,10 @@ public class PageMediador extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "id", "noticia", "comentario"
+                "id", "usuario", "comentario"
             }
         ));
-        jScrollPane1.setViewportView(tabelaNoticias);
+        jScrollPane1.setViewportView(tabelaMediador);
 
         aprovar.setText("Aprovar");
         aprovar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -110,35 +112,44 @@ public class PageMediador extends javax.swing.JFrame {
 
     private void aprovarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aprovarMouseClicked
         // TODO add your handling code here:
-        new DialogoMsg("Noticia aprovada!");
-        new DialogoMsg((String)tabelaNoticias.getValueAt(tabelaNoticias.getSelectedRow(), 1));
+            UUID id = (UUID)tabelaMediador.getValueAt(tabelaMediador.getSelectedRow(), 0);
+            Comentario comentarioAtual =  GetComentarioController.get(id);
+            comentarioAtual.setAprovada(true);
+            UpdateComentarioController.update(comentarioAtual);
+            new DialogoMsg("Comentario aprovado com sucesso!");
+            table();
+
+        
     }//GEN-LAST:event_aprovarMouseClicked
 
     private void reprovarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reprovarMouseClicked
         // TODO add your handling code here:
-        new DialogoMsg("Noticia reprovada!");
-        new DialogoMsg((String)tabelaNoticias.getValueAt(tabelaNoticias.getSelectedRow(), 1));
+            UUID id = (UUID)tabelaMediador.getValueAt(tabelaMediador.getSelectedRow(), 0);
+            Comentario comentarioAtual =  GetComentarioController.get(id);
+            comentarioAtual.setAprovada(false);
+            UpdateComentarioController.update(comentarioAtual);
+            new DialogoMsg("Comentario reprovado com sucesso!");
+            table();
+        
     }//GEN-LAST:event_reprovarMouseClicked
 
     private void table(){
 //        Aqui deve ser substituido por um controlador
-        String conteudo = "TypeScript é melhor que java";
-        String titulo = "TypeScript";
-        CreateNoticiaController.add(helperCreateNoticia(titulo, conteudo));
+
+//        CreateComentarioController.add(helperCreateComentario());
         
-        ArrayList<Noticia> todasNoticias = GetNoticiaController.getAll();
-        ListaMediadorTable tm = new ListaMediadorTable(todasNoticias);
-        tabelaNoticias = new JTable(tm);
-        jScrollPane1.setViewportView(tabelaNoticias);
+        ArrayList<Comentario> Comentarios = GetComentarioController.getAll();
+        ListaMediadorTable tm = new ListaMediadorTable(Comentarios);
+        tabelaMediador = new JTable(tm);
+        jScrollPane1.setViewportView(tabelaMediador);
     }
     
-    public Noticia helperCreateNoticia(String conteudo, String titulo){
-        Noticia mockNoticia = new Noticia();
+    public Comentario helperCreateComentario(){
+        String conteudo = "Da dez para gente, fernanda. Pelo amor de deus!!";
+        Comentario mockComentario = new Comentario();
+        mockComentario.setConteudo(conteudo);
         
-        mockNoticia.setConteudo(conteudo);
-        mockNoticia.setTitulo(titulo);
-        
-        return mockNoticia;
+        return mockComentario;
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -146,6 +157,6 @@ public class PageMediador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton reprovar;
-    private javax.swing.JTable tabelaNoticias;
+    private javax.swing.JTable tabelaMediador;
     // End of variables declaration//GEN-END:variables
 }
