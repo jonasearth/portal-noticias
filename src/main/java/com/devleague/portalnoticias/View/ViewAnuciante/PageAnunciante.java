@@ -5,12 +5,13 @@
  */
 package com.devleague.portalnoticias.View.ViewAnuciante;
 
+import com.devleague.portalnoticias.Controller.Anuncio.GetAnuncioController;
 import com.devleague.portalnoticias.Controller.Noticia.GetNoticiaController;
+import com.devleague.portalnoticias.Model.Anuncio;
 import com.devleague.portalnoticias.Model.Noticia;
 import com.devleague.portalnoticias.View.Components.DialogoMsg;
 import com.devleague.portalnoticias.View.ViewAnuciante.Table.ListaAnuncianteTable;
 import java.util.ArrayList;
-import java.util.UUID;
 import javax.swing.JTable;
 
 /**
@@ -197,10 +198,18 @@ public class PageAnunciante extends javax.swing.JFrame {
 //        String titulo = "TypeScript";
 //        CreateNoticiaController.add(helperCreateNoticia(titulo, conteudo));
         
-        ArrayList<Noticia> todasNoticias = GetNoticiaController.getAll();
-        ListaAnuncianteTable tm = new ListaAnuncianteTable(todasNoticias);
-        tabelaNoticias = new JTable(tm);
+        //Tabela Noticias
+        ArrayList<Noticia> noticias = GetNoticiaController.getAll();
+        ListaAnuncianteTable tableAnunciante = new ListaAnuncianteTable(noticias);
+        tabelaNoticias = new JTable(tableAnunciante);
         jScrollPane5.setViewportView(tabelaNoticias);
+        
+        //Tabela Meus Anuncios
+        ArrayList<Anuncio> anuncios = GetAnuncioController.getAll();
+//        ListaMeusAnunciosTable tableMeusAnunciantes = new ListaMeusAnunciosTable(anuncios);
+//        tabelaNoticias = new JTable(tableMeusAnunciantes);
+        jScrollPane5.setViewportView(tabelaNoticias);
+        
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
