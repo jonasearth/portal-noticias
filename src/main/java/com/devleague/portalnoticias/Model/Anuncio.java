@@ -2,6 +2,7 @@ package com.devleague.portalnoticias.Model;
 
 import com.devleague.portalnoticias.DB.DB;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,7 +13,7 @@ public class Anuncio {
 
     private UUID id;
     private String meio;
-    private Date fimVisualizacao;
+    private String fimVisualizacao;
     private UUID anunciante;
     private int clicks;
     private int views;
@@ -35,11 +36,11 @@ public class Anuncio {
         this.meio = meio;
     }
 
-    public Date getFimVisualizacao() {
+    public String getFimVisualizacao() {
         return fimVisualizacao;
     }
 
-    public void setFimVisualizacao(Date fimVisualizacao) {
+    public void setFimVisualizacao(String fimVisualizacao) {
         this.fimVisualizacao = fimVisualizacao;
     }
 

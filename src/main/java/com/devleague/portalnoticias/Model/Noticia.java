@@ -3,6 +3,7 @@ package com.devleague.portalnoticias.Model;
 import com.devleague.portalnoticias.DB.DB;
 
 import java.lang.reflect.Array;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -13,7 +14,7 @@ public class Noticia  {
     private String conteudo;
     private UUID categoria;
     private UUID author;
-    private Date data;
+    private String data;
     private boolean criada;
     private UUID atribuidoA;
     private UUID atribuidoPor;
@@ -43,7 +44,10 @@ public class Noticia  {
     public Noticia(){
         super();
         this.id = UUID.randomUUID();
-        this.data = new Date();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+        this.data = sdf.format(new Date());
     }
 
     public boolean isCriada() {
@@ -181,7 +185,7 @@ public class Noticia  {
         this.author = author;
     }
 
-    public Date getData() {
+    public String getData() {
         return data;
     }
 

@@ -66,7 +66,7 @@ public class NoticiaToCreateTable extends AbstractTableModel {
             case COLUNA_CHEFE:
                 return String.class;
             case COLUNA_DATA:
-                return Date.class;
+                return String.class;
             default:
                 return String.class;
         }

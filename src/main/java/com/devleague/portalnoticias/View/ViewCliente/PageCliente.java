@@ -7,6 +7,7 @@ package com.devleague.portalnoticias.View.ViewCliente;
 
 import com.devleague.portalnoticias.Controller.Noticia.CreateNoticiaController;
 import com.devleague.portalnoticias.Controller.Noticia.GetNoticiaController;
+import com.devleague.portalnoticias.Model.Cliente;
 import com.devleague.portalnoticias.Model.Noticia;
 import com.devleague.portalnoticias.View.Components.DialogoMsg;
 import com.devleague.portalnoticias.View.ViewCliente.Tabela.ListaNoticiasTable;
@@ -23,7 +24,7 @@ public class PageCliente extends javax.swing.JFrame {
     /**
      * Creates new form ViewCliente
      */
-    public PageCliente() {
+    public PageCliente(Cliente cliente) {
         initComponents();
         table();
     }
