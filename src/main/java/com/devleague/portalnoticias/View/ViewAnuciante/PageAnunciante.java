@@ -5,12 +5,15 @@
  */
 package com.devleague.portalnoticias.View.ViewAnuciante;
 
+import com.devleague.portalnoticias.Controller.Anuncio.CreateAnuncioController;
 import com.devleague.portalnoticias.Controller.Anuncio.GetAnuncioController;
+import com.devleague.portalnoticias.Controller.Noticia.CreateNoticiaController;
 import com.devleague.portalnoticias.Controller.Noticia.GetNoticiaController;
 import com.devleague.portalnoticias.Model.Anuncio;
 import com.devleague.portalnoticias.Model.Noticia;
 import com.devleague.portalnoticias.View.Components.DialogoMsg;
 import com.devleague.portalnoticias.View.ViewAnuciante.Table.ListaAnuncianteTable;
+import com.devleague.portalnoticias.View.ViewAnuciante.Table.ListaMeusAnuncios;
 import java.util.ArrayList;
 import javax.swing.JTable;
 
@@ -40,16 +43,16 @@ public class PageAnunciante extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         meusAnuncios = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-        InserirAnuncio = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        anuncioTexto = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        tabelaNoticias = new javax.swing.JTable();
+        tableAnuncios = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabelaMeusAnuncios = new javax.swing.JTable();
+        tableNoticias = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        criarAnuncio = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -64,22 +67,9 @@ public class PageAnunciante extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        InserirAnuncio.setText("Inserir");
-        InserirAnuncio.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                InserirAnuncioMouseClicked(evt);
-            }
-        });
-
-        anuncioTexto.setColumns(20);
-        anuncioTexto.setRows(5);
-        jScrollPane3.setViewportView(anuncioTexto);
-
         jLabel3.setText("Pagina de anuciante");
 
-        jLabel4.setText("Anuncio");
-
-        tabelaNoticias.setModel(new javax.swing.table.DefaultTableModel(
+        tableAnuncios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -90,7 +80,7 @@ public class PageAnunciante extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane5.setViewportView(tabelaNoticias);
+        jScrollPane5.setViewportView(tableAnuncios);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -99,40 +89,27 @@ public class PageAnunciante extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(InserirAnuncio))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))))
+                        .addGap(12, 12, 12)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 707, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE))
-                .addGap(35, 35, 35)
-                .addComponent(InserirAnuncio)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        meusAnuncios.addTab("Inserir Novos Anuncios", jPanel1);
+        meusAnuncios.addTab("Meus Anuncios", jPanel1);
 
-        tabelaMeusAnuncios.setModel(new javax.swing.table.DefaultTableModel(
+        tableNoticias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -143,7 +120,20 @@ public class PageAnunciante extends javax.swing.JFrame {
                 "id", "anuncio"
             }
         ));
-        jScrollPane1.setViewportView(tabelaMeusAnuncios);
+        jScrollPane1.setViewportView(tableNoticias);
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane2.setViewportView(jTextArea1);
+
+        jLabel1.setText("Anuncio:");
+
+        criarAnuncio.setText("Criar Anuncio");
+        criarAnuncio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                criarAnuncioMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -151,18 +141,35 @@ public class PageAnunciante extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 719, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(criarAnuncio))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(criarAnuncio)
                 .addContainerGap())
         );
 
-        meusAnuncios.addTab("Meus Anuncios", jPanel3);
+        meusAnuncios.addTab("Inserir Novo Anuncio", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -181,50 +188,66 @@ public class PageAnunciante extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void InserirAnuncioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InserirAnuncioMouseClicked
+    private void criarAnuncioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_criarAnuncioMouseClicked
         // TODO add your handling code here:
-        try {
-            String noticiaAtual =  (String) tabelaNoticias.getValueAt(tabelaNoticias.getSelectedRow(), 1);
-            new DialogoMsg(noticiaAtual);
-
-        }catch (Exception e){
-            new DialogoMsg("Ops... Algo deu errado!!");
-        }
-    }//GEN-LAST:event_InserirAnuncioMouseClicked
+        
+    }//GEN-LAST:event_criarAnuncioMouseClicked
 
         private void table(){
         //Aqui deve ser substituido por um controlador
-//        String conteudo = "TypeScript é melhor que java";
-//        String titulo = "TypeScript";
-//        CreateNoticiaController.add(helperCreateNoticia(titulo, conteudo));
+        CreateAnuncioController.add(helperCreateAnuncio());
+        CreateNoticiaController.add(helperCreateNoticia());
         
         //Tabela Noticias
         ArrayList<Noticia> noticias = GetNoticiaController.getAll();
         ListaAnuncianteTable tableAnunciante = new ListaAnuncianteTable(noticias);
-        tabelaNoticias = new JTable(tableAnunciante);
-        jScrollPane5.setViewportView(tabelaNoticias);
+        tableNoticias = new JTable(tableAnunciante);
+        jScrollPane1.setViewportView(tableNoticias);
         
         //Tabela Meus Anuncios
         ArrayList<Anuncio> anuncios = GetAnuncioController.getAll();
-//        ListaMeusAnunciosTable tableMeusAnunciantes = new ListaMeusAnunciosTable(anuncios);
-//        tabelaNoticias = new JTable(tableMeusAnunciantes);
-        jScrollPane5.setViewportView(tabelaNoticias);
+        ListaMeusAnuncios tableMeusAnunciantes = new ListaMeusAnuncios(anuncios);
+        tableAnuncios = new JTable(tableMeusAnunciantes);
+        jScrollPane5.setViewportView(tableAnuncios);
         
+    }
+    public Noticia helperCreateNoticia(){
+     Noticia mockNoticia = new Noticia();
+
+     mockNoticia.setConteudo("Noticia sobre Java");
+     mockNoticia.setTitulo("Java é incrivel... Incrivelmente difícil!!");
+
+     return mockNoticia;
+    }
+        
+    public Anuncio helperCreateAnuncio(){
+        int click = (int) (Math.random() * 100);
+        int exemplares = (int) (Math.random() * 1000);
+        int views = (int) (Math.random() * 10000);
+        
+        
+        Anuncio mockAnuncio = new Anuncio();
+        
+        mockAnuncio.setClicks(click);
+        mockAnuncio.setExemplaresEntregues(exemplares);
+        mockAnuncio.setViews(views);
+        
+        return mockAnuncio;
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton InserirAnuncio;
-    private javax.swing.JTextArea anuncioTexto;
+    private javax.swing.JButton criarAnuncio;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTabbedPane meusAnuncios;
-    private javax.swing.JTable tabelaMeusAnuncios;
-    private javax.swing.JTable tabelaNoticias;
+    private javax.swing.JTable tableAnuncios;
+    private javax.swing.JTable tableNoticias;
     // End of variables declaration//GEN-END:variables
 }
