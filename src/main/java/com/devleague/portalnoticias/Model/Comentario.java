@@ -69,6 +69,29 @@ public class Comentario {
             return null;
         }
     }
+    public ArrayList<Comentario> getAproved(){
+        try {
+            List<Comentario> list  = DB.comentario
+                    .stream()
+                    .filter(comentario-> comentario.isAprovada())
+                    .collect(Collectors.toList());
+            return new ArrayList<>(list);
+        }catch (Exception e){
+            return null;
+        }
+    }
+    public ArrayList<Comentario> getReproved(){
+        try {
+            List<Comentario> list  = DB.comentario
+                    .stream()
+                    .filter(comentario-> !comentario.isAprovada())
+                    .collect(Collectors.toList());
+            return new ArrayList<>(list);
+        }catch (Exception e){
+            return null;
+        }
+    }
+
 
     public ArrayList getAll(){
         return DB.comentario;

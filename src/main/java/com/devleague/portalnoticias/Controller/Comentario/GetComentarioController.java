@@ -22,4 +22,20 @@ public class GetComentarioController {
             return null;
         }
     }
+        public static ArrayList<Comentario> getAproved() {
+        Comentario comentario = new Comentario();
+        try {
+            return comentario.getAproved();
+        }catch (Exception e){
+            return null;
+        }
+    }
+    public static ArrayList<Comentario> getReproved() {
+        Comentario comentario = new Comentario();
+        try {
+            return comentario.getReproved();
+        }catch (Exception e){
+            return null;
+        }
+    }
 }

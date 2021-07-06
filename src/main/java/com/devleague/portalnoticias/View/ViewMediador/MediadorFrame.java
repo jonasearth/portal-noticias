@@ -8,8 +8,10 @@ package com.devleague.portalnoticias.View.ViewMediador;
 import com.devleague.portalnoticias.Model.Mediador;
 import com.devleague.portalnoticias.Model.Comentario;
 import com.devleague.portalnoticias.Controller.Comentario.GetComentarioController;
+import com.devleague.portalnoticias.View.Components.DialogoMsg;
 
 import java.util.ArrayList;
+import java.util.UUID;
 import javax.swing.JTable;
 /**
  *
@@ -24,6 +26,7 @@ public class MediadorFrame extends javax.swing.JFrame {
     public MediadorFrame(Mediador mediador) {
         this.mediador = mediador;
         initComponents();
+        tables();
     }
 
     /**
@@ -38,23 +41,23 @@ public class MediadorFrame extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        ListaTodosComentarios = new javax.swing.JTable();
+        ListaTodosComentariosTable = new javax.swing.JTable();
         reprovar = new javax.swing.JButton();
         apovar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        listaComentariosAprovados = new javax.swing.JTable();
+        listaComentariosAprovadosTable = new javax.swing.JTable();
         reprovarComentarioAprovado = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        listaComentariosRejeitados = new javax.swing.JTable();
+        listaComentariosReprovadosTable = new javax.swing.JTable();
         aprovarComentarioRejeitado = new javax.swing.JButton();
         back = new javax.swing.JButton();
         titulo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        ListaTodosComentarios.setModel(new javax.swing.table.DefaultTableModel(
+        ListaTodosComentariosTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -65,7 +68,7 @@ public class MediadorFrame extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(ListaTodosComentarios);
+        jScrollPane1.setViewportView(ListaTodosComentariosTable);
 
         reprovar.setText("Reprovar");
         reprovar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -110,7 +113,7 @@ public class MediadorFrame extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Comentarios", jPanel1);
 
-        listaComentariosAprovados.setModel(new javax.swing.table.DefaultTableModel(
+        listaComentariosAprovadosTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -121,7 +124,7 @@ public class MediadorFrame extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane2.setViewportView(listaComentariosAprovados);
+        jScrollPane2.setViewportView(listaComentariosAprovadosTable);
 
         reprovarComentarioAprovado.setText("Reprovar");
         reprovarComentarioAprovado.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -155,7 +158,7 @@ public class MediadorFrame extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Comentarios Aprovados", jPanel2);
 
-        listaComentariosRejeitados.setModel(new javax.swing.table.DefaultTableModel(
+        listaComentariosReprovadosTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -166,7 +169,7 @@ public class MediadorFrame extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane3.setViewportView(listaComentariosRejeitados);
+        jScrollPane3.setViewportView(listaComentariosReprovadosTable);
 
         aprovarComentarioRejeitado.setText("Aprovar");
         aprovarComentarioRejeitado.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -198,7 +201,7 @@ public class MediadorFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Comentarios Rejeitados", jPanel3);
+        jTabbedPane1.addTab("Comentarios Reprovados", jPanel3);
 
         back.setLabel("<--");
         back.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -241,18 +244,59 @@ public class MediadorFrame extends javax.swing.JFrame {
 
     private void apovarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_apovarMouseClicked
         // TODO add your handling code here:
+        try {
+            Comentario comentario = GetComentarioController.get( (UUID) ListaTodosComentariosTable.getValueAt(ListaTodosComentariosTable.getSelectedRow(), 0));
+            if (comentario != null) {
+                comentario.setAprovada(true);
+                tables();
+            }
+        }catch (Exception e){
+            new DialogoMsg("Nenhum Comentario selecionado!");
+        }
+        
     }//GEN-LAST:event_apovarMouseClicked
 
     private void reprovarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reprovarMouseClicked
         // TODO add your handling code here:
+        try {
+            Comentario comentario = GetComentarioController.get( (UUID) ListaTodosComentariosTable.getValueAt(ListaTodosComentariosTable.getSelectedRow(), 0));
+            if (comentario == null) {
+                throw new Exception();
+            }
+                comentario.setAprovada(false);
+                tables();
+        }catch (Exception e){
+            new DialogoMsg("Nenhum Comentario selecionado!");
+        }        
     }//GEN-LAST:event_reprovarMouseClicked
 
     private void aprovarComentarioRejeitadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aprovarComentarioRejeitadoMouseClicked
         // TODO add your handling code here:
+        try {
+            Comentario comentario = GetComentarioController.get( (UUID) listaComentariosReprovadosTable.getValueAt(listaComentariosReprovadosTable.getSelectedRow(), 0));
+            if (comentario == null) {
+                throw new Exception();
+            }
+                comentario.setAprovada(true);
+                tables();
+        }catch (Exception e){
+            new DialogoMsg("Nenhum Comentario selecionado!");
+        } 
     }//GEN-LAST:event_aprovarComentarioRejeitadoMouseClicked
 
     private void reprovarComentarioAprovadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reprovarComentarioAprovadoMouseClicked
         // TODO add your handling code here:
+        try {
+            Comentario comentario = GetComentarioController.get( (UUID) listaComentariosAprovadosTable.getValueAt(listaComentariosAprovadosTable.getSelectedRow(), 0));
+            if (comentario == null) {
+                throw new Exception();
+            }
+                comentario.setAprovada(false);
+                tables();
+        }catch (Exception e){
+            new DialogoMsg("Nenhum Comentario selecionado!");
+        } 
+        
     }//GEN-LAST:event_reprovarComentarioAprovadoMouseClicked
 
     private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
@@ -262,20 +306,36 @@ public class MediadorFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_backMouseClicked
     
 public void tables(){
+//    helperComentario();
     ArrayList<Comentario> comentarios = new ArrayList<Comentario>();
     ArrayList<Comentario> comentariosAprovados = new ArrayList<Comentario>();
     ArrayList<Comentario> comentariosReprovados = new ArrayList<Comentario>();
      
    comentarios = GetComentarioController.getAll();
+   comentariosAprovados = GetComentarioController.getAproved();
+   comentariosReprovados = GetComentarioController.getReproved();
    
    ListaComentariosTable listaComentarios = new ListaComentariosTable(comentarios);
-   ListaTodosComentarios = new JTable(listaComentarios);
-        
+   ListaTodosComentariosTable = new JTable(listaComentarios);
+   jScrollPane1.setViewportView(ListaTodosComentariosTable);
+   
+   ListaComentariosTable listaComentariosAprovados = new ListaComentariosTable(comentariosAprovados);
+   listaComentariosAprovadosTable = new JTable(listaComentariosAprovados);
+   jScrollPane2.setViewportView(listaComentariosAprovadosTable);
+   
+   ListaComentariosTable listaComentariosReprovados = new ListaComentariosTable(comentariosReprovados);
+   listaComentariosReprovadosTable = new JTable(listaComentariosReprovados);
+   jScrollPane3.setViewportView(listaComentariosReprovadosTable);   
 }
 
+public void helperComentario(){
+    Comentario comentario = new Comentario();
+    comentario.setConteudo("Da hora a noticia. Fernanda da dez para gente!!");
+    comentario.create();
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable ListaTodosComentarios;
+    private javax.swing.JTable ListaTodosComentariosTable;
     private javax.swing.JButton apovar;
     private javax.swing.JButton aprovarComentarioRejeitado;
     private javax.swing.JButton back;
@@ -286,8 +346,8 @@ public void tables(){
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable listaComentariosAprovados;
-    private javax.swing.JTable listaComentariosRejeitados;
+    private javax.swing.JTable listaComentariosAprovadosTable;
+    private javax.swing.JTable listaComentariosReprovadosTable;
     private javax.swing.JButton reprovar;
     private javax.swing.JButton reprovarComentarioAprovado;
     private javax.swing.JLabel titulo;
