@@ -22,7 +22,7 @@ public class GetNoticiaController  {
         try {
             return noticia.getAll();
         }catch (Exception e){
-            return null;
+            return new ArrayList<>();
         }
     }
     public static ArrayList<Noticia> getByChefe( UUID id) {
@@ -30,7 +30,7 @@ public class GetNoticiaController  {
         try {
             return noticia.getByChefe( id);
         }catch (Exception e){
-            return null;
+            return new ArrayList<>();
         }
     }
     public static ArrayList<Noticia> getByCategory(UUID id) {
@@ -38,7 +38,7 @@ public class GetNoticiaController  {
         try {
             return noticia.getByCategory( id);
         }catch (Exception e){
-            return null;
+            return new ArrayList<>();
         }
     }
     public static ArrayList<Noticia> getToCreate(UUID id) {
@@ -46,7 +46,7 @@ public class GetNoticiaController  {
         try {
             return noticia.getToCreate(id);
         }catch (Exception e){
-            return null;
+            return new ArrayList<>();
         }
     }
     public static ArrayList<Noticia> getCreated() {
@@ -54,7 +54,7 @@ public class GetNoticiaController  {
         try {
             return noticia.getCreated();
         }catch (Exception e){
-            return null;
+            return new ArrayList<>();
         }
     }
     public static ArrayList<Noticia> getAproved(boolean fisico, boolean pagante) {
@@ -62,7 +62,7 @@ public class GetNoticiaController  {
         try {
             return noticia.getAproved( fisico, pagante);
         }catch (Exception e){
-            return null;
+            return new ArrayList<>();
         }
     }
     public static ArrayList<Noticia> getReproved(UUID id) {
@@ -70,7 +70,7 @@ public class GetNoticiaController  {
         try {
             return noticia.getReproved(id);
         }catch (Exception e){
-            return null;
+            return new ArrayList<>();
         }
     }
     public static ArrayList<Noticia> getRevised( ) {
@@ -78,7 +78,7 @@ public class GetNoticiaController  {
         try {
             return noticia.getRevised();
         } catch (Exception e) {
-            return null;
+            return new ArrayList<>();
         }
     }
     public static ArrayList<Noticia> getRevisedComplete( ) {
@@ -86,7 +86,7 @@ public class GetNoticiaController  {
         try {
             return noticia.getRevisedComplete();
         } catch (Exception e) {
-            return null;
+            return new ArrayList<>();
         }
     }
 
@@ -95,7 +95,7 @@ public class GetNoticiaController  {
         try {
             return noticia.getRevisedWithError();
         } catch (Exception e) {
-            return null;
+            return new ArrayList<>();
         }
     }
     public static ArrayList<Noticia> getEdited( ) {
@@ -103,7 +103,7 @@ public class GetNoticiaController  {
         try {
             return noticia.getEdited();
         } catch (Exception e) {
-            return null;
+            return new ArrayList<>();
         }
     }
 }

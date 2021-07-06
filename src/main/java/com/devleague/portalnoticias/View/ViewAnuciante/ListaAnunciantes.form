@@ -125,29 +125,47 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel2" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel3" alignment="0" min="-2" pref="54" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="jLabel3" min="-2" pref="54" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="nomeAnunciante" max="32767" attributes="0"/>
-                              <Component id="salarioAnunciante" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="nomeAnunciante" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           <Component id="butaoCriarAnunciante" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jLabel5" min="-2" pref="54" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="esfera" max="32767" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="publico" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jLabel7" min="-2" pref="54" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="cartao" max="32767" attributes="0"/>
+                      </Group>
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="excluirAnunciante" max="32767" attributes="0"/>
-                              <Component id="logarAnunciante" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="excluirAnunciante" min="-2" max="-2" attributes="0"/>
+                                  <Component id="logarAnunciante" alignment="0" min="-2" pref="121" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLabel8" min="-2" pref="54" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                      <Component id="cod" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel6" min="-2" pref="54" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="validade" min="-2" pref="92" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
@@ -167,15 +185,31 @@
                       <Component id="nomeAnunciante" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jLabel4" max="32767" attributes="0"/>
-                      <Component id="salarioAnunciante" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel5" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="esfera" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="publico" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel7" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="cartao" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel6" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="validade" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel8" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="cod" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="15" max="32767" attributes="0"/>
                   <Component id="butaoCriarAnunciante" min="-2" pref="30" max="-2" attributes="0"/>
-                  <EmptySpace pref="118" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                   <Component id="logarAnunciante" min="-2" pref="30" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="excluirAnunciante" min="-2" pref="30" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -194,17 +228,7 @@
             <Property name="text" type="java.lang.String" value="Nome: "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel4">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Salario:"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JTextField" name="nomeAnunciante">
-        </Component>
-        <Component class="javax.swing.JTextField" name="salarioAnunciante">
-          <Properties>
-            <Property name="toolTipText" type="java.lang.String" value=""/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="butaoCriarAnunciante">
           <Properties>
@@ -212,6 +236,7 @@
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="butaoCriarAnuncianteMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="butaoCriarAnuncianteActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="excluirAnunciante">
@@ -229,6 +254,42 @@
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="logarAnuncianteMouseClicked"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel5">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Esfera:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="esfera">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel6">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Validade:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel7">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cartao:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel8">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cod. Seg: "/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="publico">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Publico"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="publicoActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="validade">
+        </Component>
+        <Component class="javax.swing.JTextField" name="cartao">
+        </Component>
+        <Component class="javax.swing.JTextField" name="cod">
         </Component>
       </SubComponents>
     </Container>

@@ -17,10 +17,11 @@ import java.util.ArrayList;
 
 public class ListaAnunciantesTable extends AbstractTableModel {
 
-    private String colunas[] = {"id", "nome","salario" };
+    private String colunas[] = {"id", "nome","publico" };
     private ArrayList<Anunciante> anunciante;
     public final int COLUNA_ID = 0;
     public final int COLUNA_NOME = 1;
+    public final int COLUNA_PUBLICO = 2;
 
     public ListaAnunciantesTable(ArrayList<Anunciante> anunciante) {
         this.anunciante = anunciante;
@@ -57,6 +58,8 @@ public class ListaAnunciantesTable extends AbstractTableModel {
                 return String.class;
             case COLUNA_NOME:
                 return String.class;
+            case COLUNA_PUBLICO:
+                return Boolean.class;
             default:
                 return String.class;
         }
@@ -70,6 +73,8 @@ public class ListaAnunciantesTable extends AbstractTableModel {
                 return anunciante.getId();
             case COLUNA_NOME:
                 return anunciante.getNome();
+            case COLUNA_PUBLICO:
+                return anunciante.isPublico();
         }
         return null;
     }
@@ -83,6 +88,8 @@ public class ListaAnunciantesTable extends AbstractTableModel {
             case COLUNA_NOME:
                 anunciante.setNome(aValue.toString());
                 break;
+            case COLUNA_PUBLICO:
+                anunciante.setPublico((Boolean) aValue);
         }
         fireTableDataChanged();
     }
