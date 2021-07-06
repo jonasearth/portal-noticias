@@ -69,7 +69,7 @@ public class PageChefeRedacao extends javax.swing.JFrame {
     }
     private void tableMaterias(){
 
-        ArrayList<Noticia> noticia = GetNoticiaController.getRevised();
+        ArrayList<Noticia> noticia = GetNoticiaController.getRevisedComplete();
         NoticiasAAprovarTable tm = new NoticiasAAprovarTable(noticia);
         materiasAAprovar = new JTable(tm);
         materiasAAprovar.getColumnModel().getColumn(0).setPreferredWidth(0);
@@ -113,6 +113,8 @@ public class PageChefeRedacao extends javax.swing.JFrame {
         selectCategoria = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
+        fisico = new javax.swing.JCheckBox();
+        digital = new javax.swing.JCheckBox();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableCategorias = new javax.swing.JTable();
@@ -217,32 +219,51 @@ public class PageChefeRedacao extends javax.swing.JFrame {
 
         jButton3.setText("Cancelar");
 
+        fisico.setText("Fisico");
+        fisico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fisicoActionPerformed(evt);
+            }
+        });
+
+        digital.setText("Digital");
+        digital.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                digitalActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(tituloAtribuirNoticia, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botaoSalvarAtribuirNoticia))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(selectCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(privadoAtribuirNoticia, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                        .addComponent(selectJornalista, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                        .addComponent(selectJornalista, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(digital)
+                            .addComponent(fisico))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -262,7 +283,11 @@ public class PageChefeRedacao extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(selectCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 298, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(digital)
+                .addGap(7, 7, 7)
+                .addComponent(fisico)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 222, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoSalvarAtribuirNoticia)
                     .addComponent(jButton3))
@@ -454,6 +479,8 @@ public class PageChefeRedacao extends javax.swing.JFrame {
         noticia.setCategoria(categorias.get(selectCategoria.getSelectedIndex()).getId());
         noticia.setTitulo(tituloAtribuirNoticia.getText());
         noticia.setPrivado(privadoAtribuirNoticia.isSelected());
+        noticia.setDigital(digital.isSelected());
+        noticia.setImpresso(fisico.isSelected());
 
         try {
             CreateNoticiaController.add(noticia);
@@ -471,11 +498,21 @@ public class PageChefeRedacao extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_visualizarButtonActionPerformed
 
+    private void fisicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fisicoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fisicoActionPerformed
+
+    private void digitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_digitalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_digitalActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoSalvarAtribuirNoticia;
     private javax.swing.JButton btnCriarCategoria;
     private javax.swing.JButton btnExcluirCategoria;
+    private javax.swing.JCheckBox digital;
+    private javax.swing.JCheckBox fisico;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;

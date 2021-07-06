@@ -21,8 +21,8 @@ public class ListaNoticiasCriadasTable extends AbstractTableModel{
     public final int COLUNA_TITULO = 1;
     public final int COLUNA_JORNALISTA = 2;
 
-    public ListaNoticiasCriadasTable(ArrayList<Noticia> noticias) {
-        this.noticias = noticias;
+    public ListaNoticiasCriadasTable(ArrayList<Noticia> noticia) {
+        this.noticias = noticia;
     }
 
     

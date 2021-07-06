@@ -28,10 +28,10 @@ public class Noticia  {
     private UUID aprovadoPor;
     private boolean digital;
     private int valor;
-    private ArrayList<UUID> comentarios;
-    private ArrayList<UUID> anuncios;
+    private ArrayList<UUID> comentarios = new ArrayList<>();
+    private ArrayList<UUID> anuncios= new ArrayList<>();
     private boolean impresso;
-    private ArrayList<UUID> erros;
+    private ArrayList<UUID> erros= new ArrayList<>();
     private boolean privado;
 
     public boolean isPrivado() {
@@ -368,11 +368,33 @@ public class Noticia  {
             return null;
         }
     }
+    public ArrayList<Noticia> getRevisedComplete() {
+        try {
+            List<Noticia> list = DB.noticia
+                    .stream()
+                    .filter(noticia -> noticia.isRevisada() && noticia.isRevisaoCompleta() && !noticia.isAprovada())
+                    .collect(Collectors.toList());
+            return new ArrayList<Noticia>(list);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    public ArrayList<Noticia> getRevisedWithError() {
+        try {
+            List<Noticia> list = DB.noticia
+                    .stream()
+                    .filter(noticia -> noticia.isRevisada() && !noticia.isRevisaoCompleta())
+                    .collect(Collectors.toList());
+            return new ArrayList<Noticia>(list);
+        } catch (Exception e) {
+            System.out.printf(e.toString());
+            return null;
+        }
+    }
 
     public boolean addError(UUID id){
         try{
             this.erros.add(id);
-            DB.noticia.set(DB.noticia.indexOf(this.get(this.id)), this);
             return true;
         }catch (Exception e) {
             return false;
