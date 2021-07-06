@@ -181,63 +181,15 @@ public class PageMediador extends javax.swing.JFrame {
 
     private void butaoCriarJornalista1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_butaoCriarJornalista1MouseClicked
 
-        if(nomeJornalista.getText().length() < 3){
-            new DialogoMsg("Nome do Jornalista precisa ter ao menos 3 caracteres");
-            return;
-        }
-        Pattern pattern = Pattern.compile("\\d+.\\d+");
-
-        if(!pattern.matcher(salarioJornalista.getText()).matches()){
-            new DialogoMsg("Salario do jornalista invalido");
-            return;
-        }
-        try{
-            Jornalista jornalista = new Jornalista();
-            jornalista.setNome(nomeJornalista.getText());
-            jornalista.setSalario(Float.parseFloat(salarioJornalista.getText()));
-            if(CreateJornalistaController.add(jornalista)){
-                table();
-            }else{
-                new DialogoMsg("Não foi possivel Criar o jornalista");
-                return;
-            }
-        }catch (Exception e){
-            new DialogoMsg("Salario do jornalista invalido");
-            return;
-        }
 
     }//GEN-LAST:event_butaoCriarJornalista1MouseClicked
 
     private void logarJornalista1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logarJornalista1MouseClicked
-        try {
-            Jornalista jornalista = GetJornalistaController.get((UUID) listaJornalistas.getValueAt(listaJornalistas.getSelectedRow(), 0));
-            if (jornalista != null) {
-                new JornalistaFrame(jornalista).setVisible(true);
-                this.setVisible(false);
 
-            } else {
-                new DialogoMsg("Jornalista não encontrado!");
-            }
-        }catch (Exception e){
-            new DialogoMsg("Nenhum Jornalista selecionado!");
-        }
     }//GEN-LAST:event_logarJornalista1MouseClicked
 
     private void excluirJornalista1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_excluirJornalista1MouseClicked
-        try {
-            Jornalista jornalista = GetJornalistaController.get( (UUID) listaJornalistas.getValueAt(listaJornalistas.getSelectedRow(), 0));
-            if (jornalista != null) {
-                if (DeleteJornalistaController.delete(jornalista)) {
-                    table();
-                } else {
-                    new DialogoMsg("Não foi possivel excluir o jornalista!");
-                }
-            } else {
-                new DialogoMsg("Jornalista não encontrado!");
-            }
-        }catch (Exception e){
-            new DialogoMsg("Nenhum Jornalista selecionado!");
-        }
+
     }//GEN-LAST:event_excluirJornalista1MouseClicked
 
     private void table(){
@@ -246,7 +198,7 @@ public class PageMediador extends javax.swing.JFrame {
 //        CreateComentarioController.add(helperCreateComentario());
         
         ArrayList<Comentario> Comentarios = GetComentarioController.getAll();
-        ListaMediadorTable tm = new ListaMediadorTable(Comentarios);
+        ListaComentariosTable tm = new ListaComentariosTable(Comentarios);
         tabelaMediador = new JTable(tm);
         jScrollPane1.setViewportView(tabelaMediador);
     }

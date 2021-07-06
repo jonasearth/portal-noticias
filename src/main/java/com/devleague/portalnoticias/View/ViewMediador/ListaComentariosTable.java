@@ -16,7 +16,7 @@ import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class ListaMediadorTable extends AbstractTableModel {
+public class ListaComentariosTable extends AbstractTableModel {
 
     private final String colunas[] = {"id", "usuario", "comentario", "estado"};
     private final ArrayList<Comentario> comentario;
@@ -26,7 +26,7 @@ public class ListaMediadorTable extends AbstractTableModel {
     public final int COLUNA_COMENTARIO = 2;
     public final int COLUNA_ESTADO = 3;
 
-    public ListaMediadorTable(ArrayList<Comentario> comentario) {
+    public ListaComentariosTable(ArrayList<Comentario> comentario) {
         this.comentario = comentario;
     }
 
