@@ -81,6 +81,23 @@ public class GetNoticiaController  {
             return null;
         }
     }
+    public static ArrayList<Noticia> getRevisedComplete( ) {
+        Noticia noticia = new Noticia();
+        try {
+            return noticia.getRevisedComplete();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public static ArrayList<Noticia> getRevisedWithError( ) {
+        Noticia noticia = new Noticia();
+        try {
+            return noticia.getRevisedWithError();
+        } catch (Exception e) {
+            return null;
+        }
+    }
     public static ArrayList<Noticia> getEdited( ) {
         Noticia noticia = new Noticia();
         try {

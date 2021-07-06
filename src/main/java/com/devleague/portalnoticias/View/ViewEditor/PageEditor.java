@@ -31,6 +31,7 @@ public class PageEditor extends javax.swing.JFrame {
         this.editor = editor;
         initComponents();
         table();
+        tableErro();
     }
     
     /**
@@ -100,6 +101,11 @@ public class PageEditor extends javax.swing.JFrame {
         jTabbedPane1.addTab("Listagem De Noticias Criadas", jPanel1);
 
         jButton3.setText("Editar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -162,6 +168,10 @@ public class PageEditor extends javax.swing.JFrame {
     private void editarNoticiaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarNoticiaButtonActionPerformed
         editarNociciaFrame(GetNoticiaController.get((UUID)jTable2.getValueAt(jTable2.getSelectedRow(), 0)));
     }//GEN-LAST:event_editarNoticiaButtonActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        corrigirNoticiaFrame(GetNoticiaController.get((UUID)jTable1.getValueAt(jTable1.getSelectedRow(), 0)));
+    }//GEN-LAST:event_jButton3ActionPerformed
     @SuppressWarnings("empty-statement")
     private void table(){
         ArrayList<Noticia> noticias = GetNoticiaController.getCreated();
@@ -183,8 +193,18 @@ public class PageEditor extends javax.swing.JFrame {
         );
     }
     public  void editarNociciaFrame(Noticia noticia){
-         new EditarNoticiaFrame(this.editor, noticia).setVisible(true);
-         this.setVisible(false);
+        new EditarNoticiaFrame(this.editor, noticia).setVisible(true);
+        this.setVisible(false);
+    }
+    public  void corrigirNoticiaFrame(Noticia noticia){
+        new EditarNoticia(this.editor, noticia).setVisible(true);
+        this.setVisible(false);
+    }
+    private void tableErro(){
+        ArrayList<Noticia> noticias = GetNoticiaController.getRevisedWithError();
+        ListaNoticiasCriadasTable tm = new ListaNoticiasCriadasTable(noticias);
+        jTable1 = new JTable(tm);
+        jScrollPane1.setViewportView(jTable1);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton editarNoticiaButton;

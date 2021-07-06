@@ -138,6 +138,7 @@ public class AprovarNoticia extends javax.swing.JFrame {
         }else{
             noticia.setEditada(false);
             noticia.setRevisada(false);
+            noticia.setRevisaoCompleta(false);
             noticia.setAprovada(false);
             noticia.setCriada(false);
             noticia.setMotivoReprovada(comentarioReprovar.getText());
