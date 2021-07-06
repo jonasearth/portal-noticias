@@ -20,11 +20,12 @@ import javax.swing.JTable;
  * @author david
  */
 public class PageCliente extends javax.swing.JFrame {
-
+    public Cliente cliente;
     /**
      * Creates new form ViewCliente
      */
     public PageCliente(Cliente cliente) {
+        this.cliente = cliente;
         initComponents();
         table();
     }
@@ -119,7 +120,7 @@ public class PageCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             Noticia noticiaAtual = GetNoticiaController.get( (UUID) tabelaNoticias.getValueAt(tabelaNoticias.getSelectedRow(), 0));
-            new VisualizarNoticia(noticiaAtual).setVisible(true);
+            new VisualizarNoticia(noticiaAtual,this.cliente).setVisible(true);
 
         }catch (Exception e){
             new DialogoMsg("Selecione uma noticia");
@@ -132,7 +133,7 @@ public class PageCliente extends javax.swing.JFrame {
 //        String titulo = "TypeScript";
 //        CreateNoticiaController.add(helperCreateNoticia(titulo, conteudo));
         
-        ArrayList<Noticia> todasNoticias = GetNoticiaController.getAll();
+        ArrayList<Noticia> todasNoticias = GetNoticiaController.getAproved(this.cliente.isFisico(), this.cliente.isPagante());
         ListaNoticiasTable tm = new ListaNoticiasTable(todasNoticias);
         tabelaNoticias = new JTable(tm);
         jScrollPane1.setViewportView(tabelaNoticias);

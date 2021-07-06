@@ -3,32 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.devleague.portalnoticias.View.ViewCliente.Tabela;
+package com.devleague.portalnoticias.View.ViewAnuciante;
 
 /**
  *
  * @author Fnatic
  */
-import com.devleague.portalnoticias.View.ViewCliente.*;
-import com.devleague.portalnoticias.View.*;
-import com.devleague.portalnoticias.Model.Cliente;
-import com.devleague.portalnoticias.View.Components.DialogoMsg;
 
-import java.util.ArrayList;
-import java.util.Date;
+import com.devleague.portalnoticias.Model.Anunciante;
+
 import javax.swing.table.AbstractTableModel;
+import java.util.ArrayList;
 
-public class ListaClientesTable extends AbstractTableModel {
+public class ListaAnunciantesTable extends AbstractTableModel {
 
-    private String colunas[] = {"id", "nome","pagante", "fisico" };
-    private ArrayList<Cliente> cliente;
+    private String colunas[] = {"id", "nome","salario" };
+    private ArrayList<Anunciante> anunciante;
     public final int COLUNA_ID = 0;
     public final int COLUNA_NOME = 1;
-    public final int COLUNA_PAGANTE = 2;
-    public final int COLUNA_FISICO = 3;
 
-    public ListaClientesTable(ArrayList<Cliente> cliente) {
-        this.cliente = cliente;
+    public ListaAnunciantesTable(ArrayList<Anunciante> anunciante) {
+        this.anunciante = anunciante;
     }
 
     
@@ -44,7 +39,7 @@ public class ListaClientesTable extends AbstractTableModel {
 
     @Override
     public int getRowCount() {
-        return cliente.size();
+        return anunciante.size();
     }
     @Override
     public int getColumnCount() {
@@ -62,10 +57,6 @@ public class ListaClientesTable extends AbstractTableModel {
                 return String.class;
             case COLUNA_NOME:
                 return String.class;
-            case COLUNA_PAGANTE:
-                return Boolean.class;
-            case COLUNA_FISICO:
-                return Boolean.class;
             default:
                 return String.class;
         }
@@ -73,34 +64,24 @@ public class ListaClientesTable extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Cliente cliente = this.cliente.get(rowIndex);
+        Anunciante anunciante = this.anunciante.get(rowIndex);
         switch (columnIndex) {
             case COLUNA_ID:
-                return cliente.getId();
+                return anunciante.getId();
             case COLUNA_NOME:
-                return cliente.getNome();
-            case COLUNA_PAGANTE:
-                return cliente.isPagante();
-            case COLUNA_FISICO:
-                return cliente.isFisico();
+                return anunciante.getNome();
         }
         return null;
     }
 
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-        Cliente cliente = this.cliente.get(rowIndex);
+        Anunciante anunciante = this.anunciante.get(rowIndex);
         switch (columnIndex) {
             case COLUNA_ID:
                 break;
             case COLUNA_NOME:
-                cliente.setNome(aValue.toString());
-                break;
-            case COLUNA_PAGANTE:
-                    cliente.setPagante((Boolean) aValue);
-            case COLUNA_FISICO:
-                    cliente.setFisico((Boolean) aValue);
-
+                anunciante.setNome(aValue.toString());
                 break;
         }
         fireTableDataChanged();

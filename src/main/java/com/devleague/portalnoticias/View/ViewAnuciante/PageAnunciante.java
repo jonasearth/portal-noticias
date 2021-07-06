@@ -9,6 +9,7 @@ import com.devleague.portalnoticias.Controller.Anuncio.CreateAnuncioController;
 import com.devleague.portalnoticias.Controller.Anuncio.GetAnuncioController;
 import com.devleague.portalnoticias.Controller.Noticia.CreateNoticiaController;
 import com.devleague.portalnoticias.Controller.Noticia.GetNoticiaController;
+import com.devleague.portalnoticias.Model.Anunciante;
 import com.devleague.portalnoticias.Model.Anuncio;
 import com.devleague.portalnoticias.Model.Noticia;
 import com.devleague.portalnoticias.View.Components.DialogoMsg;
@@ -26,7 +27,7 @@ public class PageAnunciante extends javax.swing.JFrame {
     /**
      * Creates new form PageAnuciante
      */
-    public PageAnunciante() {
+    public PageAnunciante(Anunciante anunciante) {
         initComponents();
         table();
     }

@@ -23,4 +23,12 @@ public class UpdateNoticiaController {
             return false;
         }
     }
+    public static boolean addComment(Noticia noticia, UUID id) {
+        try {
+            noticia.addComment(id);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
 }

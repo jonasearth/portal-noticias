@@ -5,19 +5,34 @@
  */
 package com.devleague.portalnoticias.View.ViewCliente;
 
+import com.devleague.portalnoticias.Controller.Anuncio.GetAnuncioController;
+import com.devleague.portalnoticias.Controller.Categoria.GetCategoriaController;
+import com.devleague.portalnoticias.Controller.Cliente.GetClienteController;
+import com.devleague.portalnoticias.Controller.Comentario.CreateComentarioController;
+import com.devleague.portalnoticias.Controller.Comentario.GetComentarioController;
+import com.devleague.portalnoticias.Controller.Jornalista.GetJornalistaController;
+import com.devleague.portalnoticias.Controller.Noticia.UpdateNoticiaController;
+import com.devleague.portalnoticias.Model.Anuncio;
+import com.devleague.portalnoticias.Model.Cliente;
+import com.devleague.portalnoticias.Model.Comentario;
 import com.devleague.portalnoticias.Model.Noticia;
+import com.devleague.portalnoticias.View.Components.DialogoMsg;
+
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  *
  * @author david
  */
 public class VisualizarNoticia extends javax.swing.JFrame {
-
+    public Cliente cliente;
     /**
      * Creates new form VisualizarNoticia
      */
     Noticia noticiaAtual = null;
-    public VisualizarNoticia(Noticia noticia) {
+    public VisualizarNoticia(Noticia noticia, Cliente cliente) {
+        this.cliente = cliente;
         initComponents();
         this.noticiaAtual = noticia;
         setDadosIniciais();
@@ -34,12 +49,8 @@ public class VisualizarNoticia extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        autor = new javax.swing.JTextField();
-        titulo = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        categoria = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        data = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -48,39 +59,24 @@ public class VisualizarNoticia extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         comentario = new javax.swing.JTextArea();
         comentar = new javax.swing.JButton();
+        autor = new javax.swing.JLabel();
+        titulo = new javax.swing.JLabel();
+        categoria = new javax.swing.JLabel();
+        data = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        comentarios = new javax.swing.JTextArea();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        anuncio = new javax.swing.JTextArea();
+        javax.swing.JLabel anuncios = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Autor:");
 
-        autor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                autorActionPerformed(evt);
-            }
-        });
-
-        titulo.setToolTipText("");
-        titulo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tituloActionPerformed(evt);
-            }
-        });
-
         jLabel2.setText("Titulo:");
 
-        categoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                categoriaActionPerformed(evt);
-            }
-        });
-
         jLabel3.setText("Categoria:");
-
-        data.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dataActionPerformed(evt);
-            }
-        });
 
         jLabel4.setText("Data");
 
@@ -90,7 +86,7 @@ public class VisualizarNoticia extends javax.swing.JFrame {
         conteudo.setRows(5);
         jScrollPane1.setViewportView(conteudo);
 
-        jLabel6.setText("Comentario:");
+        jLabel6.setText("Comentarios:");
 
         comentario.setColumns(20);
         comentario.setRows(5);
@@ -103,6 +99,22 @@ public class VisualizarNoticia extends javax.swing.JFrame {
             }
         });
 
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Comentarios");
+
+        comentarios.setColumns(20);
+        comentarios.setRows(5);
+        comentarios.setEnabled(false);
+        jScrollPane3.setViewportView(comentarios);
+
+        anuncio.setColumns(20);
+        anuncio.setRows(5);
+        anuncio.setEnabled(false);
+        jScrollPane4.setViewportView(anuncio);
+
+        anuncios.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        anuncios.setText("Anuncios");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -112,66 +124,87 @@ public class VisualizarNoticia extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addGap(60, 60, 60)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(titulo)
-                            .addComponent(autor)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(data)
-                            .addComponent(categoria)))
-                    .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2))
+                                .addGap(35, 35, 35)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(titulo, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
+                                    .addComponent(categoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(data, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(autor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6))
+                                .addGap(22, 22, 22)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane2))))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(30, 30, 30))
+                                .addGap(8, 8, 8)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(96, 96, 96))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
+                                .addContainerGap())
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 598, Short.MAX_VALUE)
-                            .addComponent(jScrollPane2)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(anuncios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap())))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(comentar)))
-                .addContainerGap())
+                        .addComponent(comentar)
+                        .addGap(10, 10, 10))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(autor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(categoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(autor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(titulo, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(categoria, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(data, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(anuncios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(comentar)
                 .addContainerGap())
         );
@@ -179,46 +212,64 @@ public class VisualizarNoticia extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void autorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_autorActionPerformed
-
-    private void tituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tituloActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_tituloActionPerformed
-
-    private void categoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoriaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_categoriaActionPerformed
-
-    private void dataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dataActionPerformed
-
     private void comentarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comentarActionPerformed
-        // TODO add your handling code here:
+        Comentario coment = new Comentario();
+        coment.setConteudo(comentario.getText());
+        coment.setUsuario(this.cliente.getId());
+        CreateComentarioController.add(coment);
+        UpdateNoticiaController.addComment(noticiaAtual, coment.getId());
+        comentario.setText("");
+        new DialogoMsg("Comentario adicionado!");
     }//GEN-LAST:event_comentarActionPerformed
-public void setDadosIniciais(){
-    titulo.setText(noticiaAtual.getTitulo());
-    conteudo.setText(noticiaAtual.getConteudo());
-}
+    public void setDadosIniciais(){
+        titulo.setText(noticiaAtual.getTitulo());
+        conteudo.setText(noticiaAtual.getConteudo());
+        try {
+            autor.setText(GetJornalistaController.get(noticiaAtual.getAtribuidoA()).getNome());
+            categoria.setText(GetCategoriaController.get(noticiaAtual.getCategoria()).getNome());
+            data.setText(noticiaAtual.getData());
+            noticiaAtual.getComentarios().forEach(coment -> {
+                Comentario com = GetComentarioController.get(coment);
+                comentario.setText(comentario.getText() + "\n\n" + GetClienteController.get(com.getUsuario()).getNome() + ": " + com.getConteudo());
+            });
+            noticiaAtual.getAnuncios().forEach(anun -> {
+                Date date = new Date();
+
+                Anuncio an = GetAnuncioController.get(anun);
+                String[] data = an.getFimVisualizacao().split("/");
+                if(date.getYear() <= Integer.getInteger(data[2])){
+                    if(date.getMonth() <= Integer.getInteger(data[1])){
+                        if(date.getDay() <= Integer.getInteger(data[0])){
+                            anuncio.setText(anuncio.getText() + "\n\n" + an.getConteudo());
+                        }
+                    }
+                }
+            });
+        }catch (Exception e){
+            new DialogoMsg("Não foi possivel encontrar os dados da noticia!");
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField autor;
-    private javax.swing.JTextField categoria;
+    private javax.swing.JTextArea anuncio;
+    private javax.swing.JLabel autor;
+    private javax.swing.JLabel categoria;
     private javax.swing.JButton comentar;
     private javax.swing.JTextArea comentario;
+    private javax.swing.JTextArea comentarios;
     private javax.swing.JTextArea conteudo;
-    private javax.swing.JTextField data;
+    private javax.swing.JLabel data;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField titulo;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
 }

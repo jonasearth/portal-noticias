@@ -291,12 +291,21 @@ public class Noticia  {
             return null;
         }
     }
-    public ArrayList<Noticia> getAproved(){
+    public ArrayList<Noticia> getAproved(boolean fisico, boolean pagante){
+
         try {
-            List<Noticia> list = DB.noticia
-                    .stream()
-                    .filter(noticia -> noticia.isAprovada())
-                    .collect(Collectors.toList());
+            List<Noticia> list;
+            if (pagante) {
+                list = DB.noticia
+                        .stream()
+                        .filter(noticia -> noticia.isAprovada()  && (noticia.isImpresso() == fisico || noticia.isDigital() == !fisico))
+                        .collect(Collectors.toList());
+            }else{
+                 list = DB.noticia
+                        .stream()
+                        .filter(noticia -> noticia.isAprovada() && noticia.isPrivado() == false && (noticia.isImpresso() == fisico || noticia.isDigital() == !fisico))
+                        .collect(Collectors.toList());
+            }
             return new ArrayList<>(list);
         }catch (Exception e){
             return null;
@@ -395,6 +404,14 @@ public class Noticia  {
     public boolean addError(UUID id){
         try{
             this.erros.add(id);
+            return true;
+        }catch (Exception e) {
+            return false;
+        }
+    }
+    public boolean addComment(UUID id){
+        try{
+            this.comentarios.add(id);
             return true;
         }catch (Exception e) {
             return false;
