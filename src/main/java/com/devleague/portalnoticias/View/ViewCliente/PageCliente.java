@@ -120,7 +120,11 @@ public class PageCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             Noticia noticiaAtual = GetNoticiaController.get( (UUID) tabelaNoticias.getValueAt(tabelaNoticias.getSelectedRow(), 0));
-            new VisualizarNoticia(noticiaAtual,this.cliente).setVisible(true);
+            if(cliente.isFisico()){
+                new VisualizarNoticiaFisica(noticiaAtual, this.cliente).setVisible(true);
+            }else {
+                new VisualizarNoticia(noticiaAtual, this.cliente).setVisible(true);
+            }
 
         }catch (Exception e){
             new DialogoMsg("Selecione uma noticia");
