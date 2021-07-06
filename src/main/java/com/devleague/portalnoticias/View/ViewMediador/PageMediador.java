@@ -5,14 +5,17 @@
  */
 package com.devleague.portalnoticias.View.ViewMediador;
 
-import com.devleague.portalnoticias.Controller.Comentario.CreateComentarioController;
-import com.devleague.portalnoticias.Controller.Comentario.GetComentarioController;
-import com.devleague.portalnoticias.Controller.Comentario.UpdateComentarioController;
+import com.devleague.portalnoticias.Controller.Mediador.CreateMediadorController;
+import com.devleague.portalnoticias.Controller.Mediador.DeleteMediadorController;
+import com.devleague.portalnoticias.Controller.Mediador.GetMediadorController;
 import com.devleague.portalnoticias.Model.Comentario;
+import com.devleague.portalnoticias.Model.Mediador;
 import com.devleague.portalnoticias.View.Acesso;
 import com.devleague.portalnoticias.View.Components.DialogoMsg;
+import com.devleague.portalnoticias.View.ViewMediador.MediadorFrame;
 import java.util.ArrayList;
 import java.util.UUID;
+import java.util.regex.Pattern;
 import javax.swing.JTable;
 
 /**
@@ -39,32 +42,32 @@ public class PageMediador extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabelaMediador = new javax.swing.JTable();
+        listaMediadores = new javax.swing.JTable();
         back = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        nomeJornalista1 = new javax.swing.JTextField();
-        salarioJornalista1 = new javax.swing.JTextField();
+        nomeMediador = new javax.swing.JTextField();
+        salarioMediador = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        butaoCriarJornalista1 = new javax.swing.JButton();
-        logarJornalista1 = new javax.swing.JButton();
-        excluirJornalista1 = new javax.swing.JButton();
+        butaoCriarMediador = new javax.swing.JButton();
+        logarMediador = new javax.swing.JButton();
+        excluirMediador = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        tabelaMediador.setModel(new javax.swing.table.DefaultTableModel(
+        listaMediadores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "id", "usuario", "comentario"
+
             }
         ));
-        jScrollPane1.setViewportView(tabelaMediador);
+        jScrollPane1.setViewportView(listaMediadores);
 
         back.setText("<--");
         back.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -77,32 +80,32 @@ public class PageMediador extends javax.swing.JFrame {
         jLabel2.setText("Selecione o Mediador para entrar");
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Criar Novo Jornalista");
+        jLabel6.setText("Criar Novo Mediador");
 
-        salarioJornalista1.setToolTipText("");
+        salarioMediador.setToolTipText("");
 
         jLabel7.setText("Salario:");
 
         jLabel8.setText("Nome: ");
 
-        butaoCriarJornalista1.setText("Registrar");
-        butaoCriarJornalista1.addMouseListener(new java.awt.event.MouseAdapter() {
+        butaoCriarMediador.setText("Registrar");
+        butaoCriarMediador.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                butaoCriarJornalista1MouseClicked(evt);
+                butaoCriarMediadorMouseClicked(evt);
             }
         });
 
-        logarJornalista1.setText("Logar Jornalista");
-        logarJornalista1.addMouseListener(new java.awt.event.MouseAdapter() {
+        logarMediador.setText("Logar Mediador");
+        logarMediador.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                logarJornalista1MouseClicked(evt);
+                logarMediadorMouseClicked(evt);
             }
         });
 
-        excluirJornalista1.setText("Excluir Jornalista");
-        excluirJornalista1.addMouseListener(new java.awt.event.MouseAdapter() {
+        excluirMediador.setText("Excluir Mediador");
+        excluirMediador.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                excluirJornalista1MouseClicked(evt);
+                excluirMediadorMouseClicked(evt);
             }
         });
 
@@ -128,15 +131,15 @@ public class PageMediador extends javax.swing.JFrame {
                                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(nomeJornalista1)
-                                    .addComponent(salarioJornalista1)))
+                                    .addComponent(nomeMediador)
+                                    .addComponent(salarioMediador)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(butaoCriarJornalista1))
+                                .addComponent(butaoCriarMediador))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(excluirJornalista1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(logarJornalista1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(excluirMediador, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                                    .addComponent(logarMediador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
@@ -154,19 +157,19 @@ public class PageMediador extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nomeJornalista1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(nomeMediador, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(salarioJornalista1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(salarioMediador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(butaoCriarJornalista1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(butaoCriarMediador, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(logarJornalista1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(logarMediador, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(excluirJornalista1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(excluirMediador, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -179,28 +182,82 @@ public class PageMediador extends javax.swing.JFrame {
        new Acesso().setVisible(true);
     }//GEN-LAST:event_backMouseClicked
 
-    private void butaoCriarJornalista1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_butaoCriarJornalista1MouseClicked
+    private void butaoCriarMediadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_butaoCriarMediadorMouseClicked
+        
+        if(nomeMediador.getText().length() < 3){
+            new DialogoMsg("Nome do Mediador precisa ter ao menos 3 caracteres");
+            return;
+        }
+        Pattern pattern = Pattern.compile("\\d+.\\d+");
 
+        if(!pattern.matcher(salarioMediador.getText()).matches()){
+            new DialogoMsg("Salario do Mediador invalido");
+            return;
+        }
+        try{
+            Mediador mediador = new Mediador();
+            mediador.setNome(nomeMediador.getText());
+            mediador.setSalario(Float.parseFloat(salarioMediador.getText()));
+            if(CreateMediadorController.add(mediador)){
+                table();
+            }else{
+                new DialogoMsg("Não foi possivel Criar o Mediador");
+                return;
+            }
+        }catch (Exception e){
+            new DialogoMsg("Salario do Mediador invalido");
+            return;
+        }
+ 
 
-    }//GEN-LAST:event_butaoCriarJornalista1MouseClicked
+    }//GEN-LAST:event_butaoCriarMediadorMouseClicked
 
-    private void logarJornalista1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logarJornalista1MouseClicked
+    private void logarMediadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logarMediadorMouseClicked
+        try {
+            Mediador mediador = GetMediadorController.get((UUID) listaMediadores.getValueAt(listaMediadores.getSelectedRow(), 0));
+            if (mediador != null) {
+                new MediadorFrame(mediador).setVisible(true);
+                this.setVisible(false);
 
-    }//GEN-LAST:event_logarJornalista1MouseClicked
+            } else {
+                new DialogoMsg("mediador não encontrado!");
+            }
+        }catch (Exception e){
+            new DialogoMsg("Nenhum mediador selecionado!");
+        }
+    }//GEN-LAST:event_logarMediadorMouseClicked
 
-    private void excluirJornalista1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_excluirJornalista1MouseClicked
-
-    }//GEN-LAST:event_excluirJornalista1MouseClicked
+    private void excluirMediadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_excluirMediadorMouseClicked
+         try {
+            Mediador mediador = GetMediadorController.get( (UUID) listaMediadores.getValueAt(listaMediadores.getSelectedRow(), 0));
+            if (mediador != null) {
+                if (DeleteMediadorController.delete(mediador)) {
+                    table();
+                } else {
+                    new DialogoMsg("Não foi possivel excluir o Mediador!");
+                }
+            } else {
+                new DialogoMsg("Mediador não encontrado!");
+            }
+        }catch (Exception e){
+            new DialogoMsg("Nenhum Mediador selecionado!");
+        }
+    }//GEN-LAST:event_excluirMediadorMouseClicked
 
     private void table(){
 //        Aqui deve ser substituido por um controlador
 
 //        CreateComentarioController.add(helperCreateComentario());
         
-        ArrayList<Comentario> Comentarios = GetComentarioController.getAll();
-        ListaComentariosTable tm = new ListaComentariosTable(Comentarios);
-        tabelaMediador = new JTable(tm);
-        jScrollPane1.setViewportView(tabelaMediador);
+//        ArrayList<Comentario> Comentarios = GetComentarioController.getAll();
+//        ListaComentariosTable tm = new ListaComentariosTable(Comentarios);
+//        tabelaMediador = new JTable(tm);
+//        jScrollPane1.setViewportView(tabelaMediador);
+        ArrayList<Mediador> mediadores = GetMediadorController.getAll();
+        ListaMediadoresTable tm = new ListaMediadoresTable(mediadores);
+        listaMediadores = new JTable(tm);
+        jScrollPane1.setViewportView(listaMediadores);
+
     }
     
     public Comentario helperCreateComentario(){
@@ -214,9 +271,9 @@ public class PageMediador extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back;
     private javax.swing.JButton butaoCriarJornalista;
-    private javax.swing.JButton butaoCriarJornalista1;
+    private javax.swing.JButton butaoCriarMediador;
     private javax.swing.JButton excluirJornalista;
-    private javax.swing.JButton excluirJornalista1;
+    private javax.swing.JButton excluirMediador;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -226,12 +283,12 @@ public class PageMediador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable listaMediadores;
     private javax.swing.JButton logarJornalista;
-    private javax.swing.JButton logarJornalista1;
+    private javax.swing.JButton logarMediador;
     private javax.swing.JTextField nomeJornalista;
-    private javax.swing.JTextField nomeJornalista1;
+    private javax.swing.JTextField nomeMediador;
     private javax.swing.JTextField salarioJornalista;
-    private javax.swing.JTextField salarioJornalista1;
-    private javax.swing.JTable tabelaMediador;
+    private javax.swing.JTextField salarioMediador;
     // End of variables declaration//GEN-END:variables
 }

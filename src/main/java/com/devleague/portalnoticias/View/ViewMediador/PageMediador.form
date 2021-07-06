@@ -43,18 +43,18 @@
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="nomeJornalista1" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="salarioJornalista1" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="nomeMediador" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="salarioMediador" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="butaoCriarJornalista1" min="-2" max="-2" attributes="0"/>
+                              <Component id="butaoCriarMediador" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="excluirJornalista1" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="logarJornalista1" alignment="1" min="-2" pref="132" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="excluirMediador" pref="199" max="32767" attributes="0"/>
+                                  <Component id="logarMediador" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
@@ -80,23 +80,23 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel8" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="nomeJornalista1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="nomeMediador" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jLabel7" alignment="0" max="32767" attributes="0"/>
-                          <Component id="salarioJornalista1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="salarioMediador" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="butaoCriarJornalista1" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="butaoCriarMediador" min="-2" pref="30" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane1" pref="373" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="logarJornalista1" min="-2" pref="30" max="-2" attributes="0"/>
+              <Component id="logarMediador" min="-2" pref="30" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="excluirJornalista1" min="-2" pref="30" max="-2" attributes="0"/>
+              <Component id="excluirMediador" min="-2" pref="30" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -110,33 +110,13 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="tabelaMediador">
+        <Component class="javax.swing.JTable" name="listaMediadores">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="3" rowCount="4">
-                <Column editable="true" title="id" type="java.lang.Object"/>
-                <Column editable="true" title="usuario" type="java.lang.Object"/>
-                <Column editable="true" title="comentario" type="java.lang.Object"/>
-              </Table>
+              <Table columnCount="0" rowCount="4"/>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-              <TableColumnModel selectionModel="0">
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-              </TableColumnModel>
+              <TableColumnModel selectionModel="0"/>
             </Property>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
@@ -162,12 +142,12 @@
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Criar Novo Jornalista"/>
+        <Property name="text" type="java.lang.String" value="Criar Novo Mediador"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="nomeJornalista1">
+    <Component class="javax.swing.JTextField" name="nomeMediador">
     </Component>
-    <Component class="javax.swing.JTextField" name="salarioJornalista1">
+    <Component class="javax.swing.JTextField" name="salarioMediador">
       <Properties>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
@@ -182,28 +162,28 @@
         <Property name="text" type="java.lang.String" value="Nome: "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="butaoCriarJornalista1">
+    <Component class="javax.swing.JButton" name="butaoCriarMediador">
       <Properties>
         <Property name="text" type="java.lang.String" value="Registrar"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="butaoCriarJornalista1MouseClicked"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="butaoCriarMediadorMouseClicked"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="logarJornalista1">
+    <Component class="javax.swing.JButton" name="logarMediador">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Logar Jornalista"/>
+        <Property name="text" type="java.lang.String" value="Logar Mediador"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="logarJornalista1MouseClicked"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="logarMediadorMouseClicked"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="excluirJornalista1">
+    <Component class="javax.swing.JButton" name="excluirMediador">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Excluir Jornalista"/>
+        <Property name="text" type="java.lang.String" value="Excluir Mediador"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="excluirJornalista1MouseClicked"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="excluirMediadorMouseClicked"/>
       </Events>
     </Component>
   </SubComponents>

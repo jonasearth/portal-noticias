@@ -11,10 +11,19 @@ public class Mediador {
 
     private UUID id;
     private String nome;
+    private float salario;
 
     public Mediador(){
         super();
         this.id = UUID.randomUUID();
+    }
+
+    public float getSalario() {
+        return salario;
+    }
+
+    public void setSalario(float salario) {
+        this.salario = salario;
     }
 
     public UUID getId() {
