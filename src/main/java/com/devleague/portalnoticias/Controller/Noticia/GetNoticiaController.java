@@ -57,10 +57,10 @@ public class GetNoticiaController  {
             return null;
         }
     }
-    public static ArrayList<Noticia> getAproved() {
+    public static ArrayList<Noticia> getAproved(boolean fisico, boolean pagante) {
         Noticia noticia = new Noticia();
         try {
-            return noticia.getAproved();
+            return noticia.getAproved( fisico, pagante);
         }catch (Exception e){
             return null;
         }

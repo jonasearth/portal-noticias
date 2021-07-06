@@ -6,8 +6,10 @@
 package com.devleague.portalnoticias.View;
 
 import com.devleague.portalnoticias.DB.DB;
+import com.devleague.portalnoticias.View.ViewAnuciante.ListaAnunciantes;
 import com.devleague.portalnoticias.View.ViewAnuciante.PageAnunciante;
 import com.devleague.portalnoticias.View.ViewChefe.ListaChefes;
+import com.devleague.portalnoticias.View.ViewCliente.ListaClientes;
 import com.devleague.portalnoticias.View.ViewEditor.ListaEditor;
 import com.devleague.portalnoticias.View.ViewJornalista.ListaJornalistas;
 import com.devleague.portalnoticias.View.ViewMediador.PageMediador;
@@ -56,7 +58,7 @@ public class Acesso extends javax.swing.JFrame {
         jPanel12 = new javax.swing.JPanel();
         chefe = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
-        usuario = new javax.swing.JLabel();
+        cliente = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -213,7 +215,7 @@ public class Acesso extends javax.swing.JFrame {
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(chefe, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 156, Short.MAX_VALUE)
+            .addComponent(chefe, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,20 +226,25 @@ public class Acesso extends javax.swing.JFrame {
         jPanel13.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel13.setForeground(new java.awt.Color(69, 73, 74));
 
-        usuario.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        usuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        usuario.setText("Usuario");
-        usuario.setToolTipText("");
+        cliente.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        cliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cliente.setText("Cliente");
+        cliente.setToolTipText("");
+        cliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                clienteMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(usuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+            .addComponent(cliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(usuario, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+            .addComponent(cliente, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -332,8 +339,13 @@ public class Acesso extends javax.swing.JFrame {
     private void anuncianteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_anuncianteMouseClicked
         // TODO add your handling code here:
         this.setVisible(false);
-        new PageAnunciante().setVisible(true);
+        new ListaAnunciantes().setVisible(true);
     }//GEN-LAST:event_anuncianteMouseClicked
+
+    private void clienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clienteMouseClicked
+        this.setVisible(false);
+        new ListaClientes().setVisible(true);
+    }//GEN-LAST:event_clienteMouseClicked
 
     /**
      * @param args the command line arguments
@@ -342,6 +354,7 @@ public class Acesso extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel anunciante;
     private javax.swing.JLabel chefe;
+    private javax.swing.JLabel cliente;
     private javax.swing.JLabel editor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel10;
@@ -354,6 +367,5 @@ public class Acesso extends javax.swing.JFrame {
     private javax.swing.JLabel jornalista;
     private javax.swing.JLabel mediador;
     private javax.swing.JLabel revisor;
-    private javax.swing.JLabel usuario;
     // End of variables declaration//GEN-END:variables
 }

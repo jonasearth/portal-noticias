@@ -14,6 +14,7 @@ public class Anuncio {
     private UUID id;
     private String meio;
     private String fimVisualizacao;
+    private String conteudo;
     private UUID anunciante;
     private int clicks;
     private int views;
@@ -50,6 +51,14 @@ public class Anuncio {
 
     public void setAnunciante(UUID anunciante) {
         this.anunciante = anunciante;
+    }
+
+    public String getConteudo() {
+        return conteudo;
+    }
+
+    public void setConteudo(String conteudo) {
+        this.conteudo = conteudo;
     }
 
     public int getClicks() {
