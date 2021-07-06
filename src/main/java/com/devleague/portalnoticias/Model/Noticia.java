@@ -249,7 +249,7 @@ public class Noticia  {
                     .collect(Collectors.toList());
             return new ArrayList<>(list);
         }catch (Exception e){
-            return null;
+            return new ArrayList<>();
         }
     }
     public ArrayList<Noticia> getByCategory( UUID id){
@@ -260,7 +260,7 @@ public class Noticia  {
                     .collect(Collectors.toList());
             return new ArrayList<>(list);
         }catch (Exception e){
-            return null;
+            return new ArrayList<>();
         }
     }
 
@@ -277,7 +277,7 @@ public class Noticia  {
                     .collect(Collectors.toList());
             return new ArrayList<>(list);
         }catch (Exception e){
-            return null;
+            return new ArrayList<>();
         }
     }
     public ArrayList<Noticia> getReproved(UUID id){
@@ -288,7 +288,7 @@ public class Noticia  {
                     .collect(Collectors.toList());
             return new ArrayList<>(list);
         }catch (Exception e){
-            return null;
+            return new ArrayList<>();
         }
     }
     public ArrayList<Noticia> getAproved(boolean fisico, boolean pagante){
@@ -308,7 +308,7 @@ public class Noticia  {
             }
             return new ArrayList<>(list);
         }catch (Exception e){
-            return null;
+            return new ArrayList<>();
         }
     }
     public ArrayList<Noticia> getCreated(){
@@ -319,7 +319,7 @@ public class Noticia  {
                     .collect(Collectors.toList());
             return new ArrayList<>(list);
         }catch (Exception e){
-            return null;
+            return new ArrayList<>();
         }
     }
     public ArrayList getAll(){
@@ -362,7 +362,7 @@ public class Noticia  {
                     .collect(Collectors.toList());
             return new ArrayList<Noticia>(list);
         }catch (Exception e){
-            return null;
+            return new ArrayList<>();
         }
     }
 
@@ -374,7 +374,7 @@ public class Noticia  {
                     .collect(Collectors.toList());
             return new ArrayList<Noticia>(list);
         } catch (Exception e) {
-            return null;
+            return new ArrayList<>();
         }
     }
     public ArrayList<Noticia> getRevisedComplete() {
@@ -385,7 +385,7 @@ public class Noticia  {
                     .collect(Collectors.toList());
             return new ArrayList<Noticia>(list);
         } catch (Exception e) {
-            return null;
+            return new ArrayList<>();
         }
     }
     public ArrayList<Noticia> getRevisedWithError() {
@@ -397,7 +397,7 @@ public class Noticia  {
             return new ArrayList<Noticia>(list);
         } catch (Exception e) {
             System.out.printf(e.toString());
-            return null;
+            return new ArrayList<>();
         }
     }
 
@@ -412,6 +412,14 @@ public class Noticia  {
     public boolean addComment(UUID id){
         try{
             this.comentarios.add(id);
+            return true;
+        }catch (Exception e) {
+            return false;
+        }
+    }
+    public boolean addAnuncio(UUID id){
+        try{
+            this.anuncios.add(id);
             return true;
         }catch (Exception e) {
             return false;

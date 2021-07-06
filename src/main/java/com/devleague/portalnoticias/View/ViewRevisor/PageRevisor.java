@@ -107,9 +107,14 @@ public class PageRevisor extends javax.swing.JFrame {
         jTabbedPane1.addTab("Noticias Editadas", jPanel1);
 
         welcome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        welcome.setText("jLabel1");
+        welcome.setText("Bem Vindo " + revisor.getNome());
 
         back.setText("<--");
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -147,6 +152,11 @@ public class PageRevisor extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        this.setVisible(false);
+        new ListaRevisores().setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_backActionPerformed
 
     public void reviewNoticiaFrame(Noticia noticia){
         PageEnviarErro pageEnviarErro = new PageEnviarErro(this.revisor, noticia);

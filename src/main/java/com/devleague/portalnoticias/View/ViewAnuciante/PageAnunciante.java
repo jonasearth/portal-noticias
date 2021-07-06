@@ -9,6 +9,7 @@ import com.devleague.portalnoticias.Controller.Anuncio.CreateAnuncioController;
 import com.devleague.portalnoticias.Controller.Anuncio.GetAnuncioController;
 import com.devleague.portalnoticias.Controller.Noticia.CreateNoticiaController;
 import com.devleague.portalnoticias.Controller.Noticia.GetNoticiaController;
+import com.devleague.portalnoticias.Controller.Noticia.UpdateNoticiaController;
 import com.devleague.portalnoticias.Model.Anunciante;
 import com.devleague.portalnoticias.Model.Anuncio;
 import com.devleague.portalnoticias.Model.Noticia;
@@ -16,6 +17,7 @@ import com.devleague.portalnoticias.View.Components.DialogoMsg;
 import com.devleague.portalnoticias.View.ViewAnuciante.Table.ListaAnuncianteTable;
 import com.devleague.portalnoticias.View.ViewAnuciante.Table.ListaMeusAnuncios;
 import java.util.ArrayList;
+import java.util.UUID;
 import javax.swing.JTable;
 
 /**
@@ -23,11 +25,12 @@ import javax.swing.JTable;
  * @author david
  */
 public class PageAnunciante extends javax.swing.JFrame {
-
+    public Anunciante anunciante;
     /**
      * Creates new form PageAnuciante
      */
     public PageAnunciante(Anunciante anunciante) {
+        this.anunciante = anunciante;
         initComponents();
         table();
     }
@@ -51,9 +54,13 @@ public class PageAnunciante extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableNoticias = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        conteudo = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         criarAnuncio = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        dataFim = new javax.swing.JFormattedTextField();
+        back = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -104,7 +111,7 @@ public class PageAnunciante extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -123,9 +130,9 @@ public class PageAnunciante extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tableNoticias);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        conteudo.setColumns(20);
+        conteudo.setRows(5);
+        jScrollPane2.setViewportView(conteudo);
 
         jLabel1.setText("Anuncio:");
 
@@ -135,6 +142,10 @@ public class PageAnunciante extends javax.swing.JFrame {
                 criarAnuncioMouseClicked(evt);
             }
         });
+
+        jLabel2.setText("Data Fim:");
+
+        dataFim.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -147,11 +158,15 @@ public class PageAnunciante extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(criarAnuncio))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))))
+                            .addComponent(jLabel1)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(dataFim)))))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -159,9 +174,13 @@ public class PageAnunciante extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dataFim, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -172,33 +191,69 @@ public class PageAnunciante extends javax.swing.JFrame {
 
         meusAnuncios.addTab("Inserir Novo Anuncio", jPanel3);
 
+        back.setText("<--");
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Bem vindo " + anunciante.getNome());
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(meusAnuncios)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(meusAnuncios, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(back)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(meusAnuncios, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(back, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addComponent(meusAnuncios, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void criarAnuncioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_criarAnuncioMouseClicked
-        // TODO add your handling code here:
-        
+        Anuncio anuncio = new Anuncio();
+        anuncio.setAnunciante(this.anunciante.getId());
+        anuncio.setConteudo(conteudo.getText());
+        anuncio.setFimVisualizacao(dataFim.getText());
+        if(tableNoticias.getSelectedRow() != -1) {
+            CreateAnuncioController.add(anuncio);
+            UpdateNoticiaController.addAnuncio(GetNoticiaController.get((UUID) tableNoticias.getValueAt(tableNoticias.getSelectedRow(), 0)), anuncio.getId());
+            conteudo.setText("");
+            dataFim.setText("");
+            new DialogoMsg("Anuncio cadastrado com sucesso");
+            table();
+        }else{
+            new DialogoMsg("Nenhuma noticia selecionada");
+        }
     }//GEN-LAST:event_criarAnuncioMouseClicked
+
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        this.setVisible(false);
+        new ListaAnunciantes().setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_backActionPerformed
 
         private void table(){
         //Aqui deve ser substituido por um controlador
-        CreateAnuncioController.add(helperCreateAnuncio());
-        CreateNoticiaController.add(helperCreateNoticia());
-        
+
         //Tabela Noticias
         ArrayList<Noticia> noticias = GetNoticiaController.getAll();
         ListaAnuncianteTable tableAnunciante = new ListaAnuncianteTable(noticias);
@@ -206,47 +261,29 @@ public class PageAnunciante extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tableNoticias);
         
         //Tabela Meus Anuncios
-        ArrayList<Anuncio> anuncios = GetAnuncioController.getAll();
+        ArrayList<Anuncio> anuncios = GetAnuncioController.getByAnunciante(anunciante.getId());
         ListaMeusAnuncios tableMeusAnunciantes = new ListaMeusAnuncios(anuncios);
         tableAnuncios = new JTable(tableMeusAnunciantes);
         jScrollPane5.setViewportView(tableAnuncios);
         
     }
-    public Noticia helperCreateNoticia(){
-     Noticia mockNoticia = new Noticia();
 
-     mockNoticia.setConteudo("Noticia sobre Java");
-     mockNoticia.setTitulo("Java é incrivel... Incrivelmente difícil!!");
-
-     return mockNoticia;
-    }
-        
-    public Anuncio helperCreateAnuncio(){
-        int click = (int) (Math.random() * 100);
-        int exemplares = (int) (Math.random() * 1000);
-        int views = (int) (Math.random() * 10000);
-        
-        
-        Anuncio mockAnuncio = new Anuncio();
-        
-        mockAnuncio.setClicks(click);
-        mockAnuncio.setExemplaresEntregues(exemplares);
-        mockAnuncio.setViews(views);
-        
-        return mockAnuncio;
-    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton back;
+    private javax.swing.JTextArea conteudo;
     private javax.swing.JButton criarAnuncio;
+    private javax.swing.JFormattedTextField dataFim;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTabbedPane meusAnuncios;
     private javax.swing.JTable tableAnuncios;
     private javax.swing.JTable tableNoticias;

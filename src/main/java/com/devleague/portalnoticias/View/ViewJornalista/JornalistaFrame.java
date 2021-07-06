@@ -107,7 +107,7 @@ public class JornalistaFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titulo.setText("tt");
+        titulo.setText("Bem Vindo "+ jornalista.getNome());
 
         tableCriacaoNoticias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -212,6 +212,11 @@ public class JornalistaFrame extends javax.swing.JFrame {
         jTabbedPane1.addTab("Noticias Rejeitadas", jPanel2);
 
         jButton1.setLabel("<--");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -257,6 +262,11 @@ public class JornalistaFrame extends javax.swing.JFrame {
             new DialogoMsg("Nenhuma noticia selecionada");
         }
     }//GEN-LAST:event_atualizarNoticiaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.setVisible(false);
+        new ListaJornalistas().setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     /**

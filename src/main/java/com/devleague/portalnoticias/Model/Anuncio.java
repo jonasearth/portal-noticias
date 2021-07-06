@@ -96,6 +96,17 @@ public class Anuncio {
             return null;
         }
     }
+    public ArrayList getByAnunciante( UUID id){
+        try {
+            List<Anuncio> list  = DB.anuncio
+                    .stream()
+                    .filter(anuncio-> anuncio.getAnunciante().equals(id))
+                    .collect(Collectors.toList());
+            return new ArrayList<Anuncio>(list);
+        }catch (Exception e){
+            return new ArrayList();
+        }
+    }
 
     public ArrayList getAll(){
         return DB.anuncio;
